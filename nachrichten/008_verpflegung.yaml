@@ -5,7 +5,7 @@ von_funktion: S4
 an: NORD
 an_funktion: S1/4/6
 zur_info: []
-medium: Fax
+medium: Mail
 vorrang: normal
 betreff_art: Information
 betreff: Verpflegung Einsatzkräfte
@@ -17,4 +17,4 @@ text: |
   Mittagessen ab 15:30 an der FRW 1.
   Verpflegungsbedarf für Einsatzkräfte und Darsteller:innen bis 10:30 an TEL S4 melden,
   Sonderkost (vegetarisch, Allergien) gesondert angeben.
-notiz: 'Fax: Nachweis Medium. Antwort folgt mit Bezug.'
+notiz: Antwort folgt mit Bezug.

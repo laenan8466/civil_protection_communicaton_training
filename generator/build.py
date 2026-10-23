@@ -41,6 +41,16 @@ PFLICHT = ["nr", "kategorie", "von", "von_funktion", "an", "an_funktion",
            "medium", "vorrang", "betreff_art", "betreff", "text"]
 
 
+RUFNAMEN = {"Joh.": "Johannes", "Akk.": "Akkon"}
+REGIONEN = {"H": "Hannover", "H#": "Hannover Land"}
+
+
+def sprechweise(rufname):
+    """'Joh. H# 57-96-1' -> 'Johannes Hannover Land 57-96-1'"""
+    name, region, nummer = rufname.rsplit(" ", 2)
+    return f"{RUFNAMEN.get(name, name)} {REGIONEN.get(region, region)} {nummer}"
+
+
 def lade_config():
     return yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
 
@@ -119,7 +129,7 @@ def anreichern(cfg, nachrichten):
             "Telefon": an["telefon"],
             "Fax": an["fax"],
             "Mail": an["mail"],
-            "Funk": an["rufname"],
+            "Funk": "",
             "Melder": "",
         }[n["medium"]]
 
@@ -179,6 +189,7 @@ def main():
 
     env = Environment(loader=FileSystemLoader(TEMPLATES), undefined=StrictUndefined,
                       trim_blocks=True, lstrip_blocks=True)
+    env.filters["sprechweise"] = sprechweise
     chromium = finde_chromium()
 
     if BUILD.exists():
@@ -214,6 +225,11 @@ def main():
     drucke(chromium, rendere(env, "uebersicht.html", BUILD / "uebersicht.html",
                              nachrichten=nachrichten, statistik=statistik(cfg, nachrichten), **ctx),
            AUSGABE / "Uebersicht_Uebungsleitung.pdf")
+
+    drucke(chromium, rendere(env, "kommplan.html", BUILD / "kommplan.html", k=cfg["kommunikation"],
+                             genannt=[f for f in cfg["fahrzeuge"]
+                                      if any(f["rufname"] in n["text"] for n in nachrichten)], **ctx),
+           AUSGABE / "Kommunikationsplan.pdf")
 
     if any(n["anhaenge"] for n in nachrichten):
         shutil.copytree(ANHAENGE, AUSGABE / "anhaenge")

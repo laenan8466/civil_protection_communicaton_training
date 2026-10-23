@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Kommunikationsplan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@page { size: A4; margin: 0; }
+.kp { padding: 10mm 14mm 6mm; font-size: 9pt; }
+.kp p { margin: 2mm 0; }
+.kp h1 { font-size: 17pt; margin: 0 0 1mm; }
+.kp h2 { font-size: 12pt; margin: 5mm 0 2mm; }
+.kp td.nw { white-space: nowrap; }
+.kp .sub { color: #555; margin-bottom: 5mm; }
+.kp .rg { display: inline-block; border: 0.5mm solid #000; padding: 2mm 4mm; font-size: 13pt; font-weight: 700; }
+.kp table { width: 100%; border-collapse: collapse; }
+.kp th, .kp td { border: 0.3mm solid #999; padding: 0.7mm 1.8mm; text-align: left; vertical-align: top; }
+.kp th { background: #e5e9f0; }
+.kp td.rn { font-family: "Liberation Mono", monospace; font-weight: 700; white-space: nowrap; }
+.kp .klein { font-size: 8.5pt; color: #444; }
+.kp svg { display: block; margin: 2mm auto 0; }
+</style>
+</head>
+<body>
+<div class="kp">
+  <h1>Kommunikationsplan</h1>
+  <div class="sub">{{ cfg.uebung.titel }}</div>
+  <div class="rg">Rufgruppe: {{ k.rufgruppe }} ({{ k.betriebsart }})</div>
+  <p>{{ k.hinweis }}</p>
+
+  <h2>Teilnehmer</h2>
+  <table>
+    <tr><th>Stelle</th><th>Funkrufname</th><th>Sprechweise</th><th>Arbeitsmittel</th><th>Telefon</th><th>Mail</th></tr>
+    {% for key, s in cfg.stellen.items() %}
+    <tr>
+      <td><b>{{ s.name }}</b>{% if s.alias is defined %}<br><span class="klein">auch „{{ s.alias }}“</span>{% endif %}</td>
+      <td class="rn">{{ s.rufname }}</td>
+      <td class="nw">{{ s.rufname | sprechweise }}</td>
+      <td>{{ 'Vordruck (Papier)' if s.arbeitsmittel == 'vordruck' else 'EDP Command' }}</td>
+      <td class="nw">{{ s.telefon or "unbekannt" }}</td><td class="klein">{{ s.mail or "unbekannt" }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <svg width="110mm" height="38mm" viewBox="0 0 600 210" font-family="Liberation Sans, Arial" font-size="15">
+    {% set fst = cfg.stellen.items() | rejectattr('1.arbeitsmittel', 'equalto', 'vordruck') | list %}
+    {% set tel = cfg.stellen.items() | selectattr('1.arbeitsmittel', 'equalto', 'vordruck') | first %}
+    <rect x="210" y="5" width="180" height="50" fill="#fff6c8" stroke="#000" stroke-width="2"/>
+    <text x="300" y="27" text-anchor="middle" font-weight="bold">{{ tel[1].name }}</text>
+    <text x="300" y="46" text-anchor="middle">{{ tel[1].rufname }}</text>
+    {% for key, s in fst %}
+    {% set x = 20 + loop.index0 * 200 %}
+    <line x1="300" y1="55" x2="{{ x + 80 }}" y2="150" stroke="#000" stroke-width="2"/>
+    <rect x="{{ x }}" y="150" width="160" height="50" fill="#e8eef8" stroke="#000" stroke-width="2"/>
+    <text x="{{ x + 80 }}" y="172" text-anchor="middle" font-weight="bold">{{ s.name }}</text>
+    <text x="{{ x + 80 }}" y="191" text-anchor="middle">{{ s.rufname }}</text>
+    {% endfor %}
+    <text x="300" y="105" text-anchor="middle" fill="#555" font-size="13">{{ k.rufgruppe }}</text>
+  </svg>
+
+  <h2>Aufgaben der FüSt</h2>
+  <table>
+    {% for key, s in cfg.stellen.items() if s.auftrag is defined %}
+    <tr><td style="width: 35mm"><b>{{ s.name }}</b></td><td>{{ s.auftrag }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h2>In Nachrichten genannte Einheiten (keine Teilnehmer)</h2>
+  <table>
+    <tr><th>Funkrufname</th><th>Sprechweise</th><th>Fahrzeug</th></tr>
+    {% for f in genannt %}
+    <tr><td class="rn">{{ f.rufname }}</td><td>{{ f.rufname | sprechweise }}</td><td>{{ f.typ }}</td></tr>
+    {% endfor %}
+  </table>
+  <p class="klein">Funkrufnamen nach Nds. MBl. 2024 Nr. 125: Rufname · Region · Organisation-Fahrzeug-Ordnungskennung.
+    Johannes = MHD (Kennung 57–63), Akkon = JUH (49–56), Rotkreuz = DRK (40–48), Sama = ASB (64–70), Pelikan = DLRG (71–77), Florian = Feuerwehr.
+    H = Hannover, H# = Hannover Land (Region). Fahrzeugkennung z. B. 11 ZTr/ELW 1, 12 ELW 2, 82 NEF, 83/85 RTW, 88 GRTW, 92/94 KTW, 96 GW-San.</p>
+</div>
+</body>
+</html>

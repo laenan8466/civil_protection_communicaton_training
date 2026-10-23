@@ -58,8 +58,7 @@
           <span>{{ cb(n.vorrang == 'Sofort') }}Sofort</span><span>{{ cb(n.vorrang == 'Blitz') }}Blitz</span></div>
         <div class="c big" style="grid-area: 3 / 1 / 4 / 2; line-height: 4.6mm">Empfänger<br>Anschrift</div>
         <div class="nb" style="grid-area: 3 / 2 / 4 / 4; font-size: 3.3mm; line-height: 4.2mm">
-          <span class="wert">{{ n.an_stelle.name }} – {{ n.an_funktion }}</span>
-          {% if n.zur_info %}<br><span class="wert">zur Info: {{ n.zur_info | join(', ') }}</span>{% endif %}
+          <span class="wert">{{ n.an_stelle.name }}</span>
         </div>
         <div class="c nr nb" style="grid-area: 3 / 4 / 5 / 5; font-size: 3.3mm; line-height: 4.4mm; padding-top: 1.5mm">
           Gesprächs-<br>notiz<br><span style="font-size: 6mm">○</span></div>
@@ -107,8 +106,9 @@
     </div>
   </div>
   <div class="footer">
-    <span><b>Übungsnachricht {{ n.nr_str }}</b> · {{ n.von_stelle.name }} → {{ n.an_stelle.name }}</span>
-    <span>nur für Übungszwecke</span>
+    <span><b>ÜL {{ n.nr_str }}</b> · {{ n.von_stelle.name }} → {{ n.an_stelle.name }}
+      · für: {{ n.an_funktion }}{% if n.zur_info %} · z.I.: {{ n.zur_info | join(', ') }}{% endif %}</span>
+    <span>nur Übung</span>
   </div>
 </div>
 {% endfor %}

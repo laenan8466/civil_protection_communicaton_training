@@ -34,7 +34,11 @@ Region: H = Hannover, H# = Hannover Land (Region).
 | FüSt | TEL | **EDP-Blatt** (zum Kopieren in EDP) | FüSt sendet, TEL nimmt auf leerem Vordruck auf |
 | FüSt | FüSt | **EDP-Blatt** | beide EDP (kleiner Anteil) |
 
-Medien: Telefon, Funk, Fax, Mail, Melder. Vorrang: normal, Sofort, Blitz (wenige Blitz).
+Medien: Telefon, Funk, Fax, Mail, Melder. Vorrang: normal, Sofort, Blitz (wenige Blitz, nur bei Gefahr für Leben/laufenden Betrieb).
+
+Empfänger auf Vordruck/EDP ist immer nur die Gegenstelle (z. B. „TEL Hannover“). Für wen die Nachricht gedacht ist und wer sie zur Info bekommt, steht nur als Info für die Übungsleitung unten auf dem Blatt – das entscheidet der Sichter.
+
+Außerhalb der Transportdispo werden Einheiten bewegt, keine einzelnen Fahrzeuge.
 
 ## Nachrichtenpool
 
@@ -93,4 +97,5 @@ Ausgabe:
 - `Vordrucke_alle.pdf` + `vordrucke/Vordruck_NNN.pdf` – A5, zum Drucken
 - `EDP_alle.pdf` + je sendender FüSt – A4, eine Nachricht pro Seite
 - `Uebersicht_Uebungsleitung.pdf` – alle Nachrichten mit Hinweisen
+- `Kommunikationsplan.pdf` – Rufgruppe NI_Sonder/K_LS_MHD, Funkrufnamen, Erreichbarkeit, genannte Einheiten
 - `anhaenge/`

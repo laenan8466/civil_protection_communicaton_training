@@ -1,0 +1,21 @@
+nr: 45
+kategorie: transport
+von: TEL
+von_funktion: S1
+an: SUED
+an_funktion: Leitung des Stabes
+zur_info:
+- S1/4/6
+medium: Telefon
+vorrang: normal
+betreff_art: Information
+betreff: Unterstellung 2 KTW Region Hannover
+zeichen: Ka
+bezug: null
+anhaenge: []
+text: |
+  FüSt Süd werden zusätzlich 2 KTW aus der Region Hannover unterstellt:
+  Joh. H# 57-94-1 (KTW 4-Tragen) und Joh. H# 57-92-2 (KTW).
+  Sammeln im BR Schützenplatz, Eintreffen dort an TEL melden.
+  Einsatz für liegende Bewohner:innen vorgesehen.
+notiz: Verstärkung der Dispo; Rufnamen H# (Hannover Land) korrekt übernehmen.
