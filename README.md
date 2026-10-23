@@ -67,7 +67,7 @@ nr: 1
 kategorie: fuegr          # fuegr | transport | sandienst
 von: TEL                  # TEL | NORD | SUED | WEST
 von_funktion: S3
-an: SUED
+an: SUED                  # Sammelruf: an: [NORD, SUED, WEST]
 an_funktion: Leitung des Stabes
 zur_info: [S2]
 medium: Funk              # Telefon | Funk | Fax | Mail | Melder
@@ -97,5 +97,5 @@ Ausgabe:
 - `Vordrucke_alle.pdf` + `vordrucke/Vordruck_NNN.pdf` – A5, zum Drucken
 - `EDP_alle.pdf` + je sendender FüSt – A4, eine Nachricht pro Seite
 - `Uebersicht_Uebungsleitung.pdf` – alle Nachrichten mit Hinweisen
-- `Kommunikationsplan.pdf` – Rufgruppe NI_Sonder/K_LS_MHD, Funkrufnamen, Erreichbarkeit, genannte Einheiten
-- `anhaenge/`
+- `Kommunikationsplan.pdf` – Skizze angelehnt an DV 102
+- `anhaenge/` – Original + PDF-Fassung je Anhang

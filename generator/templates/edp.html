@@ -24,7 +24,7 @@
     <tr><th>Von</th><td>{{ n.von_stelle.name }} – {{ n.von_funktion }}</td></tr>
     <tr><th>An</th><td>{{ n.an_stelle.name }}</td></tr>
     <tr><th>Kommunikation</th><td>{{ n.medium }}{% if n.rufnummer %} – {{ n.rufnummer }}{% endif %}</td></tr>
-    <tr><th>Anhang</th><td>{{ n.anhaenge | join(', ') }}</td></tr>
+    <tr><th>Anhang</th><td>{% for a in n.anhaenge %}{{ a.rsplit('.', 1)[0] }}.pdf{% if not a.endswith('.pdf') %} (Original: {{ a }}){% endif %}{% if not loop.last %}, {% endif %}{% endfor %}</td></tr>
     <tr><th>Bezug</th><td>{% if n.bezug %}Übungsnachricht {{ '%03d' % n.bezug }} (Nachweis-Nr. eintragen){% endif %}</td></tr>
   </table>
   <div class="text">{{ n.text }}</div>

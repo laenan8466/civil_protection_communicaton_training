@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>{{ titel }}</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@page { size: A4{% if bild %} landscape{% endif %}; margin: 12mm; }
+h1 { font-size: 13pt; margin: 0 0 4mm; }
+table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+th, td { border: 0.2mm solid #999; padding: 1mm 1.5mm; text-align: left; }
+th { background: #e5e9f0; }
+tr { page-break-inside: avoid; }
+img { max-width: 100%; max-height: 170mm; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+<h1>{{ titel }}</h1>
+{% if bild %}
+<img src="{{ bild }}">
+{% else %}
+<table>
+  <thead><tr>{% for k in kopf %}<th>{{ k }}</th>{% endfor %}</tr></thead>
+  <tbody>{% for z in zeilen %}<tr>{% for w in z %}<td>{{ w }}</td>{% endfor %}</tr>{% endfor %}</tbody>
+</table>
+{% endif %}
+</body>
+</html>

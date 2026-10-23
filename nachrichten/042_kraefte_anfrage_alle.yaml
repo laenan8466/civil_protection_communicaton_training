@@ -1,0 +1,20 @@
+nr: 42
+kategorie: fuegr
+von: TEL
+von_funktion: S1
+an: [NORD, SUED, WEST]
+an_funktion: S1/4/6
+zur_info: []
+medium: Funk
+vorrang: normal
+betreff_art: Anfrage
+betreff: Kräftemeldung 13:00
+zeichen: Ka
+bezug: null
+anhaenge: []
+text: |
+  Sammelruf an alle FüSt.
+  Kräftemeldung zu 13:00 nach Stärke (Führer/Unterführer/Helfer/Gesamt)
+  und eingesetzten Einheiten.
+  Ausfälle und Verletzte gesondert angeben.
+notiz: 'Sammelruf: TEL ruft alle drei FüSt gleichzeitig, jede FüSt quittiert einzeln. Jede FüSt muss antworten (im Pool nur West, Nr. 046; Nord/Süd frei).'

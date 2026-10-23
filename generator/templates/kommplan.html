@@ -5,76 +5,87 @@
 <title>Kommunikationsplan</title>
 <link rel="stylesheet" href="style.css">
 <style>
-@page { size: A4; margin: 0; }
-.kp { padding: 10mm 14mm 6mm; font-size: 9pt; }
-.kp p { margin: 2mm 0; }
-.kp h1 { font-size: 17pt; margin: 0 0 1mm; }
-.kp h2 { font-size: 12pt; margin: 5mm 0 2mm; }
-.kp td.nw { white-space: nowrap; }
-.kp .sub { color: #555; margin-bottom: 5mm; }
-.kp .rg { display: inline-block; border: 0.5mm solid #000; padding: 2mm 4mm; font-size: 13pt; font-weight: 700; }
-.kp table { width: 100%; border-collapse: collapse; }
-.kp th, .kp td { border: 0.3mm solid #999; padding: 0.7mm 1.8mm; text-align: left; vertical-align: top; }
-.kp th { background: #e5e9f0; }
-.kp td.rn { font-family: "Liberation Mono", monospace; font-weight: 700; white-space: nowrap; }
-.kp .klein { font-size: 8.5pt; color: #444; }
-.kp svg { display: block; margin: 2mm auto 0; }
+@page { size: A4 landscape; margin: 0; }
+.kp { width: 297mm; height: 210mm; padding: 9mm 12mm; font-size: 9pt; overflow: hidden; }
+.kp h1 { font-size: 16pt; margin: 0; }
+.kp .sub { color: #555; margin: 0.5mm 0 2mm; }
+.kp svg { display: block; width: 273mm; height: auto; }
+.kp .einheiten { columns: 4; column-gap: 6mm; font-size: 8pt; margin-top: 1mm; }
+.kp .einheiten div { break-inside: avoid; }
+.kp .einheiten b { font-family: "Liberation Mono", monospace; }
+.kp h2 { font-size: 10pt; margin: 2mm 0 1mm; }
+.kp .klein { font-size: 7.5pt; color: #444; margin-top: 2mm; }
 </style>
 </head>
 <body>
+{% set tel = cfg.stellen.values() | selectattr('arbeitsmittel', 'equalto', 'vordruck') | first %}
+{% set fst = cfg.stellen.values() | rejectattr('arbeitsmittel', 'equalto', 'vordruck') | list %}
+{% macro fuehrungsstelle(cx, y, titel, unter) %}
+  <rect x="{{ cx - 95 }}" y="{{ y }}" width="190" height="72" fill="#ffe600" stroke="#000" stroke-width="2.5"/>
+  <rect x="{{ cx - 95 }}" y="{{ y }}" width="190" height="11" fill="#000"/>
+  <text x="{{ cx }}" y="{{ y + 42 }}" text-anchor="middle" font-size="24" font-weight="bold">{{ titel }}</text>
+  <text x="{{ cx }}" y="{{ y + 63 }}" text-anchor="middle" font-size="15">{{ unter }}</text>
+{% endmacro %}
+{% macro bedingung(cx, cy, oben, unten, w=230) %}
+  <polygon points="{{ cx - w/2 }},{{ cy }} {{ cx - w/2 + 16 }},{{ cy - 22 }} {{ cx + w/2 - 16 }},{{ cy - 22 }} {{ cx + w/2 }},{{ cy }} {{ cx + w/2 - 16 }},{{ cy + 22 }} {{ cx - w/2 + 16 }},{{ cy + 22 }}"
+           fill="#fff" stroke="#000" stroke-width="2"/>
+  <text x="{{ cx }}" y="{{ cy - 3 }}" text-anchor="middle" font-size="14" font-weight="bold">{{ oben }}</text>
+  <text x="{{ cx }}" y="{{ cy + 14 }}" text-anchor="middle" font-size="13">{{ unten }}</text>
+{% endmacro %}
 <div class="kp">
   <h1>Kommunikationsplan</h1>
-  <div class="sub">{{ cfg.uebung.titel }}</div>
-  <div class="rg">Rufgruppe: {{ k.rufgruppe }} ({{ k.betriebsart }})</div>
-  <p>{{ k.hinweis }}</p>
+  <div class="sub">{{ cfg.uebung.titel }} · Darstellung angelehnt an DV 102 (Führungsstellen mit Führungsbalken, Verbindungen mit Bedingungszeichen)</div>
 
-  <h2>Teilnehmer</h2>
-  <table>
-    <tr><th>Stelle</th><th>Funkrufname</th><th>Sprechweise</th><th>Arbeitsmittel</th><th>Telefon</th><th>Mail</th></tr>
-    {% for key, s in cfg.stellen.items() %}
-    <tr>
-      <td><b>{{ s.name }}</b>{% if s.alias is defined %}<br><span class="klein">auch „{{ s.alias }}“</span>{% endif %}</td>
-      <td class="rn">{{ s.rufname }}</td>
-      <td class="nw">{{ s.rufname | sprechweise }}</td>
-      <td>{{ 'Vordruck (Papier)' if s.arbeitsmittel == 'vordruck' else 'EDP Command' }}</td>
-      <td class="nw">{{ s.telefon or "unbekannt" }}</td><td class="klein">{{ s.mail or "unbekannt" }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+  <svg viewBox="0 0 1100 560" font-family="Liberation Sans, Arial, sans-serif">
+    {# --- TEL --- #}
+    {{ fuehrungsstelle(550, 20, tel.name.split()[0], tel.name.split()[1:] | join(' ')) }}
+    <text x="660" y="44" font-size="17" font-weight="bold" font-family="Liberation Mono, monospace">{{ tel.rufname }}</text>
+    <text x="660" y="63" font-size="13" fill="#333">{{ tel.rufname | sprechweise }}</text>
+    <text x="660" y="81" font-size="13" fill="#333">Vordruck (Papier){% if tel.telefon %} · Tel {{ tel.telefon }}{% endif %}{% if tel.mail %} · {{ tel.mail }}{% endif %}</text>
 
-  <svg width="110mm" height="38mm" viewBox="0 0 600 210" font-family="Liberation Sans, Arial" font-size="15">
-    {% set fst = cfg.stellen.items() | rejectattr('1.arbeitsmittel', 'equalto', 'vordruck') | list %}
-    {% set tel = cfg.stellen.items() | selectattr('1.arbeitsmittel', 'equalto', 'vordruck') | first %}
-    <rect x="210" y="5" width="180" height="50" fill="#fff6c8" stroke="#000" stroke-width="2"/>
-    <text x="300" y="27" text-anchor="middle" font-weight="bold">{{ tel[1].name }}</text>
-    <text x="300" y="46" text-anchor="middle">{{ tel[1].rufname }}</text>
-    {% for key, s in fst %}
-    {% set x = 20 + loop.index0 * 200 %}
-    <line x1="300" y1="55" x2="{{ x + 80 }}" y2="150" stroke="#000" stroke-width="2"/>
-    <rect x="{{ x }}" y="150" width="160" height="50" fill="#e8eef8" stroke="#000" stroke-width="2"/>
-    <text x="{{ x + 80 }}" y="172" text-anchor="middle" font-weight="bold">{{ s.name }}</text>
-    <text x="{{ x + 80 }}" y="191" text-anchor="middle">{{ s.rufname }}</text>
+    {# --- Verbindungen --- #}
+    {% set xs = [190, 550, 910] %}
+    <line x1="530" y1="92" x2="530" y2="230" stroke="#000" stroke-width="3"/>
+    <line x1="{{ xs[0] - 25 }}" y1="230" x2="{{ xs[-1] - 25 }}" y2="230" stroke="#000" stroke-width="3"/>
+    <line x1="570" y1="92" x2="570" y2="280" stroke="#000" stroke-width="2.5" stroke-dasharray="10 6"/>
+    <line x1="{{ xs[0] + 25 }}" y1="280" x2="{{ xs[-1] + 25 }}" y2="280" stroke="#000" stroke-width="2.5" stroke-dasharray="10 6"/>
+    {% for x in xs %}
+    <line x1="{{ x - 25 }}" y1="230" x2="{{ x - 25 }}" y2="330" stroke="#000" stroke-width="3"/>
+    <line x1="{{ x + 25 }}" y1="280" x2="{{ x + 25 }}" y2="330" stroke="#000" stroke-width="2.5" stroke-dasharray="10 6"/>
     {% endfor %}
-    <text x="300" y="105" text-anchor="middle" fill="#555" font-size="13">{{ k.rufgruppe }}</text>
+    {{ bedingung(350, 230, k.betriebsart, k.rufgruppe) }}
+    {{ bedingung(750, 280, 'Telefon / E-Mail', 'FüSt: ' ~ fst[0].telefon if fst[0].telefon else '') }}
+
+    {# --- FüSt --- #}
+    {% for s in fst %}
+    {% set x = xs[loop.index0] %}
+    {{ fuehrungsstelle(x, 330, s.name, s.alias if s.alias is defined else '') }}
+    <text x="{{ x }}" y="428" text-anchor="middle" font-size="17" font-weight="bold" font-family="Liberation Mono, monospace">{{ s.rufname }}</text>
+    <text x="{{ x }}" y="447" text-anchor="middle" font-size="13" fill="#333">{{ s.rufname | sprechweise }}</text>
+    <text x="{{ x }}" y="465" text-anchor="middle" font-size="13" fill="#333">EDP Command</text>
+    {% set worte = (s.auftrag | default('')).split() %}
+    {% set teil = (worte | length / 2) | round(0, 'ceil') | int %}
+    <text x="{{ x }}" y="487" text-anchor="middle" font-size="12" fill="#555" font-style="italic">{{ worte[:teil] | join(' ') }}</text>
+    <text x="{{ x }}" y="502" text-anchor="middle" font-size="12" fill="#555" font-style="italic">{{ worte[teil:] | join(' ') }}</text>
+    {% endfor %}
+
+    {# --- Legende --- #}
+    <line x1="20" y1="538" x2="70" y2="538" stroke="#000" stroke-width="3"/>
+    <text x="78" y="543" font-size="13">Funk {{ k.betriebsart }}, Rufgruppe {{ k.rufgruppe }}</text>
+    <line x1="380" y1="538" x2="430" y2="538" stroke="#000" stroke-width="2.5" stroke-dasharray="10 6"/>
+    <text x="438" y="543" font-size="13">Telefon / E-Mail{% if fst[0].mail %} (FüSt: {{ fst[0].mail }}){% endif %}</text>
   </svg>
+  <div><b>{{ k.hinweis }}</b> Sammelrufe der TEL an alle FüSt sind möglich; jede FüSt quittiert einzeln.</div>
 
-  <h2>Aufgaben der FüSt</h2>
-  <table>
-    {% for key, s in cfg.stellen.items() if s.auftrag is defined %}
-    <tr><td style="width: 35mm"><b>{{ s.name }}</b></td><td>{{ s.auftrag }}</td></tr>
-    {% endfor %}
-  </table>
-
-  <h2>In Nachrichten genannte Einheiten (keine Teilnehmer)</h2>
-  <table>
-    <tr><th>Funkrufname</th><th>Sprechweise</th><th>Fahrzeug</th></tr>
-    {% for f in genannt %}
-    <tr><td class="rn">{{ f.rufname }}</td><td>{{ f.rufname | sprechweise }}</td><td>{{ f.typ }}</td></tr>
-    {% endfor %}
-  </table>
-  <p class="klein">Funkrufnamen nach Nds. MBl. 2024 Nr. 125: Rufname · Region · Organisation-Fahrzeug-Ordnungskennung.
-    Johannes = MHD (Kennung 57–63), Akkon = JUH (49–56), Rotkreuz = DRK (40–48), Sama = ASB (64–70), Pelikan = DLRG (71–77), Florian = Feuerwehr.
-    H = Hannover, H# = Hannover Land (Region). Fahrzeugkennung z. B. 11 ZTr/ELW 1, 12 ELW 2, 82 NEF, 83/85 RTW, 88 GRTW, 92/94 KTW, 96 GW-San.</p>
+  {% if genannt %}
+  <h2>In Nachrichten genannte Einheiten (keine Übungsteilnehmer)</h2>
+  <div class="einheiten">
+    {% for f in genannt %}<div><b>{{ f.rufname }}</b> {{ f.typ }}</div>{% endfor %}
+  </div>
+  {% endif %}
+  <div class="klein">Funkrufnamen nach Nds. MBl. 2024 Nr. 125: Rufname · Region · Organisation-Fahrzeug-Ordnung.
+    Johannes = MHD, Akkon = JUH, Rotkreuz = DRK, Sama = ASB, Pelikan = DLRG, Florian = Feuerwehr.
+    H = Hannover, H# = Hannover Land (Region).</div>
 </div>
 </body>
 </html>

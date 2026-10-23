@@ -8,6 +8,7 @@
 Aufruf: python3 generator/build.py [--nur-pruefen]
 """
 import argparse
+import csv
 import shutil
 import subprocess
 import sys
@@ -66,6 +67,8 @@ def lade_nachrichten():
         n.setdefault("zeichen", "")
         n.setdefault("notiz", "")
         n["text"] = n.get("text", "").rstrip()
+        # an: eine Stelle oder Liste von Stellen (Sammelruf)
+        n["an_liste"] = n["an"] if isinstance(n.get("an"), list) else [n.get("an")]
         nachrichten.append(n)
     return sorted(nachrichten, key=lambda n: n["nr"])
 
@@ -87,16 +90,18 @@ def pruefe(cfg, nachrichten):
         if n["von"] not in stellen:
             fehler.append(f"{ort} unbekannte Stelle von='{n['von']}'")
             continue
-        if n["an"] not in stellen:
-            fehler.append(f"{ort} unbekannte Stelle an='{n['an']}'")
+        unbekannt = [a for a in n["an_liste"] if a not in stellen]
+        if unbekannt:
+            fehler.append(f"{ort} unbekannte Stelle an={unbekannt}")
             continue
-        if n["von"] == n["an"]:
+        if n["von"] in n["an_liste"]:
             fehler.append(f"{ort} von und an sind gleich")
         if n["von_funktion"] not in stellen[n["von"]]["funktionen"]:
             fehler.append(f"{ort} Funktion '{n['von_funktion']}' gibt es bei {n['von']} nicht")
-        for f in [n["an_funktion"], *n["zur_info"]]:
-            if f not in stellen[n["an"]]["funktionen"]:
-                fehler.append(f"{ort} Funktion '{f}' gibt es bei {n['an']} nicht")
+        for a in n["an_liste"]:
+            for f in [n["an_funktion"], *n["zur_info"]]:
+                if f not in stellen[a]["funktionen"]:
+                    fehler.append(f"{ort} Funktion '{f}' gibt es bei {a} nicht")
         if n["medium"] not in cfg["medien"]:
             fehler.append(f"{ort} unbekanntes Medium '{n['medium']}'")
         if n["vorrang"] not in cfg["vorrang"]:
@@ -120,7 +125,17 @@ def pruefe(cfg, nachrichten):
 def anreichern(cfg, nachrichten):
     stellen = cfg["stellen"]
     for n in nachrichten:
-        von, an = stellen[n["von"]], stellen[n["an"]]
+        von = stellen[n["von"]]
+        ziele = [stellen[a] for a in n["an_liste"]]
+        if len(ziele) == 1:
+            an = ziele[0]
+        else:
+            # Sammelruf: gemeinsame Erreichbarkeit nur, wenn bei allen gleich
+            an = {"name": "Sammelruf " + ", ".join(z["name"] for z in ziele),
+                  "rufname": ", ".join(z["rufname"] for z in ziele)}
+            for feld in ("telefon", "fax", "mail"):
+                werte = {z[feld] for z in ziele}
+                an[feld] = werte.pop() if len(werte) == 1 else ""
         n["nr_str"] = f"{n['nr']:03d}"
         n["von_stelle"] = von
         n["an_stelle"] = an
@@ -231,8 +246,23 @@ def main():
                                       if any(f["rufname"] in n["text"] for n in nachrichten)], **ctx),
            AUSGABE / "Kommunikationsplan.pdf")
 
+    # Anhänge: Original + PDF-Fassung
     if any(n["anhaenge"] for n in nachrichten):
         shutil.copytree(ANHAENGE, AUSGABE / "anhaenge")
+        for datei in sorted(ANHAENGE.iterdir()):
+            titel = datei.stem.replace("_", " ")
+            if datei.suffix.lower() == ".csv":
+                with datei.open(encoding="utf-8") as f:
+                    kopf, *zeilen = list(csv.reader(f, delimiter=";"))
+                html = rendere(env, "anhang.html", BUILD / f"anhang_{datei.stem}.html",
+                               titel=titel, bild=None, kopf=kopf, zeilen=zeilen)
+            elif datei.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg"):
+                shutil.copy(datei, BUILD / datei.name)
+                html = rendere(env, "anhang.html", BUILD / f"anhang_{datei.stem}.html",
+                               titel=titel, bild=datei.name)
+            else:
+                continue
+            drucke(chromium, html, AUSGABE / "anhaenge" / f"{datei.stem}.pdf")
     print(f"Ausgabe in {AUSGABE.relative_to(ROOT)}/")
 
 
