@@ -131,7 +131,7 @@ def anreichern(cfg, nachrichten):
             an = ziele[0]
         else:
             # Sammelruf: gemeinsame Erreichbarkeit nur, wenn bei allen gleich
-            an = {"name": "Sammelruf " + ", ".join(z["name"] for z in ziele),
+            an = {"name": ", ".join(z["name"] for z in ziele),
                   "rufname": ", ".join(z["rufname"] for z in ziele)}
             for feld in ("telefon", "fax", "mail"):
                 werte = {z[feld] for z in ziele}
