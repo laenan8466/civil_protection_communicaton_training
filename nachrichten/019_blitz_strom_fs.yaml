@@ -1,0 +1,21 @@
+nr: 19
+kategorie: fuegr
+von: NORD
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info:
+- S4
+medium: Funk
+vorrang: Blitz
+betreff_art: Meldung
+betreff: Stromausfall Friederikenstift
+zeichen: Bö
+bezug: null
+anhaenge: []
+text: |
+  Stromausfall im Aufnahmebereich Friederikenstift.
+  Notstrom nur für Station 2, Licht und Aufzug ausgefallen.
+  Aufnahme vorübergehend eingestellt, 4 Fahrzeuge mit Patient:innen vor Ort warten.
+  Anforderung: Netzersatzanlage mind. 50 kVA mit Bedienpersonal.
+notiz: 'BLITZ: Vorrang vor allem anderen. Verteilung FüSt Süd fehlt bewusst – merkt jemand, dass Transport informiert werden muss?'

@@ -1,0 +1,47 @@
+Kennung;Name;Vorname;Geburtsjahr;Transportart;Prioritaet;Besonderheiten
+TK-01;Wolf;Erika;1942;sitzend;3;
+TK-02;Schmidt;Ursula;1947;liegend;2;
+TK-03;Schulz;Christa;1948;sitzend;3;
+TK-04;Schmidt;Irmgard;1936;Rollstuhl;3;
+TK-05;Schmidt;Ursula;1943;beatmet;1;Heimbeatmung, Akku 4 h
+TK-06;Krüger;Ursula;1937;sitzend;3;
+TK-07;Meyer;Walter;1943;sitzend;3;
+TK-08;Schmidt;Gisela;1933;liegend;2;
+TK-09;Koch;Gisela;1931;sitzend;3;
+TK-10;Lehmann;Gisela;1942;sitzend;3;
+TK-11;Schmidt;Karl;1931;liegend;2;
+TK-12;Krause;Erika;1939;sitzend;3;
+TK-13;Krüger;Erika;1947;sitzend;3;
+TK-14;Schulz;Gisela;1939;liegend;2;
+TK-15;Krause;Hans;1933;sitzend;3;
+TK-16;Lehmann;Gisela;1950;sitzend;3;
+TK-17;Hoffmann;Christa;1933;liegend;2;MRSA, Einzeltransport
+TK-18;Krause;Ursula;1948;sitzend;3;
+TK-19;Schmidt;Horst;1936;liegend;2;
+TK-20;Lange;Walter;1943;sitzend;3;
+TK-21;Wolf;Klaus;1948;sitzend;3;
+TK-22;Hartmann;Christa;1939;Rollstuhl;3;Sauerstoff 2 l/min
+TK-23;Koch;Hans;1937;liegend;2;
+TK-24;Meyer;Gisela;1939;sitzend;3;
+TK-25;Werner;Elfriede;1940;sitzend;3;
+TK-26;Hartmann;Heinz;1949;liegend;2;
+TK-27;Meyer;Ingrid;1946;sitzend;3;
+TK-28;Krüger;Hans;1940;sitzend;3;
+TK-29;Wagner;Elfriede;1943;liegend;2;
+TK-30;Schmidt;Ursula;1947;sitzend;3;
+TK-31;Lehmann;Renate;1940;beatmet;1;Heimbeatmung, Akku 3 h
+TK-32;Neumann;Horst;1945;sitzend;3;
+TK-33;Lehmann;Klaus;1932;Rollstuhl;3;
+TK-34;Meyer;Günter;1945;sitzend;3;
+TK-35;Meyer;Gerda;1939;liegend;2;
+TK-36;Lehmann;Klaus;1939;sitzend;3;
+TK-37;Schwarz;Christa;1930;sitzend;3;
+TK-38;Hartmann;Christa;1935;liegend;2;
+TK-39;Köhler;Ingrid;1945;sitzend;3;
+TK-40;Schmidt;Werner;1939;sitzend;3;Demenz, Weglauftendenz
+TK-41;Wagner;Karl;1942;Rollstuhl;3;
+TK-42;Schwarz;Elfriede;1932;sitzend;3;
+TK-43;Becker;Klaus;1942;sitzend;3;
+TK-44;Krause;Günter;1934;liegend;2;
+TK-45;Krüger;Walter;1938;sitzend;3;
+TK-46;Krüger;Christa;1942;sitzend;3;

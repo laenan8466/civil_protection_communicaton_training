@@ -1,0 +1,21 @@
+nr: 43
+kategorie: sandienst
+von: TEL
+von_funktion: Fachberater Sanität
+an: WEST
+an_funktion: med. Leitung
+zur_info:
+- Leitung des Stabes
+medium: Mail
+vorrang: normal
+betreff_art: Information
+betreff: Verdacht Magen-Darm-Infektion
+zeichen: Me
+bezug: null
+anhaenge: []
+text: |
+  Aus anderen Notunterkünften werden Magen-Darm-Infektionen gemeldet.
+  Händedesinfektion an Eingängen und Sanitärbereichen sicherstellen.
+  Erkrankte getrennt unterbringen.
+  Fallzahlen an TEL Fachberater Sanität melden.
+notiz: ''

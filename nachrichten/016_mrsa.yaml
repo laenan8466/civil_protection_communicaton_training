@@ -1,0 +1,22 @@
+nr: 16
+kategorie: fuegr
+von: TEL
+von_funktion: Fachberater Sanität
+an: NORD
+an_funktion: med. Leitung
+zur_info:
+- Leitung des Stabes
+medium: Telefon
+vorrang: Sofort
+betreff_art: Information
+betreff: Infektionsschutz Bewohner TK-17
+zeichen: Me
+bezug: null
+anhaenge: []
+text: |
+  Bewohner TK-17 ist MRSA-positiv.
+  Transport separat, nicht mit anderen Bewohner:innen.
+  Fahrzeug nach Transport desinfizieren.
+  Im Friederikenstift Einzelzimmer bereitstellen.
+  FüSt Süd wird über TEL informiert.
+notiz: Verfasser FB Sanität -> Empfänger med. Leitung.

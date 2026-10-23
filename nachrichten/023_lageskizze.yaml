@@ -1,0 +1,20 @@
+nr: 23
+kategorie: fuegr
+von: WEST
+von_funktion: S2
+an: TEL
+an_funktion: S2
+zur_info: []
+medium: Mail
+vorrang: normal
+betreff_art: Information
+betreff: Lageskizze Notunterkunft Ahlem
+zeichen: Ko
+bezug: null
+anhaenge:
+- Lageskizze_Ahlem.png
+text: |
+  Anbei Lageskizze der Notunterkunft Schulzentrum Ahlem
+  mit UHS, Sammelplatz und Zufahrt Rettungsdienst.
+  Bitte in die Lagekarte übernehmen.
+notiz: Anhang PNG muss angefügt werden.

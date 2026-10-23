@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>EDP-Nachrichten</title>
+<link rel="stylesheet" href="style.css">
+<style>@page { size: A4; margin: 0; }</style>
+</head>
+<body>
+{% for n in nachrichten %}
+<div class="edp">
+  <h1>
+    <span>Übungsnachricht {{ n.nr_str }}</span>
+    {% if n.vorrang == 'Blitz' %}<span class="vor-blitz">BLITZ</span>
+    {% elif n.vorrang == 'Sofort' %}<span class="vor-sofort">SOFORT</span>{% endif %}
+  </h1>
+  <div class="meta">Einspielen in EDP bei <b>{{ n.von_stelle.name }} ({{ n.von_stelle.rufname }})</b>
+    · übermitteln an {{ n.an_stelle.name }} ({{ n.an_stelle.rufname }}) per {{ n.medium }}</div>
+  <table>
+    <tr><th>Empfänger</th><td>{{ n.an_stelle.name }} – {{ n.an_funktion }}</td></tr>
+    <tr><th>Zur Info</th><td>{{ n.zur_info | join('; ') }}</td></tr>
+    <tr><th>Betreff (Art)</th><td>{{ n.betreff_art }}</td></tr>
+    <tr><th>Betreff</th><td>{{ n.betreff }}</td></tr>
+    <tr><th>Vorrang</th><td>{{ n.vorrang }}</td></tr>
+    <tr><th>Von</th><td>{{ n.von_stelle.name }} – {{ n.von_funktion }}</td></tr>
+    <tr><th>An</th><td>{{ n.an_stelle.name }} – {{ n.an_funktion }}</td></tr>
+    <tr><th>Kommunikation</th><td>{{ n.medium }}{% if n.rufnummer %} – {{ n.rufnummer }}{% endif %}</td></tr>
+    <tr><th>Anhang</th><td>{{ n.anhaenge | join(', ') }}</td></tr>
+    <tr><th>Bezug</th><td>{% if n.bezug %}Übungsnachricht {{ '%03d' % n.bezug }} (Nachweis-Nr. eintragen){% endif %}</td></tr>
+  </table>
+  <div class="text">{{ n.text }}</div>
+  <div class="hinweis">Abfasser: {{ n.von_funktion }} {{ n.von_stelle.name }}, Zeichen {{ n.zeichen }}
+    · Kategorie: {{ cfg.kategorien[n.kategorie].name }}</div>
+</div>
+{% endfor %}
+</body>
+</html>

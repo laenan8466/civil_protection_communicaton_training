@@ -1,0 +1,19 @@
+nr: 31
+kategorie: fuegr
+von: WEST
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S5
+zur_info: []
+medium: Telefon
+vorrang: Sofort
+betreff_art: Anfrage
+betreff: Presse an Notunterkunft Ahlem
+zeichen: Fr
+bezug: null
+anhaenge: []
+text: |
+  Ein Fotograf befindet sich auf dem Gelände der Notunterkunft und fotografiert Bewohner:innen.
+  Er gibt an, für die HAZ zu arbeiten.
+  Bitte um Weisung.
+notiz: 'Erwartet: Rückfrage/Antwort von TEL S5 (frei, nicht im Pool).'

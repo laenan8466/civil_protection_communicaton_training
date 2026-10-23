@@ -1,0 +1,21 @@
+nr: 26
+kategorie: fuegr
+von: TEL
+von_funktion: S5
+an: WEST
+an_funktion: S2
+zur_info:
+- Leitung des Stabes
+medium: Telefon
+vorrang: normal
+betreff_art: Information
+betreff: Anfrage Angehörige
+zeichen: Ze
+bezug: null
+anhaenge: []
+text: |
+  Über das Bürgertelefon fragt ein Angehöriger nach Frau Helga Brandt, 81 Jahre,
+  vermutlich in der Notunterkunft Ahlem.
+  Keine Auskunft am Telefon erteilen.
+  Liegt die Person in der Notunterkunft, nur Eintrag an TEL S5 melden.
+notiz: Datenschutz, Personenname korrekt übermitteln (Buchstabieren).

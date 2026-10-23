@@ -1,0 +1,20 @@
+nr: 2
+kategorie: fuegr
+von: TEL
+von_funktion: S3
+an: NORD
+an_funktion: Leitung des Stabes
+zur_info:
+- S2
+medium: Funk
+vorrang: normal
+betreff_art: Auftrag
+betreff: Einsatzauftrag Aufbau Ersatz-Pflegeeinrichtung Friederikenstift
+zeichen: Ri
+bezug: null
+anhaenge: []
+text: |
+  FüSt Nord baut im Friederikenstift eine Ersatz-Pflegeeinrichtung für 46 Personen auf (BHP 25 als Aufnahme).
+  Aufnahmebereitschaft bis 11:30 herstellen und melden.
+  Jede Aufnahme mit Kennung der Abgabe (TK-Nr.) nachweisen.
+notiz: 'Zweiter Auftrag gleichen Inhalts an dieselbe Stelle: prüfen, ob beide getrennt nachgewiesen werden.'

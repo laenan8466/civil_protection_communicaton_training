@@ -85,7 +85,9 @@ python3 generator/build.py              # prüfen + PDFs nach ausgabe/
 python3 generator/build.py --nur-pruefen
 ```
 
-Benötigt Python 3 mit `pyyaml`, `jinja2` sowie Chromium/Chrome.
+Benötigt Python 3 mit `pyyaml`, `jinja2` sowie Chromium/Chrome. Die erzeugten PDFs liegen eingecheckt in `ausgabe/`.
+
+Vordrucktext: max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
 
 Ausgabe:
 - `Vordrucke_alle.pdf` + `vordrucke/Vordruck_NNN.pdf` – A5, zum Drucken

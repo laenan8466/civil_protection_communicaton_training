@@ -1,0 +1,20 @@
+nr: 12
+kategorie: fuegr
+von: WEST
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info: []
+medium: Funk
+vorrang: normal
+betreff_art: Lagemeldung
+betreff: Lage Notunterkunft Ahlem
+zeichen: Fr
+bezug: null
+anhaenge: []
+text: |
+  Notunterkunft Schulzentrum Ahlem: 140 Personen untergebracht.
+  Strom seit 11:00 wiederhergestellt.
+  UHS Turnhalle betriebsbereit, bisher 3 Behandlungen, keine Transporte.
+  Keine besonderen Vorkommnisse.
+notiz: Routine-Lagemeldung.

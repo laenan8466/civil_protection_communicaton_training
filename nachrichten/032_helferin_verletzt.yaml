@@ -1,0 +1,21 @@
+nr: 32
+kategorie: sandienst
+von: NORD
+von_funktion: med. Leitung
+an: TEL
+an_funktion: Fachberater Sanität
+zur_info:
+- S1
+medium: Telefon
+vorrang: normal
+betreff_art: Meldung
+betreff: Verletzte Einsatzkraft Tellkampfschule
+zeichen: Dr
+bezug: null
+anhaenge: []
+text: |
+  Helferin SanGr ASB bei Umlagerung einer Bewohnerin am Rücken verletzt.
+  Versorgung im BHP, nicht mehr einsatzfähig, Heimtransport privat.
+  Unfallmeldung folgt durch Einheit.
+  Stärke Tellkampfschule damit 0/5/30/35.
+notiz: Zur Info S1 bei TEL (Stärkeänderung).

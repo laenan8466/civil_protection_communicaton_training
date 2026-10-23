@@ -1,0 +1,21 @@
+nr: 7
+kategorie: fuegr
+von: SUED
+von_funktion: S2
+an: TEL
+an_funktion: S2
+zur_info: []
+medium: Funk
+vorrang: normal
+betreff_art: Lagemeldung
+betreff: Lage BR Schützenplatz
+zeichen: Lü
+bezug: null
+anhaenge: []
+text: |
+  BR Schützenplatz mit Meldekopf besetzt.
+  Im BR eingetroffen: Joh. H 59-85-1, Joh. H 59-92-1, Akk. H 49-85-2, Akk. H 49-92-3,
+  Rotkreuz H 40-85-1, Rotkreuz H 40-92-2, Sama H 64-85-1 sowie 6 weitere KTW (ASB/JUH).
+  Gesamt 13 Fahrzeuge, alle Status 2.
+  Verpflegung JUH vor Ort, Lunchbags werden ausgegeben.
+notiz: 'Viele Rufnamen: korrekte Aufnahme der Funkrufnamen prüfen.'

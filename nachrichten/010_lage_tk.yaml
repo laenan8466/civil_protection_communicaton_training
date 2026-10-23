@@ -1,0 +1,22 @@
+nr: 10
+kategorie: fuegr
+von: NORD
+von_funktion: S2
+an: TEL
+an_funktion: S2
+zur_info:
+- S3
+medium: Mail
+vorrang: normal
+betreff_art: Lagemeldung
+betreff: Bewohnerstruktur Tellkampfschule
+zeichen: Wa
+bezug: null
+anhaenge:
+- Bewohnerliste_Tellkampfschule.csv
+text: |
+  Bewohner:innen Tellkampfschule gesamt 46:
+  liegend 12, Rollstuhl 4, beatmet 2, sitzend 28.
+  Besonderheiten: TK-17 MRSA, TK-05 und TK-31 beatmet, TK-40 Demenz mit Weglauftendenz.
+  Bewohnerliste im Anhang.
+notiz: 'Einziger Anhang Bewohnerliste: Datei muss mitgeschickt/angefügt werden.'

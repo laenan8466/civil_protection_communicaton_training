@@ -1,0 +1,20 @@
+nr: 40
+kategorie: transport
+von: SUED
+von_funktion: S2
+an: TEL
+an_funktion: S2
+zur_info:
+- S3
+medium: Funk
+vorrang: Sofort
+betreff_art: Anforderung
+betreff: Zufahrt Friederikenstift blockiert
+zeichen: Lü
+bezug: null
+anhaenge: []
+text: |
+  Zufahrt Friederikenstift über Humboldtstraße durch falsch geparkten Lkw blockiert.
+  Fahrzeuge werden über die Goetheplatz-Seite umgeleitet, ca. 5 Minuten Zeitverlust.
+  Anforderung: Polizei zur Räumung der Zufahrt.
+notiz: Anforderung Polizei läuft über TEL – nicht direkt.

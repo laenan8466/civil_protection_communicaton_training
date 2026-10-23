@@ -1,0 +1,76 @@
+# Übende Stellen. Nur diese senden/empfangen in der Übung.
+# Rufnamen nach Nds. MBl. 2024 Nr. 125 (Johannes = MHD, H = Hannover, H# = Hannover Land/Region).
+uebung:
+  titel: "Fernmeldeübung Johannes Hannover"
+  datum: ""            # leer = Datum wird bei Einspielung handschriftlich ergänzt
+
+stellen:
+  TEL:
+    name: "TEL Hannover"
+    rufname: "Joh. H 59-10-1"
+    arbeitsmittel: vordruck
+    telefon: "0511 99 4100"
+    fax: "0511 99 4109"
+    mail: "fmz.tel@uebung.example"
+    funktionen: [S1, S2, S3, S4, S5, S6, "Fachberater Sanität"]
+  NORD:
+    name: "FüSt Nord"
+    alias: "UEA Nord"
+    rufname: "Joh. H 59-12-1"
+    arbeitsmittel: edp
+    auftrag: "Räumung Pflegeeinrichtung Tellkampfschule, Aufnahme Friederikenstift (vulnerable Gruppen)"
+    telefon: "0511 99 4210"
+    fax: "0511 99 4219"
+    mail: "fmz.nord@uebung.example"
+    funktionen: &fuegr ["Leitung des Stabes", S1/4/6, S2, S3, "med. Leitung"]
+  SUED:
+    name: "FüSt Süd"
+    alias: "UEA Süd"
+    rufname: "Joh. H 59-12-2"
+    arbeitsmittel: edp
+    auftrag: "Transportorganisation, BR Schützenplatz mit Meldekopf"
+    telefon: "0511 99 4220"
+    fax: "0511 99 4229"
+    mail: "fmz.sued@uebung.example"
+    funktionen: *fuegr
+  WEST:
+    name: "FüSt West"
+    alias: "UEA West"
+    rufname: "Joh. H 59-12-3"
+    arbeitsmittel: edp
+    auftrag: "Sanitätsdienst Notunterkunft Schulzentrum Ahlem (UHS, San-Wache)"
+    telefon: "0511 99 4230"
+    fax: "0511 99 4239"
+    mail: "fmz.west@uebung.example"
+    funktionen: *fuegr
+
+# Auswahlwerte
+medien: [Telefon, Funk, Fax, Mail, Melder]
+vorrang: [normal, Sofort, Blitz]
+betreff_arten: [Meldung, Lagemeldung, Anforderung, Auftrag, Anfrage, Antwort, Information]
+kategorien:
+  fuegr: {name: "FüGr / Stab", soll: 0.6}
+  transport: {name: "Transportdisposition", soll: 0.2}
+  sandienst: {name: "Sanitätsdienst", soll: 0.2}
+
+# Nur zur Erwähnung im Nachrichtentext (nie Sender/Empfänger).
+fahrzeuge:
+  - {rufname: "Joh. H 59-11-1", typ: "ZTr SBZ"}
+  - {rufname: "Joh. H 59-85-1", typ: "RTW KatS"}
+  - {rufname: "Joh. H 59-92-1", typ: "KTW"}
+  - {rufname: "Joh. H# 57-94-1", typ: "KTW 4-Tragen"}
+  - {rufname: "Joh. H# 57-96-1", typ: "GW-San"}
+  - {rufname: "Joh. H 59-76-1", typ: "GW-Verpflegung"}
+  - {rufname: "Akk. H 49-85-2", typ: "RTW KatS"}
+  - {rufname: "Akk. H 49-92-3", typ: "KTW"}
+  - {rufname: "Akk. H 49-88-1", typ: "GRTW / GEW"}
+  - {rufname: "Akk. H 49-11-1", typ: "ZTr SBZ"}
+  - {rufname: "Rotkreuz H 40-85-1", typ: "RTW KatS"}
+  - {rufname: "Rotkreuz H 40-82-1", typ: "NEF"}
+  - {rufname: "Rotkreuz H 40-92-2", typ: "KTW"}
+  - {rufname: "Sama H 64-11-1", typ: "ZTr SBZ"}
+  - {rufname: "Sama H 64-85-1", typ: "RTW KatS"}
+  - {rufname: "Sama H 64-74-1", typ: "GW-Betreuung"}
+  - {rufname: "Pelikan H 71-16-1", typ: "MTW"}
+  - {rufname: "Florian H 01-83-1", typ: "RTW RD"}
+  - {rufname: "Florian H 01-82-2", typ: "NEF"}

@@ -1,0 +1,20 @@
+nr: 20
+kategorie: fuegr
+von: TEL
+von_funktion: S3
+an: NORD
+an_funktion: Leitung des Stabes
+zur_info:
+- S1/4/6
+medium: Funk
+vorrang: Sofort
+betreff_art: Antwort
+betreff: Netzersatzanlage Friederikenstift
+zeichen: Ri
+bezug: 19
+anhaenge: []
+text: |
+  THW OV Hannover mit NEA 50 kVA alarmiert, Eintreffen ca. 30 Minuten.
+  Einweiser an der Zufahrt Humboldtstraße stellen.
+  FüSt Süd ist über TEL informiert, Fahrzeuge bleiben bis Freigabe im BR.
+notiz: Antwort auf Blitz.

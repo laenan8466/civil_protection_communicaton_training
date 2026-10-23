@@ -1,0 +1,20 @@
+nr: 35
+kategorie: transport
+von: NORD
+von_funktion: S3
+an: SUED
+an_funktion: S3
+zur_info:
+- Leitung des Stabes
+medium: Telefon
+vorrang: Sofort
+betreff_art: Information
+betreff: Aufnahme Station 2 belegt
+zeichen: Wa
+bezug: null
+anhaenge: []
+text: |
+  Friederikenstift Station 2 vollständig belegt.
+  Die nächsten 30 Minuten nur sitzende Bewohner:innen anliefern.
+  Liegende Transporte bis auf Weiteres an der Tellkampfschule zurückhalten.
+notiz: FüSt <-> FüSt, wirkt direkt auf Dispo.

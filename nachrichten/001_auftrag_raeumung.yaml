@@ -1,0 +1,22 @@
+nr: 1
+kategorie: fuegr
+von: TEL
+von_funktion: S3
+an: NORD
+an_funktion: Leitung des Stabes
+zur_info:
+- S3
+medium: Funk
+vorrang: Sofort
+betreff_art: Auftrag
+betreff: Einsatzauftrag Räumung Pflegeeinrichtung Tellkampfschule
+zeichen: Ri
+bezug: null
+anhaenge: []
+text: |
+  FüSt Nord räumt die Pflegeeinrichtung Tellkampfschule (46 Bewohner:innen).
+  Bewohner:innen geordnet an die Ladezone übergeben, Transport erfolgt durch FüSt Süd.
+  Ziel: Ersatz-Pflegeeinrichtung Friederikenstift.
+  Beginn der Räumung nur nach Freigabe durch TEL.
+  Einsatzbereitschaft und Kräftestärke melden.
+notiz: 'Erwartet: Eingang in EDP Nord, Sichtung an LdS + S3; Antwort Nachricht ''Einsatzbereitschaft''.'

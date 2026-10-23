@@ -1,0 +1,63 @@
+/* Gemeinsame Styles für Vordruck, EDP-Blatt und Übersicht */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: "Liberation Sans", Arial, sans-serif; color: #000; }
+.wert { color: #1b3c8f; font-weight: 600; }
+.box { display: inline-block; width: 2.6mm; height: 2.6mm; border: 0.25mm solid #000;
+       vertical-align: -0.2mm; margin-right: 1mm; position: relative; }
+.box.x::after { content: "✕"; position: absolute; left: -0.4mm; top: -1.6mm; font-size: 4.2mm;
+                color: #1b3c8f; font-weight: 700; line-height: 1; }
+
+/* ---------- Vordruck (A5, weißes Blatt) ---------- */
+.vordruck { width: 148mm; height: 210mm; position: relative; padding: 7mm 7mm 0 8mm;
+            page-break-after: always; overflow: hidden; }
+.vordruck:last-child { page-break-after: auto; }
+.form { display: grid; grid-template-columns: 7mm 1fr; border-top: 0.6mm solid #000;
+        border-bottom: 0.6mm solid #000; }
+.sec-label { border-right: 0.5mm solid #000; display: flex; align-items: center; justify-content: center; }
+.sec-label span { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 700; font-size: 3.8mm; }
+.sec { border-right: 0.5mm solid #000; }
+.sec + .sec-label, .sec-label.trenn, .sec.trenn { border-top: 0.6mm solid #000; }
+.row { display: grid; border-bottom: 0.25mm solid #000; font-size: 2.9mm; }
+.row:last-child { border-bottom: none; }
+.cell { border-right: 0.25mm solid #000; padding: 0.5mm 1mm; position: relative; overflow: hidden; }
+.cell:last-child { border-right: none; }
+.c { text-align: center; }
+.lbl { font-size: 2.9mm; }
+.big { font-size: 3.5mm; }
+.media { display: flex; justify-content: space-between; align-items: center; padding: 0 2mm; height: 100%; }
+.dzh { display: grid; grid-template-columns: 1.3fr 1fr 1fr; position: absolute; bottom: 0.6mm; left: 0; right: 0; }
+.dzh div { text-align: center; border-right: 0.25mm solid #000; font-size: 2.7mm; }
+.dzh div:last-child { border-right: none; }
+.nachricht { font-size: 3.3mm; line-height: 5.25mm; padding: 0 1.5mm; height: 73.5mm; overflow: hidden;
+             background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 5mm,
+             #000 5mm, #000 5.25mm); white-space: pre-wrap; }
+.footer { position: absolute; bottom: 4mm; left: 8mm; right: 7mm; font-size: 2.6mm; color: #444;
+          display: flex; justify-content: space-between; }
+.footer b { color: #000; }
+
+/* ---------- EDP-Blatt (A4) ---------- */
+.edp { width: 210mm; min-height: 297mm; padding: 14mm 16mm; page-break-after: always; font-size: 10.5pt; }
+.edp:last-child { page-break-after: auto; }
+.edp h1 { font-size: 15pt; margin: 0 0 1mm; display: flex; justify-content: space-between; }
+.edp .meta { color: #555; font-size: 9pt; margin-bottom: 5mm; }
+.edp .vor-blitz { background: #c00; color: #fff; padding: 0 2mm; }
+.edp .vor-sofort { background: #e8a200; color: #000; padding: 0 2mm; }
+.edp table { width: 100%; border-collapse: collapse; }
+.edp th { text-align: left; width: 34mm; vertical-align: top; padding: 1.6mm 2mm; background: #eef1f6;
+          border: 0.3mm solid #b8c0cc; font-weight: 600; }
+.edp td { padding: 1.6mm 2mm; border: 0.3mm solid #b8c0cc; font-family: "Liberation Mono", monospace; font-size: 10pt; }
+.edp .text { white-space: pre-wrap; border: 0.3mm solid #b8c0cc; padding: 3mm; margin-top: 4mm;
+             font-family: "Liberation Mono", monospace; font-size: 10.5pt; line-height: 1.45; min-height: 80mm; }
+.edp .hinweis { margin-top: 5mm; font-size: 8.5pt; color: #555; border-top: 0.3mm dashed #999; padding-top: 2mm; }
+
+/* ---------- Übersicht (A4 quer) ---------- */
+.uebersicht { padding: 10mm; font-size: 8pt; }
+.uebersicht h1 { font-size: 14pt; margin: 0 0 2mm; }
+.uebersicht pre { font-size: 8pt; margin: 0 0 4mm; }
+.uebersicht table { width: 100%; border-collapse: collapse; }
+.uebersicht th, .uebersicht td { border: 0.2mm solid #999; padding: 1mm 1.5mm; vertical-align: top; text-align: left; }
+.uebersicht th { background: #e5e9f0; }
+.uebersicht tr { page-break-inside: avoid; }
+.uebersicht .blitz { color: #c00; font-weight: 700; }
+.uebersicht .sofort { color: #b36b00; font-weight: 700; }

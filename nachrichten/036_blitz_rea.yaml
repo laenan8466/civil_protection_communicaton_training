@@ -1,0 +1,20 @@
+nr: 36
+kategorie: sandienst
+von: WEST
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info: []
+medium: Telefon
+vorrang: Blitz
+betreff_art: Anforderung
+betreff: Reanimation Notunterkunft Ahlem
+zeichen: Fr
+bezug: null
+anhaenge: []
+text: |
+  Bewohner Notunterkunft, ca. 70 Jahre, bewusstlos in Turnhalle aufgefunden.
+  Reanimation durch UHS läuft, AED angeschlossen.
+  Anforderung über Leitstelle: NEF und RTW.
+  Einweiser am Haupteingang Turnhalle.
+notiz: BLITZ. Anforderung an Leitstelle muss über TEL laufen.

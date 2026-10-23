@@ -1,0 +1,21 @@
+nr: 6
+kategorie: fuegr
+von: TEL
+von_funktion: S1
+an: SUED
+an_funktion: Leitung des Stabes
+zur_info:
+- S2
+medium: Funk
+vorrang: normal
+betreff_art: Information
+betreff: Festlegung Meldezeiten
+zeichen: Ka
+bezug: null
+anhaenge: []
+text: |
+  Für alle FüSt gelten folgende Meldezeiten:
+  Lagemeldung stündlich zur vollen Stunde.
+  Kräftemeldung um 10:00 und 13:00.
+  Lageänderungen unverzüglich, ohne Abwarten der Meldezeit.
+notiz: Verteilung zur Info an S2.

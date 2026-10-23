@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Übersicht Übungsleitung</title>
+<link rel="stylesheet" href="style.css">
+<style>@page { size: A4 landscape; margin: 8mm; }</style>
+</head>
+<body>
+<div class="uebersicht">
+  <h1>{{ cfg.uebung.titel }} – Übersicht Übungsleitung</h1>
+  <pre>{{ statistik }}</pre>
+  <table>
+    <thead><tr>
+      <th>Nr</th><th>Unterlage</th><th>Von</th><th>An</th><th>Medium</th><th>Vorrang</th>
+      <th>Kat.</th><th>Betreff</th><th>Bezug</th><th>Anhang</th><th>Erwartung / Hinweis</th>
+    </tr></thead>
+    <tbody>
+    {% for n in nachrichten %}
+    <tr>
+      <td>{{ n.nr_str }}</td>
+      <td>{{ 'Vordruck' if n.arbeitsmittel == 'vordruck' else 'EDP' }}</td>
+      <td>{{ n.von_stelle.name }}<br>{{ n.von_funktion }}</td>
+      <td>{{ n.an_stelle.name }}<br>{{ n.an_funktion }}{% if n.zur_info %}<br>z.I. {{ n.zur_info | join(', ') }}{% endif %}</td>
+      <td>{{ n.medium }}</td>
+      <td class="{{ n.vorrang | lower }}">{{ n.vorrang }}</td>
+      <td>{{ n.kategorie }}</td>
+      <td>{{ n.betreff_art }}: {{ n.betreff }}</td>
+      <td>{% if n.bezug %}{{ '%03d' % n.bezug }}{% endif %}</td>
+      <td>{{ n.anhaenge | join(', ') }}</td>
+      <td>{{ n.notiz }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

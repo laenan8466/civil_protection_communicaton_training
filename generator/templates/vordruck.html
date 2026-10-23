@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Vordrucke</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@page { size: 148mm 210mm; margin: 0; }
+.g { display: grid; height: 100%; }
+.g > div { position: relative; border-right: 0.25mm solid #000; border-bottom: 0.25mm solid #000; padding: 0.4mm 1mm; overflow: hidden; }
+.nr { border-right: none !important; }
+.nb { border-bottom: none !important; }
+.fm   { grid-template-columns: 34fr 32fr 36fr 24fr; grid-template-rows: 5mm 5mm 12.5mm 10mm; }
+.vf   { grid-template-columns: 34fr 32fr 36fr 24fr; grid-template-rows: 6mm 5.5mm 11mm 10mm; }
+.abf  { grid-template-columns: 30fr 50fr 23fr 23fr; grid-template-rows: 4.5mm 6mm 4.5mm; }
+.si   { grid-template-columns: 21fr 26fr 33fr 44fr; grid-template-rows: 5.5mm 5mm repeat(4, 5.5mm); }
+.si .ck { border-bottom: none; border-right: none; font-size: 3.4mm; padding-left: 1.5mm; }
+.lbl-nachricht { font-size: 3.6mm; padding: 1.8mm 1.5mm 0; height: 7mm; }
+</style>
+</head>
+<body>
+{% macro cb(an) %}<span class="box{% if an %} x{% endif %}"></span>{% endmacro %}
+{% macro medien(gewaehlt) %}
+<div class="media">{% for m in cfg.medien %}<span>{{ cb(m == gewaehlt) }}{{ m }}</span>{% endfor %}</div>
+{% endmacro %}
+{% for n in nachrichten %}
+<div class="vordruck">
+  <div class="form">
+    {# ---------------- Fernmeldestelle (bleibt leer) ---------------- #}
+    <div class="sec-label"><span>Fernmeldestelle</span></div>
+    <div class="sec" style="height: 32.5mm">
+      <div class="g fm lbl">
+        <div style="grid-area: 1 / 1 / 2 / 4; padding: 0">{{ medien(None) }}</div>
+        <div class="nr c big" style="grid-area: 1 / 4 / 4 / 5; line-height: 4.6mm">
+          Nachweisung<br>Nr.<div style="text-align:left; margin-top: 4mm; font-size: 2.9mm; line-height: 3.6mm">
+          {{ cb(False) }}Eingang<br>{{ cb(False) }}Ausgang</div>
+        </div>
+        <div class="c big" style="grid-area: 2 / 1 / 3 / 2">Eingang</div>
+        <div class="c big" style="grid-area: 2 / 2 / 3 / 4">Ausgang</div>
+        <div class="c" style="grid-area: 3 / 1 / 4 / 2">Aufnahmevermerk
+          <div class="dzh"><div>Datum</div><div>Zeit</div><div>Hdz.</div></div></div>
+        <div class="c" style="grid-area: 3 / 2 / 4 / 3">Annahmevermerk
+          <div class="dzh"><div>Datum</div><div>Zeit</div><div>Hdz.</div></div></div>
+        <div class="c" style="grid-area: 3 / 3 / 4 / 4">Beförderungsvermerk
+          <div class="dzh"><div>Datum</div><div>Zeit</div><div>Hdz.</div></div></div>
+        <div class="c nb" style="grid-area: 4 / 1 / 5 / 2; line-height: 4.4mm">Rufname<br>Spruchkopf</div>
+        <div class="nr nb" style="grid-area: 4 / 2 / 5 / 5"></div>
+      </div>
+    </div>
+
+    {# ---------------- Verfasser / Auftraggeber (ausgefüllt) ---------------- #}
+    <div class="sec-label trenn"><span>Verfasser / Auftraggeber</span></div>
+    <div class="sec trenn">
+      <div class="g vf lbl" style="height: 32.5mm">
+        <div class="nr" style="grid-area: 1 / 1 / 2 / 5; padding: 0">{{ medien(n.medium) }}</div>
+        <div class="c big" style="grid-area: 2 / 1 / 3 / 2">Vorrangstufe</div>
+        <div class="nr big" style="grid-area: 2 / 2 / 3 / 5; display:flex; justify-content: space-around">
+          <span>{{ cb(n.vorrang == 'Sofort') }}Sofort</span><span>{{ cb(n.vorrang == 'Blitz') }}Blitz</span></div>
+        <div class="c big" style="grid-area: 3 / 1 / 4 / 2; line-height: 4.6mm">Empfänger<br>Anschrift</div>
+        <div class="nb" style="grid-area: 3 / 2 / 4 / 4; font-size: 3.3mm; line-height: 4.2mm">
+          <span class="wert">{{ n.an_stelle.name }} – {{ n.an_funktion }}</span>
+          {% if n.zur_info %}<br><span class="wert">zur Info: {{ n.zur_info | join(', ') }}</span>{% endif %}
+        </div>
+        <div class="c nr nb" style="grid-area: 3 / 4 / 5 / 5; font-size: 3.3mm; line-height: 4.4mm; padding-top: 1.5mm">
+          Gesprächs-<br>notiz<br><span style="font-size: 6mm">○</span></div>
+        <div class="c big nb" style="grid-area: 4 / 1 / 5 / 2">Rufnummer</div>
+        <div class="nb" style="grid-area: 4 / 2 / 5 / 4; font-size: 3.3mm; padding-top: 2mm">
+          <span class="wert">{{ n.rufnummer }}</span></div>
+      </div>
+      <div style="border-top: 0.25mm solid #000">
+        <div class="lbl-nachricht">Nachricht</div>
+        <div class="nachricht"><span class="wert">{{ n.text }}</span></div>
+      </div>
+      <div class="g abf lbl" style="height: 15mm; border-top: 0.25mm solid #000">
+        <div class="c big nr nb" style="grid-area: 1 / 1 / 2 / 5">Abfasser</div>
+        <div class="nr nb c" style="grid-area: 2 / 1 / 3 / 2; font-size: 3.3mm"><span class="wert">{{ n.get('zeit', '') }}</span></div>
+        <div class="nr nb c" style="grid-area: 2 / 2 / 3 / 3; font-size: 3.3mm"><span class="wert">{{ n.von_stelle.name }}</span></div>
+        <div class="nr nb c" style="grid-area: 2 / 3 / 3 / 4; font-size: 3.3mm"><span class="wert">{{ n.zeichen }}</span></div>
+        <div class="nr nb c" style="grid-area: 2 / 4 / 3 / 5; font-size: 3.3mm"><span class="wert">{{ n.von_funktion }}</span></div>
+        <div class="nr nb c" style="grid-area: 3 / 1 / 4 / 2">Datum, Uhrzeit</div>
+        <div class="nr nb c" style="grid-area: 3 / 2 / 4 / 3">Anschrift</div>
+        <div class="nr nb c" style="grid-area: 3 / 3 / 4 / 4">Zeichen</div>
+        <div class="nr nb c" style="grid-area: 3 / 4 / 5 / 5">Funktion</div>
+      </div>
+    </div>
+
+    {# ---------------- Sichter (bleibt leer) ---------------- #}
+    <div class="sec-label trenn"><span>Sichter</span></div>
+    <div class="sec trenn" style="height: 32.5mm">
+      <div class="g si">
+        <div class="big" style="grid-area: 1 / 1 / 2 / 2">Quittung</div>
+        <div class="nb" style="grid-area: 1 / 2 / 2 / 3"></div>
+        <div class="nb" style="grid-area: 1 / 3 / 2 / 4"></div>
+        <div class="big nr" style="grid-area: 1 / 4 / 2 / 5">Vermerke</div>
+        <div class="nr" style="grid-area: 2 / 1 / 3 / 2"></div>
+        <div class="c lbl nr" style="grid-area: 2 / 2 / 3 / 3">Uhrzeit</div>
+        <div class="c lbl" style="grid-area: 2 / 3 / 3 / 4">Zeichen</div>
+        <div class="nr nb" style="grid-area: 2 / 4 / 7 / 5"></div>
+        <div class="ck" style="grid-area: 3 / 1 / 4 / 2">{{ cb(False) }}Leiter</div>
+        {% for s in ['S1', 'S2', 'S3', 'S4'] %}
+        <div class="ck" style="grid-area: {{ loop.index + 2 }} / 2 / {{ loop.index + 3 }} / 3">{{ cb(False) }}{{ s }}</div>
+        {% endfor %}
+        {% for s in ['S5', 'S6', '……', '……'] %}
+        <div class="ck" style="grid-area: {{ loop.index + 2 }} / 3 / {{ loop.index + 3 }} / 4; border-right: 0.25mm solid #000">{{ cb(False) }}{{ s }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <span><b>Übungsnachricht {{ n.nr_str }}</b> · {{ n.von_stelle.name }} → {{ n.an_stelle.name }}</span>
+    <span>nur für Übungszwecke</span>
+  </div>
+</div>
+{% endfor %}
+</body>
+</html>

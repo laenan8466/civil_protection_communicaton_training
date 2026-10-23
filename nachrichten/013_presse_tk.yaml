@@ -1,0 +1,20 @@
+nr: 13
+kategorie: fuegr
+von: TEL
+von_funktion: S5
+an: NORD
+an_funktion: Leitung des Stabes
+zur_info: []
+medium: Telefon
+vorrang: normal
+betreff_art: Information
+betreff: Presseanfrage NDR
+zeichen: Ze
+bezug: null
+anhaenge: []
+text: |
+  Ein Kamerateam des NDR fährt die Tellkampfschule an.
+  Keine Interviews und keine Aufnahmen von Bewohner:innen.
+  Presse an die Pressestelle der Feuerwehr Hannover verweisen.
+  Eintreffen der Presse an TEL S5 melden.
+notiz: Telefon -> TEL nimmt mit Gesprächsnotiz auf? (Vordruck kommt hier vom Verfasser).

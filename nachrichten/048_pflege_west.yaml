@@ -1,0 +1,19 @@
+nr: 48
+kategorie: sandienst
+von: WEST
+von_funktion: med. Leitung
+an: NORD
+an_funktion: med. Leitung
+zur_info: []
+medium: Telefon
+vorrang: normal
+betreff_art: Anfrage
+betreff: Übernahme pflegebedürftige Person
+zeichen: Dr
+bezug: null
+anhaenge: []
+text: |
+  In der Notunterkunft Ahlem befindet sich eine pflegebedürftige Frau, 88 Jahre, Pflegegrad 4.
+  Versorgung in der Notunterkunft nicht möglich.
+  Ist eine Übernahme in die Ersatz-Pflegeeinrichtung Friederikenstift möglich?
+notiz: 'FüSt <-> FüSt. Folgefrage: Transport über Süd.'

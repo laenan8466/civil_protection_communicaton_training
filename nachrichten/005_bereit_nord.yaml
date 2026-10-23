@@ -1,0 +1,21 @@
+nr: 5
+kategorie: fuegr
+von: NORD
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info:
+- S1
+medium: Funk
+vorrang: normal
+betreff_art: Meldung
+betreff: Einsatzbereitschaft FüSt Nord
+zeichen: Bö
+bezug: 1
+anhaenge: []
+text: |
+  FüSt Nord einsatzbereit.
+  UEA Tellkampfschule: ZTr + 2 SanGr + BtGr + LogTech, Stärke 0/5/31/36.
+  UEA Friederikenstift: ZTr + 2 SanGr + BtGr + LogTech, Stärke 0/4/32/36.
+  Aufnahme Friederikenstift im Aufbau.
+notiz: Antwort auf Einsatzauftrag. Bezug richtig setzen? Stärkeangabe korrekt übertragen (Schrägstrich-Schreibweise).

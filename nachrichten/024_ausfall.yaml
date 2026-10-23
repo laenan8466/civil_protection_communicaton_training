@@ -1,0 +1,21 @@
+nr: 24
+kategorie: transport
+von: SUED
+von_funktion: S3
+an: TEL
+an_funktion: S3
+zur_info:
+- S2
+medium: Funk
+vorrang: Sofort
+betreff_art: Meldung
+betreff: Fahrzeugausfall Akk. H 49-92-3
+zeichen: Lü
+bezug: null
+anhaenge: []
+text: |
+  Akk. H 49-92-3 mit Reifenschaden auf der Anfahrt zum Friederikenstift liegen geblieben.
+  Besatzung unverletzt.
+  Bewohnerin TK-22 auf Rotkreuz H 40-92-2 umgeladen und weitertransportiert.
+  Abschleppdienst wird benötigt.
+notiz: Kennung TK-22 und Rufnamen korrekt übernehmen.

@@ -1,0 +1,20 @@
+nr: 44
+kategorie: transport
+von: TEL
+von_funktion: S2
+an: SUED
+an_funktion: S2
+zur_info:
+- Leitung des Stabes
+medium: Telefon
+vorrang: normal
+betreff_art: Anfrage
+betreff: Abgleich Patientenverbleib
+zeichen: Os
+bezug: null
+anhaenge: []
+text: |
+  Nach Lagemeldungen der TEL sind 31 Bewohner:innen im Friederikenstift angekommen.
+  FüSt Nord meldet nur 29 aufgenommen.
+  Bitte Verbleib der fehlenden 2 Personen mit Kennung klären und melden.
+notiz: 'Gute Folgenachricht: Dispo muss mit Nord klären.'

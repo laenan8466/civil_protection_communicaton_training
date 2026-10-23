@@ -1,0 +1,21 @@
+nr: 50
+kategorie: fuegr
+von: NORD
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info:
+- S1
+medium: Funk
+vorrang: normal
+betreff_art: Meldung
+betreff: Räumung Tellkampfschule abgeschlossen
+zeichen: Bö
+bezug: null
+anhaenge: []
+text: |
+  Tellkampfschule vollständig geräumt.
+  Alle 46 Bewohner:innen an Friederikenstift übergeben, Abgleich mit FüSt Süd erfolgt.
+  Gebäude kontrolliert, keine Personen mehr im Gebäude.
+  Kräfte beginnen mit Rückbau BHP.
+notiz: Abschlussmeldung.

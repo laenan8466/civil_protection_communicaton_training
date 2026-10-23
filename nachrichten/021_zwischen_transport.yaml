@@ -1,0 +1,19 @@
+nr: 21
+kategorie: transport
+von: SUED
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info: []
+medium: Funk
+vorrang: normal
+betreff_art: Lagemeldung
+betreff: Fortschritt Transport
+zeichen: Lü
+bezug: null
+anhaenge: []
+text: |
+  18 von 46 Bewohner:innen transportiert.
+  6 Fahrzeuge unterwegs, 5 im BR, 2 Fahrzeuge Status 6.
+  Engpass: Aufnahme Friederikenstift nur ein Fahrzeug gleichzeitig an der Ladezone.
+notiz: ''

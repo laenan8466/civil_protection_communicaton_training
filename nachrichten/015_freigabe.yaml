@@ -1,0 +1,20 @@
+nr: 15
+kategorie: fuegr
+von: TEL
+von_funktion: S3
+an: NORD
+an_funktion: Leitung des Stabes
+zur_info:
+- S3
+medium: Funk
+vorrang: Sofort
+betreff_art: Auftrag
+betreff: Freigabe Beginn Räumung
+zeichen: Ri
+bezug: 1
+anhaenge: []
+text: |
+  Räumung Tellkampfschule ab sofort freigegeben.
+  Beginn mit beatmeten Bewohner:innen TK-05 und TK-31.
+  FüSt Süd ist informiert.
+notiz: Kurz, Sofort.

@@ -1,0 +1,20 @@
+nr: 49
+kategorie: transport
+von: SUED
+von_funktion: Leitung des Stabes
+an: TEL
+an_funktion: S3
+zur_info:
+- S1
+medium: Funk
+vorrang: normal
+betreff_art: Meldung
+betreff: Transport abgeschlossen
+zeichen: Lü
+bezug: null
+anhaenge: []
+text: |
+  Alle 46 Bewohner:innen ins Friederikenstift transportiert, Verbleib mit FüSt Nord abgeglichen.
+  Zusätzlich 1 heimbeatmeter Patient aus der Limmerstraße.
+  Alle Fahrzeuge im BR Schützenplatz, Status 2.
+notiz: ''

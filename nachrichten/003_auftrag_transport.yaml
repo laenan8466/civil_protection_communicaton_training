@@ -1,0 +1,22 @@
+nr: 3
+kategorie: transport
+von: TEL
+von_funktion: S3
+an: SUED
+an_funktion: Leitung des Stabes
+zur_info:
+- S3
+medium: Funk
+vorrang: normal
+betreff_art: Auftrag
+betreff: Einsatzauftrag Transportorganisation
+zeichen: Ri
+bezug: null
+anhaenge: []
+text: |
+  FüSt Süd übernimmt die Transportorganisation Tellkampfschule -> Friederikenstift.
+  Kräfte: 13 RTW/KTW im BR Schützenplatz, ab 14:30 zusätzlich 3 GEW.
+  Reihenfolge: beatmete Bewohner:innen zuerst, dann liegend, dann sitzend.
+  Fahrzeuge fahren nur auf Auftrag der Dispo.
+  Fortschritt stündlich an TEL melden.
+notiz: Kernauftrag Transport. Zur Info S3 korrekt verteilen.

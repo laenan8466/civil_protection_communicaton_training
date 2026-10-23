@@ -1,0 +1,21 @@
+nr: 4
+kategorie: sandienst
+von: TEL
+von_funktion: S3
+an: WEST
+an_funktion: Leitung des Stabes
+zur_info:
+- med. Leitung
+medium: Funk
+vorrang: normal
+betreff_art: Auftrag
+betreff: Einsatzauftrag San-Wache Notunterkunft Ahlem
+zeichen: Ri
+bezug: null
+anhaenge: []
+text: |
+  FüSt West stellt den Sanitätsdienst in der Notunterkunft Schulzentrum Ahlem sicher.
+  UHS in der Turnhalle betreiben, San-Streife über das Gelände.
+  Notfälle über TEL an die Leitstelle melden, nicht direkt.
+  Behandlungszahlen zu den Meldezeiten an TEL melden.
+notiz: Sanitätsdienst klassisch, Einstieg West.

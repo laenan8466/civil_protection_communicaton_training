@@ -1,0 +1,19 @@
+nr: 9
+kategorie: fuegr
+von: TEL
+von_funktion: S6
+an: WEST
+an_funktion: S1/4/6
+zur_info: []
+medium: Telefon
+vorrang: normal
+betreff_art: Auftrag
+betreff: Funkprobe und Rückfallebene Papier
+zeichen: Os
+bezug: null
+anhaenge: []
+text: |
+  Um 10:15 Funkprobe aller FüSt auf ##TMO2.
+  Anschließend 10 Minuten Test Rückfallebene: Nachrichten nur auf Vordruck, keine EDP.
+  Ergebnis der Funkprobe an TEL S6 melden.
+notiz: S6-Thema. West muss Ergebnis zurückmelden (nicht im Pool, freie Reaktion).

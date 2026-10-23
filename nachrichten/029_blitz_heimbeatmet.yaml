@@ -1,0 +1,22 @@
+nr: 29
+kategorie: transport
+von: TEL
+von_funktion: S3
+an: SUED
+an_funktion: Leitung des Stabes
+zur_info:
+- S3
+medium: Funk
+vorrang: Blitz
+betreff_art: Auftrag
+betreff: Heimbeatmeter Patient Limmerstraße
+zeichen: Ri
+bezug: null
+anhaenge: []
+text: |
+  Heimbeatmeter Patient, Limmerstraße 112, 3. OG, Hannover-Linden.
+  Akku des Beatmungsgeräts noch ca. 20 Minuten.
+  Sofort RTW entsenden, Transport ins Friederikenstift, Intensivbereich.
+  Angehörige vor Ort, Tel. 0511 99 7712.
+  Eingesetztes Fahrzeug an TEL melden.
+notiz: BLITZ. Adresse und Rückrufnummer exakt übertragen.
