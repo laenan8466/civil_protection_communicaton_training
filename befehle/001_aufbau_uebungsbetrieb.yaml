@@ -51,7 +51,7 @@ durchfuehrung: |
 
 versorgung: |
   Strom: Einspeisung aus der Fahrzeughalle.
-  Verpflegung: ________________________________
+  Verpflegung: Mittagessen wird gestellt, im Vereinslebensraum.
   Betriebsstoff: herausgefahrene Fahrzeuge bleiben einsatzbereit,
   Schlüssel am gewohnten Platz.
   Erste Hilfe durch eigene Kräfte.
@@ -74,5 +74,5 @@ verteiler:
 - "Übungsleitung (Akte)"
 unterschrift_funktion: "Leitung Übung"
 notiz: >
-  Offen: Arbeitsplätze Stab FüSt und Transportdispo (Fahrzeug oder Vorzelt),
-  Verpflegung. Datum und Zeiten handschriftlich ergänzen.
+  Offen: Arbeitsplätze Stab FüSt und Transportdispo (Fahrzeug oder Vorzelt).
+  Datum und Zeiten handschriftlich ergänzen.
