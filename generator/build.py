@@ -5,6 +5,7 @@ Teil 1 – Nachrichtenpool Stab (nachrichten/):
 - Vordrucke (weißes Blatt, A5) für Nachrichten, die an der TEL (Papier) entstehen
 - EDP-Blätter (A4, 1 Nachricht/Seite) für Nachrichten, die an einer FüSt (EDP) entstehen
 - Übersicht für die Übungsleitung
+- schriftliche Befehle (A4, DV 100 Anlage 4) samt leerer Vorlage
 
 Teil 2 – Einsätze in EDP anlegen (einsaetze/):
 - A4-Blatt je Einsatz (Funk + Übungsleitung) mit Rückmeldungen, Lösung, Uhrzeiten, Feedback
@@ -28,6 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config" / "stellen.yaml"
 NACHRICHTEN = ROOT / "nachrichten"
 EINSAETZE = ROOT / "einsaetze"
+BEFEHLE = ROOT / "befehle"
 ANHAENGE = ROOT / "anhaenge"
 TEMPLATES = ROOT / "generator" / "templates"
 ASSETS = ROOT / "assets"
@@ -47,6 +49,16 @@ VORDRUCK_ZEICHEN = 68
 
 PFLICHT = ["nr", "kategorie", "von", "von_funktion", "an", "an_funktion",
            "medium", "vorrang", "betreff_art", "betreff", "text"]
+
+
+# Befehl: Punkte in fester Reihenfolge (DV 100, 3.3.3.1)
+BEFEHL_PUNKTE = [
+    ("lage", "Lage", "Gefahren-/Schadenlage, eigene Lage, Zuteilung und Unterstellung von Kräften"),
+    ("auftrag", "Auftrag", "erhaltener Auftrag"),
+    ("durchfuehrung", "Durchführung", "eigene Absicht, Aufträge an die Einheiten, Zusammenarbeit, Zeiten, Schutzmaßnahmen"),
+    ("versorgung", "Versorgung", "Verpflegung, Betriebsstoffe, Materialerhaltung, medizinische Versorgung"),
+    ("fuehrung", "Führung und Kommunikation", "Standort der Führung, Verbindungen, Meldewesen"),
+]
 
 
 RUFNAMEN = {"Joh.": "Johannes", "Akk.": "Akkon"}
@@ -78,6 +90,33 @@ def lade_nachrichten():
         n["an_liste"] = n["an"] if isinstance(n.get("an"), list) else [n.get("an")]
         nachrichten.append(n)
     return sorted(nachrichten, key=lambda n: n["nr"])
+
+
+def lade_befehle():
+    """Befehle aus befehle/NNN_*.yaml; vorlage.yaml wird als leeres Formular gedruckt."""
+    befehle = []
+    for pfad in sorted(BEFEHLE.glob("*.yaml")):
+        b = yaml.safe_load(pfad.read_text(encoding="utf-8"))
+        b["_datei"] = pfad.name
+        for key, _, _ in BEFEHL_PUNKTE:
+            b[key] = (b.get(key) or "").rstrip()
+        befehle.append(b)
+    return befehle
+
+
+def pruefe_befehle(befehle):
+    fehler = []
+    nummern = Counter(b.get("nr") for b in befehle if b["_datei"] != "vorlage.yaml")
+    for nr, anzahl in nummern.items():
+        if anzahl > 1:
+            fehler.append(f"Befehl Nr. {nr} mehrfach vergeben")
+    for b in befehle:
+        if b["_datei"] == "vorlage.yaml":
+            continue
+        for feld in ["nr", "betreff", "befehlende_stelle", "an", "auftrag"]:
+            if not b.get(feld):
+                fehler.append(f"befehle/{b['_datei']}: Pflichtfeld '{feld}' fehlt")
+    return fehler
 
 
 def vordruck_text(n, nach_nr):
@@ -322,7 +361,8 @@ def main():
     cfg = lade_config()
     nachrichten = lade_nachrichten()
     einsaetze = lade_einsaetze()
-    fehler = pruefe(cfg, nachrichten) + pruefe_einsaetze(cfg, einsaetze)
+    befehle = lade_befehle()
+    fehler = pruefe(cfg, nachrichten) + pruefe_einsaetze(cfg, einsaetze) + pruefe_befehle(befehle)
     if fehler:
         print("FEHLER:\n  " + "\n  ".join(fehler))
         sys.exit(1)
@@ -330,6 +370,7 @@ def main():
     aufbereiten_einsaetze(cfg, einsaetze)
     print("Teil 1 – Nachrichtenpool Stab\n" + statistik(cfg, nachrichten))
     print("Teil 2 – Einsätze\n" + statistik_einsaetze(cfg, einsaetze))
+    print(f"{sum(b['_datei'] != 'vorlage.yaml' for b in befehle)} Befehle")
     if args.nur_pruefen:
         return
 
@@ -375,6 +416,12 @@ def main():
     drucke(chromium, rendere(env, "uebersicht.html", BUILD / "uebersicht.html",
                              nachrichten=nachrichten, statistik=statistik(cfg, nachrichten), **ctx),
            teil1 / "UEL_Uebersicht_Nachrichten.pdf")
+
+    # Befehle: je Befehl ein PDF, Vorlage als leeres Formular
+    for b in befehle:
+        name = "Befehl_Vorlage" if b["_datei"] == "vorlage.yaml" else f"Befehl_{b['nr']:03d}"
+        html = rendere(env, "befehl.html", BUILD / f"{name}.html", befehle=[b], punkte=BEFEHL_PUNKTE, **ctx)
+        drucke(chromium, html, allg / "Befehle" / f"{name}.pdf")
 
     # Anhänge: Original + PDF-Fassung
     if any(n["anhaenge"] for n in nachrichten):

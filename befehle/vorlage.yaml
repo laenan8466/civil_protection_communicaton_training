@@ -1,0 +1,29 @@
+# Vorlage schriftlicher Befehl nach DV 100, 3.3.3.1 und Anlage 4.
+# Kopieren nach befehle/NNN_kurzname.yaml und ausfüllen.
+# Leere Felder erscheinen im PDF als Schreiblinien (handschriftlich ergänzen).
+# Nicht zu jedem Punkt muss etwas stehen, die Reihenfolge bleibt immer gleich.
+nr: 0
+betreff: ""             # kurz, z. B. "Aufbau Führungsstelle"
+
+# Kopf
+befehlende_stelle: ""   # taktische Bezeichnung, z. B. "Übungsleitung"
+abgangsort: ""
+datum_uhrzeit: ""       # leer = handschriftlich, z. B. 240800oct26
+an: []                  # Empfänger:innen (Einheit / Funktion)
+
+# 1. Lage: Gefahren-/Schadenlage, eigene Lage, Zuteilung/Unterstellung/Abgabe von Kräften
+lage: ""
+# 2. Auftrag: erhaltener Auftrag
+auftrag: ""
+# 3. Durchführung: eigene Absicht, Aufträge an die Einheiten, Zusammenarbeit, Zeiten, Schutzmaßnahmen
+durchfuehrung: ""
+# 4. Versorgung: Verpflegung, Betriebsstoffe, Materialerhaltung, medizinische Versorgung
+versorgung: ""
+# 5. Führung und Kommunikation: Standort der Führung, Verbindungen, Meldewesen
+fuehrung: ""
+
+# Fuß
+anlagen: []
+verteiler: []
+unterschrift_funktion: ""   # Funktion der befehlenden Person; Name/Unterschrift handschriftlich
+notiz: ""                   # nur für die Übungsleitung, erscheint nicht auf dem Befehl

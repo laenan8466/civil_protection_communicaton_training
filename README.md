@@ -77,6 +77,8 @@ loesung: {stichwort: ..., ort: ..., patient: ..., ziel: ..., hinweise: ...}
 config/stellen.yaml        Stellen, Rufnamen, Funktionen, Rufnummern, Fahrzeug-Pool, Teil-2-Einstellungen
 nachrichten/NNN.yaml       Teil 1: eine Datei pro Nachricht
 einsaetze/ENN_*.yaml       Teil 2: eine Datei pro Einsatz inkl. Rückmeldungen und Lösung
+befehle/vorlage.yaml       Vorlage schriftlicher Befehl (DV 100)
+befehle/NNN_*.yaml         ein schriftlicher Befehl pro Datei
 anhaenge/                  Dateien zum Anfügen in EDP
 generator/build.py         validiert und erzeugt die PDFs
 generator/templates/       Vordruck, EDP-Blatt, Übersicht (HTML → PDF via Chromium)
@@ -105,6 +107,21 @@ text: |
 notiz: Hinweis für die Übungsleitung (erwartete Reaktion)
 ```
 
+## Befehle
+
+Getrennt vom Nachrichtenpool: schriftliche Befehle zur Vorbereitung und Durchführung des Übungsbetriebs,
+gegliedert nach DV 100, 3.3.3.1 und Anlage 4 (Kopf, 1 Lage, 2 Auftrag, 3 Durchführung, 4 Versorgung,
+5 Führung und Kommunikation, Fuß mit Anlagen, Verteiler, Unterschrift).
+
+- `befehle/vorlage.yaml` kopieren nach `befehle/NNN_kurzname.yaml` und ausfüllen. Leere Felder werden im PDF
+  zu Schreiblinien (Datum/Uhrzeit, Zeiten, Unterschrift handschriftlich).
+- Pflicht: `nr`, `betreff`, `befehlende_stelle`, `an`, `auftrag`. `notiz` erscheint nicht auf dem Befehl.
+- Ausgabe: `ausgabe/0_Allgemein/Befehle/Befehl_NNN.pdf`, dazu `Befehl_Vorlage.pdf` als leeres Formular.
+
+| Nr | Betreff |
+|---|---|
+| 001 | Aufbau Übungsbetrieb Führungsstelle in der Fahrzeughalle (59-12-1 mit Vorzelt, 59-10-1 als Übungsleitung) |
+
 ## Nutzung
 
 ```
@@ -123,7 +140,9 @@ Ausgabe (alles PDF, `00_LIESMICH.pdf` erklärt die Ordner):
 ```
 ausgabe/
   00_LIESMICH.pdf
-  0_Allgemein/Kommunikationsplan.pdf          Skizze angelehnt an DV 102
+  0_Allgemein/
+    Kommunikationsplan.pdf                    Skizze angelehnt an DV 102
+    Befehle/                                  schriftliche Befehle + leere Vorlage (A4)
   1_Nachrichtenpool_Stab/
     UEL_Uebersicht_Nachrichten.pdf            Übungsleitung, mit Uhrzeit-/Feedbackspalten
     Vordrucke_A5_TEL_alle.pdf                 + Vordrucke_A5_einzeln/
