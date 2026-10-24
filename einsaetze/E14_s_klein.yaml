@@ -1,0 +1,29 @@
+nr: 14
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: Blitz
+  betreff: Brustschmerz Notunterkunft Eingang
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Klein, Dieter, geb. 1960.
+    Ort: Notunterkunft Schulzentrum Ahlem, Haupteingang.
+    Lage: starke Brustschmerzen seit 10 Minuten, kaltschweißig.
+    Rettungsdienst ist über Leitstelle alarmiert.
+rueckmeldungen:
+- von: Sama H 64-11-1
+  funktion: Zugführer
+  zeichen: Lo
+  medium: Funk
+  text: |
+    Patient Klein mit Sauerstoff und Oberkörperhochlage versorgt.
+    Übergabe an Florian H 01-83-1 und Florian H 01-82-2 (NEF). Einsatz beendet.
+loesung:
+  stichwort: SanD Brustschmerz (Notfall)
+  ort: Schulzentrum Ahlem, Haupteingang
+  patient: Klein, Dieter, 1960
+  ziel: Übergabe RD/NEF
+  hinweise: 'BLITZ: sofort anlegen. RD/NEF als Fremdkräfte erfassen.'

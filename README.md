@@ -1,121 +1,156 @@
-# Fernmeldeübung Johannes Hannover – Nachrichten-Generator
+# Communication Exercise Johannes Hannover – Message Generator
 
-Erzeugt Übungsnachrichten für eine Fernmeldeübung (Übermittlung + Dokumentation) der Malteser Hannover.
-Szenario-Inspiration: KatS-Übung 2026 (Evakuierung Pflegeeinrichtung Tellkampfschule → Friederikenstift, BR Schützenplatz).
+Generates exercise material for a communication exercise (message transmission + documentation) of the Malteser Hannover.
+Scenario inspiration: KatS exercise 2026 (evacuation of the care facility Tellkampfschule → Friederikenstift, staging area Schützenplatz).
 
-## Übende Stellen
+All generated documents are in German, because the exercise is German. Field values in the YAML files (e.g. `Funk`, `Blitz`, `einfach`) therefore stay German as well.
 
-Nur diese vier Stellen senden und empfangen. Fahrzeuge und Einheiten werden nur im Nachrichtentext genannt.
+## Participating stations
 
-| Stelle | Rufname | Arbeitsmittel | Rolle |
+Only these four stations send and receive. Vehicles and units are only mentioned in message texts.
+
+| Station | Call sign | Tool | Role |
 |---|---|---|---|
-| TEL Hannover | Joh. H 59-10-1 | 4-fach-Vordruck (Papier) | Sende-/Empfangsteil, sichtet + verteilt gemeinsam |
-| FüSt Nord („UEA Nord“) | Joh. H 59-12-1 | EDP Command | Vulnerable Gruppen, Räumung Pflegeeinrichtung |
-| FüSt Süd („UEA Süd“) | Joh. H 59-12-2 | EDP Command | Transportorganisation, BR Schützenplatz |
-| FüSt West („UEA West“) | Joh. H 59-12-3 | EDP Command | Sanitätsdienst klassisch (UHS, San-Wache) |
+| TEL Hannover | Joh. H 59-10-1 | 4-part message form (paper) | send/receive section, screens + distributes jointly |
+| FüSt Nord („UEA Nord“) | Joh. H 59-12-1 | EDP Command (message module) | vulnerable groups, evacuation of care facility |
+| FüSt Süd („UEA Süd“) | Joh. H 59-12-2 | EDP Command | transport organisation, staging area Schützenplatz |
+| FüSt West („UEA West“) | Joh. H 59-12-3 | EDP Command | classic medical service (first aid post, medical watch) |
 
-Verfasser-Funktionen:
-- **TEL:** S1, S2, S3, S4, S5, S6, Fachberater Sanität
-- **FüSt (FüGr nach NDS-Konzept):** Leitung des Stabes, S1/4/6, S2, S3, med. Leitung
+Author functions:
+- **TEL:** S1, S2, S3, S4, S5, S6, Fachberater Sanität (medical specialist advisor)
+- **FüSt (command group per Lower Saxony concept):** Leitung des Stabes (head of staff), S1/4/6, S2, S3, med. Leitung (medical lead)
 
-Beispiel: S1 der TEL verfasst → FmSt TEL Hannover übermittelt → FüSt Süd (59-12-2) nimmt auf, sichtet, verteilt zur Info an S2.
+Example: S1 of the TEL writes → signal office TEL Hannover transmits → FüSt Süd (59-12-2) receives, screens, distributes for info to S2.
 
-## Funkrufnamen
+## Call signs
 
-Nach Nds. MBl. 2024 Nr. 125: `Rufname Region Org-Fahrzeug-Ordnung`, z. B. `Joh. H 59-85-1`.
-Rufnamen: Johannes (MHD, Joh.), Akkon (JUH, Akk.), Rotkreuz (DRK), Sama (ASB), Pelikan (DLRG), Florian (FW), Heros (THW), Kater.
-Region: H = Hannover, H# = Hannover Land (Region).
+Per Nds. MBl. 2024 No. 125: `Name Region Org-Vehicle-Order`, e.g. `Joh. H 59-85-1`.
+Names: Johannes (MHD, Joh.), Akkon (JUH, Akk.), Rotkreuz (DRK), Sama (ASB), Pelikan (DLRG), Florian (fire brigade), Heros (THW), Kater.
+Region: H = Hannover (city), H# = Hannover Land (region).
 
-## Nachrichtenfluss → Unterlagen
+## Part 1: Message pool (staff) – message flow → documents
 
-| Ursprung | Ziel | Einspielung durch Übungsleitung | Übende tun |
+| Origin | Target | Injected by exercise control as | Participants do |
 |---|---|---|---|
-| TEL | FüSt | **Vordruck** (weißes Blatt A5, Verfasser-Teil ausgefüllt) | TEL sichtet/übermittelt, FüSt nimmt in EDP auf |
-| FüSt | TEL | **EDP-Blatt** (zum Kopieren in EDP) | FüSt sendet, TEL nimmt auf leerem Vordruck auf |
-| FüSt | FüSt | **EDP-Blatt** | beide EDP (kleiner Anteil) |
+| TEL | FüSt | **message form** (white A5 sheet, author section pre-filled) | TEL screens/transmits, FüSt records in EDP |
+| FüSt | TEL | **EDP sheet** (copy into EDP) | FüSt sends, TEL records on blank form |
+| FüSt | FüSt | **EDP sheet** | both EDP (small share) |
 
-Medien: Telefon, Funk, Fax, DFÜ, Melder. DFÜ = Datenfernübertragung (hier: Mail); der Weg steht auf dem Vordruck unter Rufnummer. Vorrang: normal, Sofort, Blitz (wenige Blitz, nur bei Gefahr für Leben/laufenden Betrieb).
+Media: Telefon, Funk (radio), Fax, DFÜ (data transmission, here e-mail; the route is shown under "Rufnummer" on the form), Melder (runner). Priority: normal, Sofort (immediate), Blitz (flash – few, only for danger to life or operations).
 
-Empfänger auf Vordruck/EDP ist immer nur die Gegenstelle (z. B. „TEL Hannover“). Für wen die Nachricht gedacht ist und wer sie zur Info bekommt, steht nur als Info für die Übungsleitung unten auf dem Blatt – das entscheidet der Sichter.
+The recipient on form/EDP is always just the counterpart station (e.g. "TEL Hannover"). Which function the message is meant for and who gets it for info is only shown as a note for exercise control at the bottom of the sheet – the screener decides.
 
-Außerhalb der Transportdispo werden Einheiten bewegt, keine einzelnen Fahrzeuge.
+Outside the transport dispatch, units are moved, not individual vehicles.
 
-## Nachrichtenpool
+About 50 messages, without times (numbered only):
+- 60 % command group / staff
+- 20 % transport dispatch
+- 20 % classic medical service
 
-Ca. 50 Nachrichten, ohne Uhrzeiten (nur nummeriert):
-- 60 % FüGr / Stab
-- 20 % Transportdisposition
-- 20 % Sanitätsdienst klassisch
+Few attachments, always as a file in `anhaenge/`.
 
-Anhänge nur wenige, immer als Datei in `anhaenge/`.
+## Part 2: Creating incidents in EDP
 
-## Aufbau
+30 incidents (15 transport organisation, 15 medical service), each 7 easy / 4 medium / 4 hard, sorted from easy to hard:
+- **Level 1 easy (`einfach`):** all details incl. patient name
+- **Level 2 medium (`mittel`):** details missing (e.g. no patient name), delivered later by a feedback report
+- **Level 3 hard (`schwer`):** no address, but a landmark (Hannover) or a location description ("Georgengarten, left of the Leibniztempel")
+
+The order always comes from TEL **Florian H 01-13-1** to **Transportdisposition** (transport dispatch) or **EA Sanitätsdienst** (medical service section). Each incident has 1–2 feedback reports from the vehicle handling it (call sign from `config/stellen.yaml` → `fahrzeuge`). Incidents are created in EDP (not in Command – that is only the message module).
+
+Exercise control injects each incident either by radio (one A4 sheet per incident, feedback reports on the same page) or by message form (bundled, one page per message). The difficulty level is printed on every sheet.
+
+```yaml
+# einsaetze/E07_t_lehmann.yaml
+nr: 7
+bereich: transport        # transport | sandienst
+schwierigkeit: einfach    # einfach | mittel | schwer
+meldung: {von_funktion: S3, medium: Funk, vorrang: normal, betreff: ..., zeichen: Ri, text: ...}
+rueckmeldungen:
+  - {von: "Joh. H 59-92-1", funktion: Fahrzeugführer, zeichen: Pe, text: ...}
+loesung: {stichwort: ..., ort: ..., patient: ..., ziel: ..., hinweise: ...}   # expected EDP entry
+```
+
+## Written orders (Befehle)
+
+Separate from the message pool: written orders for preparing and running the exercise,
+structured per DV 100, 3.3.3.1 and annex 4 (header, 1 situation, 2 mission, 3 execution, 4 logistics,
+5 command and communication, footer with annexes, distribution, signature).
+
+- Copy `befehle/vorlage.yaml` to `befehle/NNN_shortname.yaml` and fill it in. Empty fields become writing lines
+  in the PDF (date/time, times, signature by hand).
+- Required: `nr`, `betreff`, `befehlende_stelle`, `an`, `auftrag`. `notiz` does not appear on the order.
+- Output: `ausgabe/0_Allgemein/Befehle/Befehl_NNN.pdf`, plus `Befehl_Vorlage.pdf` as a blank form.
+
+| No | Subject |
+|---|---|
+| 001 | Aufbau Übungsbetrieb Führungsstelle in der Fahrzeughalle (59-12-1 with front tent, 59-10-1 as exercise control) |
+
+## Repository layout
 
 ```
-config/stellen.yaml        Stellen, Rufnamen, Funktionen, Rufnummern, Fahrzeug-Pool
-nachrichten/NNN.yaml       eine Datei pro Nachricht
-befehle/vorlage.yaml       Vorlage schriftlicher Befehl (DV 100)
-befehle/NNN_*.yaml         ein schriftlicher Befehl pro Datei
-anhaenge/                  Dateien zum Anfügen in EDP
-generator/build.py         validiert und erzeugt die PDFs
-generator/templates/       Vordruck, EDP-Blatt, Übersicht (HTML → PDF via Chromium)
-ausgabe/                   erzeugte PDFs
+config/stellen.yaml        stations, call signs, functions, phone numbers, vehicle pool, part-2 settings
+nachrichten/NNN.yaml       part 1: one file per message
+einsaetze/ENN_*.yaml       part 2: one file per incident incl. feedback reports and solution
+befehle/vorlage.yaml       template for written orders (DV 100)
+befehle/NNN_*.yaml         one written order per file
+anhaenge/                  attachments for EDP
+generator/build.py         validates and generates the PDFs
+generator/templates/       form, EDP sheet, overviews etc. (HTML → PDF via Chromium)
+ausgabe/                   generated PDFs
 ```
 
-### Nachricht (YAML)
+### Message (YAML, part 1)
 
 ```yaml
 nr: 1
 kategorie: fuegr          # fuegr | transport | sandienst
 von: TEL                  # TEL | NORD | SUED | WEST
 von_funktion: S3
-an: SUED                  # Sammelruf: an: [NORD, SUED, WEST]
+an: SUED                  # broadcast: an: [NORD, SUED, WEST]
 an_funktion: Leitung des Stabes
 zur_info: [S2]
 medium: Funk              # Telefon | Funk | Fax | DFÜ | Melder
 vorrang: normal           # normal | Sofort | Blitz
 betreff_art: Auftrag
-betreff: Kurzer Betreff
-zeichen: Mü               # Handzeichen Verfasser
-bezug: null               # optional: Nr. einer anderen Übungsnachricht
-anhaenge: []              # Dateinamen aus anhaenge/
+betreff: Short subject
+zeichen: Mü               # author's initials
+bezug: null               # optional: no. of another exercise message
+anhaenge: []              # file names from anhaenge/
 text: |
-  Nachrichtentext
-notiz: Hinweis für die Übungsleitung (erwartete Reaktion)
+  Message text
+notiz: Note for exercise control (expected reaction)
 ```
 
-## Befehle
-
-Getrennt vom Nachrichtenpool: schriftliche Befehle zur Vorbereitung und Durchführung des Übungsbetriebs,
-gegliedert nach DV 100, 3.3.3.1 und Anlage 4 (Kopf, 1 Lage, 2 Auftrag, 3 Durchführung, 4 Versorgung,
-5 Führung und Kommunikation, Fuß mit Anlagen, Verteiler, Unterschrift).
-
-- `befehle/vorlage.yaml` kopieren nach `befehle/NNN_kurzname.yaml` und ausfüllen. Leere Felder werden im PDF
-  zu Schreiblinien (Datum/Uhrzeit, Zeiten, Unterschrift handschriftlich).
-- Pflicht: `nr`, `betreff`, `befehlende_stelle`, `an`, `auftrag`. `notiz` erscheint nicht auf dem Befehl.
-- Ausgabe: `ausgabe/befehle/Befehl_NNN.pdf`, dazu `Befehl_Vorlage.pdf` als leeres Formular.
-
-| Nr | Betreff |
-|---|---|
-| 001 | Aufbau Übungsbetrieb Führungsstelle in der Fahrzeughalle (59-12-1 mit Vorzelt, 59-10-1 als Übungsleitung) |
-
-## Nutzung
+## Usage
 
 ```
-python3 generator/build.py              # prüfen + PDFs nach ausgabe/
-python3 generator/build.py --nur-pruefen
+python3 generator/build.py              # validate + generate PDFs into ausgabe/
+python3 generator/build.py --nur-pruefen # validate only
 ```
 
-Benötigt Python 3 mit `pyyaml`, `jinja2` sowie Chromium/Chrome. Die erzeugten PDFs liegen eingecheckt in `ausgabe/`.
+Requires Python 3 with `pyyaml` and `jinja2`, plus Chromium/Chrome. The generated PDFs are committed in `ausgabe/`.
 
-Vordruck nach NLBK-Ausfüllhilfe (01/2024), Layout wie KSK-Vordruck: Die erste Zeile der Nachricht ist der Betreff (Inhaltszeile), bei `bezug` folgt „Bezug: Nachricht „…““. Unter Rufnummer steht je nach Medium Telefonnummer, Mailadresse (DFÜ) oder Funkrufname. Datum, Uhrzeit beim Absender bleibt leer: Die Übungsleitung trägt sie beim Einspielen von Hand als taktische Zeit ein (z. B. 241105oct26).
+Message form per NLBK filling guide (01/2024), layout like the KSK form: the first line of the message is the subject (content line); with `bezug`, "Bezug: Nachricht „…“" follows. Under "Rufnummer" the form shows the phone number, e-mail address (DFÜ) or call sign, depending on the medium. Date/time of the sender stays empty: exercise control writes it by hand as tactical time when injecting (e.g. 241105oct26).
 
-Vordrucktext (inkl. Betreff und Bezug): max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
+Form text (incl. subject and reference): max. approx. 14 lines of 68 characters, otherwise the build fails.
 
-Ausgabe:
-- `Vordrucke_alle.pdf` + `vordrucke/Vordruck_NNN.pdf` – A5, zum Drucken
-- `EDP_alle.pdf` + je sendender FüSt – A4, eine Nachricht pro Seite
-- `Uebersicht_Uebungsleitung.pdf` – alle Nachrichten mit Hinweisen
-- `Kommunikationsplan.pdf` – Skizze angelehnt an DV 102
-- `anhaenge/` – Original + PDF-Fassung je Anhang
-- `befehle/` – schriftliche Befehle + leere Vorlage (A4)
+Output (all PDF, `00_LIESMICH.pdf` explains the folders):
+
+```
+ausgabe/
+  00_LIESMICH.pdf
+  0_Allgemein/
+    Kommunikationsplan.pdf                    communication plan, sketch based on DV 102
+    Befehle/                                  written orders + blank template (A4)
+  1_Nachrichtenpool_Stab/
+    UEL_Uebersicht_Nachrichten.pdf            exercise control, with time/feedback columns
+    Vordrucke_A5_TEL_alle.pdf                 + Vordrucke_A5_einzeln/
+    EDP_Texte_alle.pdf                        + EDP_Texte_59-12-x_*.pdf per FüSt
+    Anhaenge/                                 original + PDF
+  2_Einsaetze_EDP/
+    UEL_Uebersicht_Einsaetze.pdf              exercise control, with time/feedback columns
+    Funk_und_UEL_A4_je_Einsatz.pdf            one page per incident incl. feedback reports, solution, feedback
+    Vordrucke_A5_Einsaetze_gebuendelt.pdf     per incident: order + feedback reports
+    Vordrucke_A5_einzeln/Einsatz_ENN_StufeX.pdf
+```

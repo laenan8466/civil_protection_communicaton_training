@@ -1,0 +1,36 @@
+nr: 25
+bereich: transport
+schwierigkeit: schwer
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Ihme-Zentrum
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, liegend.
+    Patientin: Name unbekannt.
+    Abholort: Ihme-Zentrum, Zugang Blumenauer Straße, Wohnung im 14. OG.
+    Aufzug defekt.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung.
+rueckmeldungen:
+- von: Akk. H 49-85-2
+  funktion: Fahrzeugführer
+  zeichen: Al
+  medium: Funk
+  text: |
+    Eingetroffen, Zugang Blumenauer Straße 1. Patientin: Krause, Elfriede, geb. 1945.
+    Tragehilfe erforderlich: Anforderung 4 Einsatzkräfte über Treppenhaus 14. OG.
+- von: Akk. H 49-85-2
+  funktion: Fahrzeugführer
+  zeichen: Al
+  medium: Funk
+  text: |
+    Patientin mit Tragehilfe ins Fahrzeug verbracht. Abfahrt Friederikenstift.
+    Tragehilfe wird nicht mehr benötigt.
+loesung:
+  stichwort: KTW liegend + Tragehilfe
+  ort: 'Objekt: Ihme-Zentrum, Zugang Blumenauer Straße, 14. OG'
+  patient: unbekannt -> Krause, Elfriede, 1945
+  ziel: Friederikenstift
+  hinweise: Nachforderung Tragehilfe als Folgeauftrag erfassen.

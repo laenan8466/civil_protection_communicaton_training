@@ -1,0 +1,34 @@
+nr: 24
+bereich: sandienst
+schwierigkeit: schwer
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Gestürzte Radfahrerin Georgengarten
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patientin: Radfahrerin, Name unbekannt.
+    Ort: Georgengarten, links vom Leibniztempel, am Weg Richtung Teich.
+    Lage: Sturz, Schmerzen im Handgelenk, ansprechbar.
+rueckmeldungen:
+- von: Akk. H 49-85-2
+  funktion: Fahrzeugführer
+  zeichen: Al
+  medium: Funk
+  text: |
+    Genauer Ort: Georgengarten, Weg westlich Leibniztempel, Zufahrt über Herrenhäuser Allee.
+    Patientin: Vogel, Sandra, geb. 1988. Verdacht Handgelenksbruch.
+- von: Akk. H 49-85-2
+  funktion: Fahrzeugführer
+  zeichen: Al
+  medium: Funk
+  text: |
+    Patientin Vogel ins Friederikenstift Notaufnahme transportiert. Frei.
+loesung:
+  stichwort: SanD Sturz Radfahrerin
+  ort: 'Beschreibung: Georgengarten, links vom Leibniztempel -> Zufahrt Herrenhäuser Allee'
+  patient: unbekannt -> Vogel, Sandra, 1988
+  ziel: Friederikenstift Notaufnahme
+  hinweise: Ort als Freitext/Objekt, später präzisieren.

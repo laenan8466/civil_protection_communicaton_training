@@ -1,0 +1,29 @@
+nr: 21
+bereich: transport
+schwierigkeit: mittel
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Heimbewohner Stöcken
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, Rollstuhl.
+    Patient: Heimbewohner, Name und Geburtsdatum liegen nicht vor.
+    Abholort: Pflegeheim Eichsfelder Straße 12, 30419 Hannover, Wohnbereich 2.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung.
+    Medikamentenplan wird mitgegeben.
+rueckmeldungen:
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Patient: Richter, Günter, geb. 1937. Medikamentenplan übernommen.
+    Abfahrt Friederikenstift.
+loesung:
+  stichwort: KTW Rollstuhl
+  ort: Eichsfelder Straße 12, 30419 Hannover, WB 2
+  patient: unbekannt -> Richter, Günter, 1937
+  ziel: Friederikenstift
+  hinweise: Name nachtragen.

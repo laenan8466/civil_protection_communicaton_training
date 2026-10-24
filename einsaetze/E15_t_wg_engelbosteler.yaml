@@ -1,0 +1,35 @@
+nr: 15
+bereich: transport
+schwierigkeit: mittel
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Bewohnerin Pflege-WG
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, liegend.
+    Patientin: Bewohnerin ca. 85 Jahre, Name noch unbekannt, dement.
+    Abholort: Engelbosteler Damm 70, 30167 Hannover, 3. OG, Pflege-WG.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung.
+    Personalien werden vor Ort durch die WG-Leitung übergeben.
+rueckmeldungen:
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Personalien der Patientin: Brandt, Lieselotte, geb. 1939.
+    Patientin aufgenommen, Abfahrt Friederikenstift.
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Patientin Brandt im Friederikenstift Station 2 übergeben. Frei.
+loesung:
+  stichwort: KTW liegend
+  ort: Engelbosteler Damm 70, 30167 Hannover, 3. OG
+  patient: zunächst unbekannt -> Brandt, Lieselotte, 1939
+  ziel: Friederikenstift, Station 2
+  hinweise: Einsatz ohne Namen anlegen, Name aus RM 1 nachtragen.

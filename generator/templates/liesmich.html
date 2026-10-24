@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Liesmich</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@page { size: A4; margin: 0; }
+.lm { padding: 16mm 18mm; font-size: 10.5pt; line-height: 1.45; }
+.lm h1 { font-size: 18pt; margin: 0 0 1mm; }
+.lm h2 { font-size: 12.5pt; margin: 6mm 0 1.5mm; border-bottom: 0.4mm solid #000; }
+.lm code { font-family: "Liberation Mono", monospace; font-size: 9.5pt; background: #f0f0f0; padding: 0 1mm; }
+.lm ul { margin: 1mm 0; padding-left: 6mm; }
+.lm .klein { color: #555; font-size: 9pt; }
+</style>
+</head>
+<body>
+<div class="lm">
+  <h1>Übungsunterlagen – was ist wofür?</h1>
+  <div class="klein">{{ cfg.uebung.titel }} · erzeugt mit <code>generator/build.py</code></div>
+
+  <h2>0_Allgemein</h2>
+  <ul><li><code>Kommunikationsplan.pdf</code> – für alle Übenden: Stellen, Funkrufnamen, Rufgruppe, Erreichbarkeit.</li>
+    <li><code>Befehle/</code> – schriftliche Befehle zum Übungsbetrieb (DV 100) und leere Befehlsvorlage.</li></ul>
+
+  <h2>1_Nachrichtenpool_Stab – Übermittlung und Dokumentation</h2>
+  <p>{{ anzahl_nachrichten }} Nachrichten zwischen TEL Hannover (Vordruck) und den FüSt Nord/Süd/West (EDP).</p>
+  <ul>
+    <li><code>UEL_Uebersicht_Nachrichten.pdf</code> – Übungsleitung: alle Nachrichten, Erwartung, Spalten für Uhrzeit und Feedback.</li>
+    <li><code>Vordrucke_A5_TEL_alle.pdf</code> / <code>Vordrucke_A5_einzeln/</code> – drucken (A5, weißes Blatt), an die TEL geben.</li>
+    <li><code>EDP_Texte_alle.pdf</code> / <code>EDP_Texte_59-12-x_*.pdf</code> – in EDP bei der genannten FüSt einspielen (Copy &amp; Paste).</li>
+    <li><code>Anhaenge/</code> – Dateien zum Anfügen (Original und PDF).</li>
+  </ul>
+
+  <h2>2_Einsaetze_EDP – Einsätze in EDP anlegen</h2>
+  <p>{{ anzahl_einsaetze }} Einsätze (Transportorganisation und Sanitätsdienst), Auftrag von TEL ({{ cfg.einsaetze.absender.rufname }})
+    an Transportdisposition bzw. EA Sanitätsdienst, je 1–2 Rückmeldungen der eingesetzten Fahrzeuge.
+    Reihenfolge: erst einfach (Stufe 1), dann mittel (2), dann schwer (3).</p>
+  <ul>
+    <li><code>UEL_Uebersicht_Einsaetze.pdf</code> – Übungsleitung: Liste mit Uhrzeit- und Feedbackspalten.</li>
+    <li><code>Funk_und_UEL_A4_je_Einsatz.pdf</code> – eine Seite je Einsatz: Auftrag und Rückmeldungen zum Durchgeben per Funk
+      (oder Kopieren in EDP), erwartete Lösung, Uhrzeiten, Feedback.</li>
+    <li><code>Vordrucke_A5_Einsaetze_gebuendelt.pdf</code> – dieselben Einsätze als Vordrucke, je Einsatz Auftrag + Rückmeldungen
+      hintereinander, eine Seite je Meldung. Einzeln: <code>Vordrucke_A5_einzeln/</code>.</li>
+  </ul>
+  <p class="klein">Schwierigkeit: Stufe 1 einfach (alle Angaben) · Stufe 2 mittel (z. B. kein Patientenname) ·
+    Stufe 3 schwer (Objekt oder Ortsbeschreibung statt Adresse). Die Stufe steht auf jedem Blatt.</p>
+</div>
+</body>
+</html>

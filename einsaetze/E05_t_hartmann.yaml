@@ -1,0 +1,35 @@
+nr: 5
+bereich: transport
+schwierigkeit: einfach
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Hartmann, liegend
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, liegend.
+    Patientin: Hartmann, Gisela, geb. 1933.
+    Abholort: Hildesheimer Straße 210, 30519 Hannover, Erdgeschoss links.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung, Station 1.
+    Patientin schwerhörig, Hörgerät mitnehmen.
+rueckmeldungen:
+- von: Rotkreuz H 40-92-2
+  funktion: Fahrzeugführer
+  zeichen: Sö
+  medium: Funk
+  text: |
+    Eingetroffen Hildesheimer Straße 210. Patientin Hartmann aufgenommen,
+    Hörgerät dabei. Abfahrt Friederikenstift.
+- von: Rotkreuz H 40-92-2
+  funktion: Fahrzeugführer
+  zeichen: Sö
+  medium: Funk
+  text: |
+    Übergabe Station 1 Friederikenstift erfolgt. Frei über Funk.
+loesung:
+  stichwort: KTW liegend
+  ort: Hildesheimer Straße 210, 30519 Hannover, EG links
+  patient: Hartmann, Gisela, 1933
+  ziel: Friederikenstift, Station 1
+  hinweise: Besonderheit Hörgerät als Bemerkung.

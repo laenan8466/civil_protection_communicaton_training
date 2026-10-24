@@ -1,0 +1,29 @@
+nr: 17
+bereich: transport
+schwierigkeit: mittel
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Ehepaar Bödekerstraße
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, 2 Personen sitzend.
+    Patienten: Ehepaar, beide über 80, Namen folgen.
+    Abholort: Bödekerstraße 33, 30161 Hannover, Erdgeschoss.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung.
+    Ehemann benötigt Rollator.
+rueckmeldungen:
+- von: Akk. H 49-92-3
+  funktion: Fahrzeugführer
+  zeichen: Al
+  medium: Funk
+  text: |
+    Patienten: Lange, Walter, geb. 1941, und Lange, Renate, geb. 1943.
+    Beide aufgenommen, Rollator verladen. Abfahrt Friederikenstift.
+loesung:
+  stichwort: KTW 2 Pat. sitzend
+  ort: Bödekerstraße 33, 30161 Hannover
+  patient: '2 Pat., Namen aus RM: Lange, Walter 1941 / Lange, Renate 1943'
+  ziel: Friederikenstift
+  hinweise: Zwei Patienten in einem Einsatz erfassen.

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Einsätze – Funk und Übungsleitung</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@page { size: A4; margin: 0; }
+.ea { width: 210mm; height: 297mm; padding: 11mm 14mm; page-break-after: always; font-size: 9.5pt; overflow: hidden; }
+.ea:last-child { page-break-after: auto; }
+.ea .kopf { display: flex; justify-content: space-between; align-items: flex-start; }
+.ea h1 { font-size: 20pt; margin: 0; }
+.ea .unter { color: #444; margin: 1mm 0 3mm; }
+.stufe { font-weight: 700; padding: 1.5mm 3mm; color: #fff; font-size: 11pt; white-space: nowrap; }
+.stufe-1 { background: #2e7d32; } .stufe-2 { background: #d97a00; } .stufe-3 { background: #c62828; }
+.blk { border: 0.4mm solid #333; margin-bottom: 3mm; }
+.blk .h { background: #eef1f6; padding: 1.2mm 2.5mm; display: flex; justify-content: space-between; border-bottom: 0.3mm solid #333; }
+.blk .h b { font-size: 10.5pt; }
+.blk .meta { padding: 1mm 2.5mm; color: #333; font-size: 8.8pt; }
+.blk .t { white-space: pre-wrap; font-family: "Liberation Mono", monospace; font-size: 10.5pt; line-height: 1.4; padding: 1mm 2.5mm 2mm; }
+.blk .zeit { border-top: 0.3mm dashed #888; padding: 1.5mm 2.5mm; font-size: 9pt; display: flex; gap: 10mm; }
+.vor { padding: 0 1.5mm; font-weight: 700; }
+.vor-Blitz { background: #c00; color: #fff; } .vor-Sofort { background: #e8a200; }
+.loes { background: #f3f3f3; border: 0.3mm solid #999; padding: 2mm 3mm; margin-bottom: 3mm; font-size: 9pt; }
+.loes table { border-collapse: collapse; width: 100%; }
+.loes td { padding: 0.6mm 1mm; vertical-align: top; }
+.loes td:first-child { width: 28mm; color: #555; }
+.fb { border: 0.4mm solid #333; padding: 1.5mm 2.5mm; }
+.fb .linie { border-bottom: 0.3mm solid #aaa; height: 7mm; }
+</style>
+</head>
+<body>
+{% for e in einsaetze %}
+<div class="ea">
+  <div class="kopf">
+    <div>
+      <h1>Einsatz {{ e.id }}</h1>
+      <div class="unter">{{ e.bereich_name }} · an <b>{{ e.empfaenger }}</b> · Übungsziel: Einsatz in EDP anlegen und fortschreiben</div>
+    </div>
+    <div class="stufe stufe-{{ e.stufe }}">Stufe {{ e.stufe }} · {{ e.schwierigkeit }} {{ e.punkte }}</div>
+  </div>
+
+  {% for m in e.meldungen %}
+  <div class="blk">
+    <div class="h"><b>{{ m.titel }}</b>
+      <span>{{ m.medium }}{% if m.vorrang != 'normal' %} · <span class="vor vor-{{ m.vorrang }}">{{ m.vorrang | upper }}</span>{% endif %}</span></div>
+    <div class="meta">Von: <b>{{ m.von_rufname }}</b> ({{ m.von_rufname | sprechweise }}) – {{ m.von_funktion }}
+      · An: <b>{{ e.empfaenger }}</b>{% if m.betreff %} · Betreff: {{ m.betreff }}{% endif %}</div>
+    <div class="t">{{ m.text }}</div>
+    <div class="zeit"><span>Uhrzeit gegeben: ________</span><span>Weg: ☐ Funk ☐ Vordruck ☐ ______</span><span>quittiert: ________</span></div>
+  </div>
+  {% endfor %}
+
+  <div class="loes"><b>Erwartete EDP-Anlage (nur Übungsleitung)</b>
+    <table>
+      <tr><td>Einsatzart</td><td>{{ e.loesung.stichwort }}</td></tr>
+      <tr><td>Ort</td><td>{{ e.loesung.ort }}</td></tr>
+      <tr><td>Patient</td><td>{{ e.loesung.patient }}</td></tr>
+      <tr><td>Ziel / Verbleib</td><td>{{ e.loesung.ziel }}</td></tr>
+      <tr><td>Hinweise</td><td>{{ e.loesung.hinweise }}</td></tr>
+    </table>
+  </div>
+
+  <div class="fb"><b>Feedback / Beobachtungen</b> · Einsatz in EDP angelegt um: ________ · vollständig: ☐ ja ☐ nein
+    {% for i in range(e.feedback_linien) %}<div class="linie"></div>{% endfor %}
+  </div>
+</div>
+{% endfor %}
+</body>
+</html>

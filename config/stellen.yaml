@@ -7,7 +7,7 @@ uebung:
 kommunikation:
   rufgruppe: "NI_Sonder/K_LS_MHD"
   betriebsart: "TMO"
-  hinweis: "Funkverkehr nur zwischen TEL Hannover und den FüSt. Fahrzeuge sind keine Teilnehmer der Übung."
+  hinweis: "Teil 1 (Nachrichtenpool): Funkverkehr nur zwischen TEL Hannover und den FüSt."
 
 # Alle FüSt (59-12) erreichen dasselbe Telefon/Postfach.
 elw:
@@ -64,13 +64,30 @@ kategorien:
   transport: {name: "Transportdisposition", soll: 0.2}
   sandienst: {name: "Sanitätsdienst", soll: 0.2}
 
-# Nur zur Erwähnung im Nachrichtentext (nie Sender/Empfänger).
+# Teil 2: Einsätze in EDP anlegen (Transport + Sanitätsdienst)
+einsaetze:
+  absender: {name: "TEL", rufname: "Florian H 01-13-1"}
+  empfaenger:
+    transport: "Transportdisposition"
+    sandienst: "EA Sanitätsdienst"
+  telefon: *tel_elw     # Rufnummer bei Medium Telefon
+  mail: *mail_elw
+  schwierigkeiten:
+    einfach: {stufe: 1, text: "alle Angaben vorhanden"}
+    mittel: {stufe: 2, text: "Angaben fehlen (z. B. Patientenname)"}
+    schwer: {stufe: 3, text: "Objekt oder Ortsbeschreibung statt Adresse"}
+  bereiche:
+    transport: "Transportorganisation"
+    sandienst: "Sanitätsdienst"
+
+# Nur zur Erwähnung im Nachrichtentext bzw. Absender von Rückmeldungen (Teil 2).
 fahrzeuge:
   - {rufname: "Joh. H 59-11-1", typ: "ZTr SBZ"}
   - {rufname: "Joh. H 59-85-1", typ: "RTW KatS"}
   - {rufname: "Joh. H 59-92-1", typ: "KTW"}
   - {rufname: "Joh. H# 57-94-1", typ: "KTW 4-Tragen"}
   - {rufname: "Joh. H# 57-92-2", typ: "KTW"}
+  - {rufname: "Joh. H# 57-96-1", typ: "GW-San"}
   - {rufname: "Joh. H 59-76-1", typ: "GW-Verpflegung"}
   - {rufname: "Akk. H 49-85-2", typ: "RTW KatS"}
   - {rufname: "Akk. H 49-92-3", typ: "KTW"}

@@ -1,0 +1,29 @@
+nr: 27
+bereich: transport
+schwierigkeit: schwer
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: Sofort
+  betreff: Desorientierte Person Hauptbahnhof
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, sitzend.
+    Person: älterer Herr, desorientiert, vermutlich aus geräumter Pflegeeinrichtung.
+    Ort: Hauptbahnhof Hannover, Ausgang Raschplatz, beim Info-Point.
+    Bundespolizei ist bei der Person.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung.
+rueckmeldungen:
+- von: Rotkreuz H 40-92-2
+  funktion: Fahrzeugführer
+  zeichen: Sö
+  medium: Funk
+  text: |
+    Person ist Bewohner TK-40 der Tellkampfschule (Weglauftendenz),
+    Name laut Armband: Lange, Erich, geb. 1938. Aufgenommen, Abfahrt Friederikenstift.
+loesung:
+  stichwort: KTW sitzend
+  ort: 'Objekt: Hauptbahnhof, Ausgang Raschplatz, Info-Point'
+  patient: unbekannt -> TK-40 Lange, Erich, 1938
+  ziel: Friederikenstift
+  hinweise: Verknüpfung mit Bewohnerliste (TK-40). Verbleib melden.

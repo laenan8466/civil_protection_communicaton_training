@@ -1,0 +1,35 @@
+nr: 19
+bereich: transport
+schwierigkeit: mittel
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Patient mit Sauerstoffbedarf
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, sitzend, Sauerstoff 2 l/min.
+    Patient: Mann, ca. 75 Jahre, Name unbekannt.
+    Abholort: Kleefelder Straße 41, 30175 Hannover, 2. OG.
+    Ziel: Friederikenstift. Station wird nach Ankunft zugewiesen.
+rueckmeldungen:
+- von: Rotkreuz H 40-92-2
+  funktion: Fahrzeugführer
+  zeichen: Sö
+  medium: Funk
+  text: |
+    Patient: Wolf, Herbert, geb. 1950. Sauerstoff 2 l/min angeschlossen.
+    Abfahrt Friederikenstift. Bitte Station mitteilen.
+- von: Rotkreuz H 40-92-2
+  funktion: Fahrzeugführer
+  zeichen: Sö
+  medium: Funk
+  text: |
+    Patient Wolf auf Station 1 übergeben, eigene Sauerstoffflasche verbraucht.
+    Fahrzeug frei, Sauerstoff muss aufgefüllt werden.
+loesung:
+  stichwort: KTW sitzend O2
+  ort: Kleefelder Straße 41, 30175 Hannover, 2. OG
+  patient: unbekannt -> Wolf, Herbert, 1950
+  ziel: Friederikenstift (Station offen -> 1)
+  hinweise: Rückfrage Station beantworten; Fahrzeug nach Einsatz eingeschränkt (O2).

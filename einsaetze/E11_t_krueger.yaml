@@ -1,0 +1,34 @@
+nr: 11
+bereich: transport
+schwierigkeit: einfach
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Verlegung Krüger aus Notunterkunft
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, liegend.
+    Patient: Krüger, Horst, geb. 1944, Pflegegrad 4.
+    Abholort: Notunterkunft Schulzentrum Ahlem, Turnhalle, UHS.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung, Station 2.
+    Patient ist bettlägerig, Inkontinenzmaterial wird mitgegeben.
+rueckmeldungen:
+- von: Joh. H# 57-94-1
+  funktion: Fahrzeugführer
+  zeichen: Ma
+  medium: Funk
+  text: |
+    Patient Krüger an UHS Ahlem übernommen. Abfahrt Friederikenstift.
+- von: Joh. H# 57-94-1
+  funktion: Fahrzeugführer
+  zeichen: Ma
+  medium: Funk
+  text: |
+    Übergabe Station 2 erfolgt. Frei, Rückfahrt BR Schützenplatz.
+loesung:
+  stichwort: KTW liegend
+  ort: Schulzentrum Ahlem, Turnhalle (UHS)
+  patient: Krüger, Horst, 1944
+  ziel: Friederikenstift, Station 2
+  hinweise: Pflegegrad als Bemerkung.

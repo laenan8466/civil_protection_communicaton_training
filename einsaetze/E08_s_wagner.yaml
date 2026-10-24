@@ -1,0 +1,28 @@
+nr: 8
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Kreislaufschwäche Notunterkunft
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Wagner, Helmut, geb. 1946.
+    Ort: Notunterkunft Schulzentrum Ahlem, Gymnastikraum.
+    Lage: Schwindel, blass, beim Aufstehen kurz zusammengesackt.
+rueckmeldungen:
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Patient Wagner liegend gelagert, Puls 58, Blutdruck 95/60.
+    Nach Getränk stabil, verbleibt unter Beobachtung im UHS.
+loesung:
+  stichwort: SanD Kreislauf
+  ort: Schulzentrum Ahlem, Gymnastikraum
+  patient: Wagner, Helmut, 1946
+  ziel: UHS Beobachtung
+  hinweise: Einsatz offen lassen (Beobachtung).

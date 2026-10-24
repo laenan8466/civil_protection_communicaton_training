@@ -1,0 +1,29 @@
+nr: 3
+bereich: transport
+schwierigkeit: einfach
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Koch zur Dialyse
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, sitzend.
+    Patient: Koch, Werner, geb. 1947, Dialysepatient.
+    Abholort: Podbielskistraße 102, 30177 Hannover, Erdgeschoss.
+    Ziel: Dialysepraxis Celler Straße 30, 30161 Hannover.
+    Termin Dialyse 11:00, Ankunft spätestens 10:45.
+rueckmeldungen:
+- von: Akk. H 49-92-3
+  funktion: Fahrzeugführer
+  zeichen: Al
+  medium: Funk
+  text: |
+    Patient Koch an Dialysepraxis Celler Straße übergeben, Ankunft 10:40.
+    Rückfahrt nach Dialyse ca. 15:00 erforderlich. Fahrzeug frei.
+loesung:
+  stichwort: KTW sitzend, Termin
+  ort: Podbielskistraße 102, 30177 Hannover
+  patient: Koch, Werner, 1947
+  ziel: Dialysepraxis Celler Straße 30
+  hinweise: Termin 11:00 erfassen. Rückfahrt 15:00 als Folgeeinsatz/Vormerkung anlegen.

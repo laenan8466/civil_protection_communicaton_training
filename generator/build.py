@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Erzeugt aus config/ und nachrichten/ die Übungsunterlagen in ausgabe/.
+"""Erzeugt aus config/, nachrichten/ und einsaetze/ die Übungsunterlagen in ausgabe/.
 
+Teil 1 – Nachrichtenpool Stab (nachrichten/):
 - Vordrucke (weißes Blatt, A5) für Nachrichten, die an der TEL (Papier) entstehen
 - EDP-Blätter (A4, 1 Nachricht/Seite) für Nachrichten, die an einer FüSt (EDP) entstehen
 - Übersicht für die Übungsleitung
 - schriftliche Befehle (A4, DV 100 Anlage 4) samt leerer Vorlage
+
+Teil 2 – Einsätze in EDP anlegen (einsaetze/):
+- A4-Blatt je Einsatz (Funk + Übungsleitung) mit Rückmeldungen, Lösung, Uhrzeiten, Feedback
+- dieselben Einsätze als Vordrucke (gebündelt je Einsatz)
+- Übersicht für die Übungsleitung
 
 Aufruf: python3 generator/build.py [--nur-pruefen]
 """
@@ -22,6 +28,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config" / "stellen.yaml"
 NACHRICHTEN = ROOT / "nachrichten"
+EINSAETZE = ROOT / "einsaetze"
 BEFEHLE = ROOT / "befehle"
 ANHAENGE = ROOT / "anhaenge"
 TEMPLATES = ROOT / "generator" / "templates"
@@ -171,6 +178,115 @@ def pruefe(cfg, nachrichten):
     return fehler
 
 
+def lade_einsaetze():
+    einsaetze = []
+    for pfad in sorted(EINSAETZE.glob("*.yaml")):
+        e = yaml.safe_load(pfad.read_text(encoding="utf-8"))
+        e["_datei"] = pfad.name
+        einsaetze.append(e)
+    return sorted(einsaetze, key=lambda e: e["nr"])
+
+
+def pruefe_einsaetze(cfg, einsaetze):
+    fehler = []
+    ec = cfg["einsaetze"]
+    tel_funktionen = next(s["funktionen"] for s in cfg["stellen"].values() if s["arbeitsmittel"] == "vordruck")
+    fahrzeuge = {f["rufname"] for f in cfg["fahrzeuge"]}
+    nummern = Counter(e.get("nr") for e in einsaetze)
+    fehler += [f"Einsatz Nr. {nr} mehrfach vergeben" for nr, a in nummern.items() if a > 1]
+    for e in einsaetze:
+        ort = f"{e['_datei']}:"
+        if e.get("bereich") not in ec["empfaenger"]:
+            fehler.append(f"{ort} unbekannter Bereich '{e.get('bereich')}'")
+        if e.get("schwierigkeit") not in ec["schwierigkeiten"]:
+            fehler.append(f"{ort} unbekannte Schwierigkeit '{e.get('schwierigkeit')}'")
+        m = e.get("meldung") or {}
+        for feld in ("von_funktion", "medium", "vorrang", "betreff", "text"):
+            if not m.get(feld):
+                fehler.append(f"{ort} meldung.{feld} fehlt")
+        if m.get("von_funktion") and m["von_funktion"] not in tel_funktionen:
+            fehler.append(f"{ort} Funktion '{m['von_funktion']}' gibt es bei der TEL nicht")
+        rms = e.get("rueckmeldungen") or []
+        if not 1 <= len(rms) <= 2:
+            fehler.append(f"{ort} 1–2 Rückmeldungen erwartet, gefunden {len(rms)}")
+        for i, r in enumerate(rms, 1):
+            if r.get("von") not in fahrzeuge:
+                fehler.append(f"{ort} Rückmeldung {i}: '{r.get('von')}' fehlt in config fahrzeuge")
+            if not r.get("text"):
+                fehler.append(f"{ort} Rückmeldung {i}: Text fehlt")
+        for i, x in enumerate([m, *rms], 1):
+            if x.get("medium", "Funk") not in cfg["medien"]:
+                fehler.append(f"{ort} unbekanntes Medium '{x.get('medium')}'")
+            if x.get("vorrang", "normal") not in cfg["vorrang"]:
+                fehler.append(f"{ort} unbekannte Vorrangstufe '{x.get('vorrang')}'")
+            vt = einsatz_vordruck_text(m.get("betreff", ""), i, x.get("text", ""))
+            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN)) for z in vt.splitlines())
+            if zeilen > VORDRUCK_ZEILEN:
+                fehler.append(f"{ort} Meldung {i}: Text zu lang für Vordruck (ca. {zeilen} Zeilen)")
+        for feld in ("stichwort", "ort", "patient", "ziel", "hinweise"):
+            if feld not in (e.get("loesung") or {}):
+                fehler.append(f"{ort} loesung.{feld} fehlt")
+    return fehler
+
+
+def aufbereiten_einsaetze(cfg, einsaetze):
+    ec = cfg["einsaetze"]
+    for e in einsaetze:
+        e["id"] = f"E{e['nr']:02d}"
+        e["stufe"] = ec["schwierigkeiten"][e["schwierigkeit"]]["stufe"]
+        e["punkte"] = "●" * e["stufe"] + "○" * (3 - e["stufe"])
+        e["empfaenger"] = ec["empfaenger"][e["bereich"]]
+        e["bereich_name"] = ec["bereiche"][e["bereich"]]
+        m = e["meldung"]
+        e["meldungen"] = [{"titel": "Auftrag", "von_rufname": ec["absender"]["rufname"],
+                           "von_name": ec["absender"]["name"], "von_funktion": m["von_funktion"],
+                           "medium": m["medium"], "vorrang": m["vorrang"], "betreff": m["betreff"],
+                           "zeichen": m.get("zeichen", ""), "text": m["text"].rstrip()}]
+        for i, r in enumerate(e["rueckmeldungen"], 1):
+            e["meldungen"].append({"titel": f"Rückmeldung {i}", "von_rufname": r["von"], "von_name": r["von"],
+                                   "von_funktion": r.get("funktion", "Fahrzeugführer"),
+                                   "medium": r.get("medium", "Funk"), "vorrang": r.get("vorrang", "normal"),
+                                   "betreff": "", "zeichen": r.get("zeichen", ""), "text": r["text"].rstrip()})
+        e["feedback_linien"] = 12 if len(e["meldungen"]) == 2 else 7
+
+
+def einsatz_vordruck_text(betreff, i, text):
+    """Inhaltszeile (NLBK): Auftrag = Betreff, Rückmeldung = Bezug auf den Auftrag."""
+    kopf = betreff if i == 1 else f"Rückmeldung {i - 1}: {betreff}"
+    return f"{kopf}\n{text.rstrip()}"
+
+
+def einsatz_vordrucke(cfg, e):
+    """Pseudo-Nachrichten für vordruck.html: Auftrag + Rückmeldungen."""
+    ec = cfg["einsaetze"]
+    seiten = []
+    gesamt = len(e["meldungen"])
+    for i, m in enumerate(e["meldungen"], 1):
+        abs_name = f"{m['von_name']} {m['von_rufname']}" if m["von_name"] != m["von_rufname"] else m["von_rufname"]
+        seiten.append({
+            "nr_str": f"{e['id']}_{i}",
+            "medium": m["medium"], "vorrang": m["vorrang"], "text": m["text"],
+            "vordruck_text": einsatz_vordruck_text(e["meldung"]["betreff"], i, m["text"]),
+            "an_stelle": {"name": e["empfaenger"]},
+            "rufnummer": {"Telefon": ec["telefon"], "DFÜ": f"Mail {ec['mail']}"}.get(m["medium"], ""),
+            "von_stelle": {"name": abs_name}, "von_funktion": m["von_funktion"], "zeichen": m["zeichen"],
+            "an_funktion": "", "zur_info": [],
+            "fuss": (f"<b>Einsatz {e['id']}</b> · {m['titel']} ({i}/{gesamt}) · "
+                     f"<b>Stufe {e['stufe']} {e['schwierigkeit']} {e['punkte']}</b> · {e['bereich_name']}"),
+        })
+    return seiten
+
+
+def statistik_einsaetze(cfg, einsaetze):
+    zeilen = [f"{len(einsaetze)} Einsätze, {sum(len(e['rueckmeldungen']) for e in einsaetze)} Rückmeldungen"]
+    for b, name in cfg["einsaetze"]["bereiche"].items():
+        st = Counter(e["schwierigkeit"] for e in einsaetze if e["bereich"] == b)
+        zeilen.append(f"  {name:<22} " + ", ".join(f"{k} {st.get(k, 0)}" for k in cfg["einsaetze"]["schwierigkeiten"]))
+    vr = Counter(e["meldung"]["vorrang"] for e in einsaetze)
+    zeilen.append("  Vorrang Aufträge: " + ", ".join(f"{k} {vr.get(k, 0)}" for k in cfg["vorrang"]))
+    return "\n".join(zeilen)
+
+
 def anreichern(cfg, nachrichten):
     stellen = cfg["stellen"]
     nach_nr = {n["nr"]: n for n in nachrichten}
@@ -244,13 +360,16 @@ def main():
 
     cfg = lade_config()
     nachrichten = lade_nachrichten()
+    einsaetze = lade_einsaetze()
     befehle = lade_befehle()
-    fehler = pruefe(cfg, nachrichten) + pruefe_befehle(befehle)
+    fehler = pruefe(cfg, nachrichten) + pruefe_einsaetze(cfg, einsaetze) + pruefe_befehle(befehle)
     if fehler:
         print("FEHLER:\n  " + "\n  ".join(fehler))
         sys.exit(1)
     anreichern(cfg, nachrichten)
-    print(statistik(cfg, nachrichten))
+    aufbereiten_einsaetze(cfg, einsaetze)
+    print("Teil 1 – Nachrichtenpool Stab\n" + statistik(cfg, nachrichten))
+    print("Teil 2 – Einsätze\n" + statistik_einsaetze(cfg, einsaetze))
     print(f"{sum(b['_datei'] != 'vorlage.yaml' for b in befehle)} Befehle")
     if args.nur_pruefen:
         return
@@ -269,45 +388,44 @@ def main():
     AUSGABE.mkdir()
 
     ctx = {"cfg": cfg}
+    allg = AUSGABE / "0_Allgemein"
+    teil1 = AUSGABE / "1_Nachrichtenpool_Stab"
+    teil2 = AUSGABE / "2_Einsaetze_EDP"
+
+    # ---------- Teil 1: Nachrichtenpool Stab ----------
     vordrucke = [n for n in nachrichten if n["arbeitsmittel"] == "vordruck"]
     edp = [n for n in nachrichten if n["arbeitsmittel"] == "edp"]
 
-    # Vordrucke: Sammel-PDF + je Nachricht ein PDF
     drucke(chromium, rendere(env, "vordruck.html", BUILD / "vordrucke.html", nachrichten=vordrucke, **ctx),
-           AUSGABE / "Vordrucke_alle.pdf")
+           teil1 / "Vordrucke_A5_TEL_alle.pdf")
     for n in vordrucke:
         html = rendere(env, "vordruck.html", BUILD / f"vordruck_{n['nr_str']}.html", nachrichten=[n], **ctx)
-        drucke(chromium, html, AUSGABE / "vordrucke" / f"Vordruck_{n['nr_str']}.pdf")
+        drucke(chromium, html, teil1 / "Vordrucke_A5_einzeln" / f"Vordruck_{n['nr_str']}.pdf")
 
     # EDP: alle + je sendender Stelle (die Stelle, an deren EDP eingespielt wird)
     drucke(chromium, rendere(env, "edp.html", BUILD / "edp.html", nachrichten=edp, **ctx),
-           AUSGABE / "EDP_alle.pdf")
+           teil1 / "EDP_Texte_alle.pdf")
     for key, stelle in cfg["stellen"].items():
         auswahl = [n for n in edp if n["von"] == key]
         if not auswahl:
             continue
         name = stelle["rufname"].split()[-1]
         html = rendere(env, "edp.html", BUILD / f"edp_{key}.html", nachrichten=auswahl, **ctx)
-        drucke(chromium, html, AUSGABE / f"EDP_{name}_{stelle['name'].replace(' ', '_')}.pdf")
+        drucke(chromium, html, teil1 / f"EDP_Texte_{name}_{stelle['name'].replace(' ', '_')}.pdf")
 
     drucke(chromium, rendere(env, "uebersicht.html", BUILD / "uebersicht.html",
                              nachrichten=nachrichten, statistik=statistik(cfg, nachrichten), **ctx),
-           AUSGABE / "Uebersicht_Uebungsleitung.pdf")
-
-    drucke(chromium, rendere(env, "kommplan.html", BUILD / "kommplan.html", k=cfg["kommunikation"],
-                             genannt=[f for f in cfg["fahrzeuge"]
-                                      if any(f["rufname"] in n["text"] for n in nachrichten)], **ctx),
-           AUSGABE / "Kommunikationsplan.pdf")
+           teil1 / "UEL_Uebersicht_Nachrichten.pdf")
 
     # Befehle: je Befehl ein PDF, Vorlage als leeres Formular
     for b in befehle:
         name = "Befehl_Vorlage" if b["_datei"] == "vorlage.yaml" else f"Befehl_{b['nr']:03d}"
         html = rendere(env, "befehl.html", BUILD / f"{name}.html", befehle=[b], punkte=BEFEHL_PUNKTE, **ctx)
-        drucke(chromium, html, AUSGABE / "befehle" / f"{name}.pdf")
+        drucke(chromium, html, allg / "Befehle" / f"{name}.pdf")
 
     # Anhänge: Original + PDF-Fassung
     if any(n["anhaenge"] for n in nachrichten):
-        shutil.copytree(ANHAENGE, AUSGABE / "anhaenge")
+        shutil.copytree(ANHAENGE, teil1 / "Anhaenge")
         for datei in sorted(ANHAENGE.iterdir()):
             titel = datei.stem.replace("_", " ")
             if datei.suffix.lower() == ".csv":
@@ -321,7 +439,31 @@ def main():
                                titel=titel, bild=datei.name)
             else:
                 continue
-            drucke(chromium, html, AUSGABE / "anhaenge" / f"{datei.stem}.pdf")
+            drucke(chromium, html, teil1 / "Anhaenge" / f"{datei.stem}.pdf")
+
+    # ---------- Teil 2: Einsätze in EDP anlegen ----------
+    drucke(chromium, rendere(env, "einsatz_a4.html", BUILD / "einsaetze_a4.html", einsaetze=einsaetze, **ctx),
+           teil2 / "Funk_und_UEL_A4_je_Einsatz.pdf")
+    alle_vd = [v for e in einsaetze for v in einsatz_vordrucke(cfg, e)]
+    drucke(chromium, rendere(env, "vordruck.html", BUILD / "einsaetze_vordrucke.html", nachrichten=alle_vd, **ctx),
+           teil2 / "Vordrucke_A5_Einsaetze_gebuendelt.pdf")
+    for e in einsaetze:
+        html = rendere(env, "vordruck.html", BUILD / f"einsatz_{e['id']}.html",
+                       nachrichten=einsatz_vordrucke(cfg, e), **ctx)
+        drucke(chromium, html, teil2 / "Vordrucke_A5_einzeln" / f"Einsatz_{e['id']}_Stufe{e['stufe']}.pdf")
+    drucke(chromium, rendere(env, "einsaetze_uebersicht.html", BUILD / "einsaetze_uebersicht.html",
+                             einsaetze=einsaetze, statistik=statistik_einsaetze(cfg, einsaetze), **ctx),
+           teil2 / "UEL_Uebersicht_Einsaetze.pdf")
+
+    # ---------- Allgemein ----------
+    texte = [n["text"] for n in nachrichten] + [m["text"] for e in einsaetze for m in e["meldungen"]] \
+        + [m["von_rufname"] for e in einsaetze for m in e["meldungen"]]
+    drucke(chromium, rendere(env, "kommplan.html", BUILD / "kommplan.html", k=cfg["kommunikation"],
+                             genannt=[f for f in cfg["fahrzeuge"] if any(f["rufname"] in t for t in texte)], **ctx),
+           allg / "Kommunikationsplan.pdf")
+    drucke(chromium, rendere(env, "liesmich.html", BUILD / "liesmich.html", anzahl_nachrichten=len(nachrichten),
+                             anzahl_einsaetze=len(einsaetze), **ctx),
+           AUSGABE / "00_LIESMICH.pdf")
     print(f"Ausgabe in {AUSGABE.relative_to(ROOT)}/")
 
 

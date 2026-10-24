@@ -74,8 +74,8 @@
         <div class="c big nr nb" style="grid-area: 1 / 1 / 2 / 4">Absender</div>
         {# Datum, Uhrzeit trägt die Übungsleitung beim Einspielen von Hand ein (taktische Zeit) #}
         <div class="nr nb c" style="grid-area: 2 / 1 / 3 / 2; font-size: 3.3mm"></div>
-        <div class="nr nb c" style="grid-area: 2 / 2 / 3 / 3; font-size: 3.3mm"><span class="wert">{{ n.von_stelle.name }}</span></div>
-        <div class="nr nb c" style="grid-area: 2 / 3 / 3 / 4; font-size: 3.3mm"><span class="wert">{{ n.zeichen }}, {{ n.von_funktion }}</span></div>
+        <div class="nr nb c" style="grid-area: 2 / 2 / 3 / 3; font-size: {{ '2.9mm' if n.von_stelle.name | length > 22 else '3.3mm' }}"><span class="wert">{{ n.von_stelle.name }}</span></div>
+        <div class="nr nb c" style="grid-area: 2 / 3 / 3 / 4; font-size: {{ '2.9mm' if (n.zeichen ~ n.von_funktion) | length > 20 else '3.3mm' }}"><span class="wert">{{ n.zeichen }}, {{ n.von_funktion }}</span></div>
         <div class="nr nb c" style="grid-area: 3 / 1 / 4 / 2">Datum, Uhrzeit</div>
         <div class="nr nb c" style="grid-area: 3 / 2 / 4 / 3">Anschrift, Einheit, Org.</div>
         <div class="nr nb c" style="grid-area: 3 / 3 / 4 / 4">Zeichen, Funktion</div>
@@ -105,8 +105,12 @@
     </div>
   </div>
   <div class="footer">
+    {% if n.fuss is defined %}
+    <span>{{ n.fuss | safe }}</span>
+    {% else %}
     <span><b>ÜL {{ n.nr_str }}</b> · {{ n.von_stelle.name }} → {{ n.an_stelle.name }}
       · für: {{ n.an_funktion }}{% if n.zur_info %} · z.I.: {{ n.zur_info | join(', ') }}{% endif %}</span>
+    {% endif %}
     <span>nur Übung</span>
   </div>
 </div>

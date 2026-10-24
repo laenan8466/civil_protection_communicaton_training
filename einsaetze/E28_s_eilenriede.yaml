@@ -1,0 +1,34 @@
+nr: 28
+bereich: sandienst
+schwierigkeit: schwer
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: Sofort
+  betreff: Kollabierter Jogger Eilenriede
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Jogger, Name unbekannt.
+    Ort: Eilenriede, beim Spielplatz am Steuerndieb.
+    Lage: zusammengebrochen, Passanten sind bei ihm, atmet.
+rueckmeldungen:
+- von: Sama H 64-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ha
+  medium: Funk
+  text: |
+    Genauer Ort: Steuerndieb, Spielplatz an der Hohen Allee.
+    Patient: Scholz, Daniel, geb. 1983, wieder wach, Kreislauf instabil.
+- von: Sama H 64-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ha
+  medium: Funk
+  text: |
+    Transport ins Krankenhaus Siloah, Ankunft ca. 12 Minuten. Fahrzeug danach frei.
+loesung:
+  stichwort: SanD Kollaps
+  ort: 'Beschreibung: Eilenriede, Spielplatz am Steuerndieb -> Hohe Allee'
+  patient: unbekannt -> Scholz, Daniel, 1983
+  ziel: KH Siloah
+  hinweise: Ortsbeschreibung, keine Hausnummer.

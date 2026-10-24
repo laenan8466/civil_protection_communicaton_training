@@ -1,0 +1,28 @@
+nr: 16
+bereich: sandienst
+schwierigkeit: mittel
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: Sofort
+  betreff: Krampfanfall Turnhalle
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patientin: Frau ca. 50 Jahre, Name unbekannt.
+    Ort: Notunterkunft Schulzentrum Ahlem, Turnhalle, Bereich C.
+    Lage: Krampfanfall, Anfall hat aufgehört, Patientin schläfrig.
+rueckmeldungen:
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Patientin: Schwarz, Martina, geb. 1975, bekannte Epilepsie.
+    Stabil, Rettungsdienst nicht erforderlich, Ehemann informiert.
+loesung:
+  stichwort: SanD Krampfanfall
+  ort: Schulzentrum Ahlem, Turnhalle, Bereich C
+  patient: unbekannt -> Schwarz, Martina, 1975
+  ziel: Verbleib vor Ort
+  hinweise: Name nachtragen.
