@@ -1,0 +1,78 @@
+nr: 1
+betreff: "Aufbau Übungsbetrieb Führungsstelle in der Fahrzeughalle"
+
+befehlende_stelle: "Übungsleitung Fernmeldeübung Johannes Hannover"
+abgangsort: "Hannover, Dienststelle"
+datum_uhrzeit: ""
+an:
+- "Fahrzeugführer:in Joh. H 59-12-1 mit Aufbautrupp FüSt"
+- "Fahrzeugführer:in Joh. H 59-10-1"
+- "Leitung Fernmeldestelle"
+
+lage: |
+  Übungsbetrieb, keine Einsatzlage. Ganztägige Fernmeldeübung in der
+  Fahrzeughalle der Dienststelle.
+  Eigene Kräfte: Joh. H 59-12-1 mit Vorzelt als Führungsstelle (übende Stelle),
+  Joh. H 59-10-1 als Übungsleitung.
+  In 59-10-1 ist das MRT derzeit ohne Funktion.
+  In der Fahrzeughalle stehen weitere Fahrzeuge, die den Aufbau behindern.
+
+auftrag: |
+  Übungsbetrieb für den ganzen Tag herstellen:
+  Führungsstelle mit 59-12-1 und Vorzelt in der Fahrzeughalle aufbauen,
+  Übungsleitung mit 59-10-1 abgesetzt davon einrichten.
+
+durchfuehrung: |
+  Absicht: Den ganzen Tag ungestört in der Fahrzeughalle üben. Die Übungsleitung
+  spielt verschiedene Szenarien ein: Stab FüSt, Fernmeldestelle (FmSt) und
+  Transportdisposition. Die FüSt arbeitet dabei wie im Einsatz.
+
+  a) Aufbautrupp FüSt:
+     - Störende Fahrzeuge aus der Fahrzeughalle fahren und außen abstellen,
+       Zufahrten und Ausfahrten frei halten. Fahrzeugbewegungen in der Halle
+       nur mit Einweiser:in.
+     - 59-12-1 in der Halle aufstellen, Vorzelt anbauen, Strom, Licht und
+       ggf. Heizung herstellen.
+     - Im Vorzelt Arbeitsplatz Leitung FmSt und drei Funkarbeitsplätze
+       einrichten (Tisch, Stuhl, Funkgerät, Vordrucke, Nachweisung).
+     - Lagekarte auf dem Außenmonitor von 59-12-1 darstellen, vom Vorzelt
+       aus sichtbar.
+  b) Fahrzeugführer:in 59-10-1:
+     - 59-10-1 mit HRT als Übungsleitung ausstatten (MRT ohne Funktion).
+     - 59-10-1 abgesetzt von der FüSt aufstellen, ohne Sicht auf die Lagekarte.
+  c) Leitung FmSt: Funkarbeitsplätze vor Übungsbeginn besetzen, Funkprobe mit
+     der Übungsleitung durchführen.
+
+  Zeiten: Aufbau ab ________  Einsatzbereit ________  Übungsende ________
+  Nach Übungsende: Abbau, Fahrzeuge zurück in die Halle, Ausgangszustand
+  herstellen.
+  Schutz: Kabel als Stolperstelle sichern, Notausgänge frei halten, Motoren
+  in der Halle nicht im Stand laufen lassen.
+
+versorgung: |
+  Strom: Einspeisung aus der Fahrzeughalle.
+  Verpflegung: ________________________________
+  Betriebsstoff: herausgefahrene Fahrzeuge bleiben einsatzbereit,
+  Schlüssel am gewohnten Platz.
+  Erste Hilfe durch eigene Kräfte.
+
+fuehrung: |
+  Standort Übungsleitung: 59-10-1, Fahrzeughalle (abgesetzt).
+  Standort Führungsstelle: 59-12-1 mit Vorzelt, Fahrzeughalle.
+  Funk: ausschließlich TMO, Rufgruppe NI_Sonder/K_LS_MHD, für alle Verbindungen.
+  Jeder Spruch beginnt mit „Übung“.
+  Rufnamen, Telefon und Mail nach Kommunikationsplan (Anlage).
+  Meldungen an die Übungsleitung: Einsatzbereitschaft der FüSt,
+  Abschluss Abbau.
+
+anlagen:
+- "Kommunikationsplan"
+verteiler:
+- "59-12-1"
+- "59-10-1"
+- "Leitung FmSt"
+- "Übungsleitung (Akte)"
+unterschrift_funktion: "Leitung Übung"
+notiz: >
+  Offen: Arbeitsplätze Stab FüSt und Transportdispo (Fahrzeug oder Vorzelt),
+  Verpflegung. Datum und Zeiten handschriftlich ergänzen.

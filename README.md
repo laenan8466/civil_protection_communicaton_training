@@ -54,6 +54,8 @@ Anhänge nur wenige, immer als Datei in `anhaenge/`.
 ```
 config/stellen.yaml        Stellen, Rufnamen, Funktionen, Rufnummern, Fahrzeug-Pool
 nachrichten/NNN.yaml       eine Datei pro Nachricht
+befehle/vorlage.yaml       Vorlage schriftlicher Befehl (DV 100)
+befehle/NNN_*.yaml         ein schriftlicher Befehl pro Datei
 anhaenge/                  Dateien zum Anfügen in EDP
 generator/build.py         validiert und erzeugt die PDFs
 generator/templates/       Vordruck, EDP-Blatt, Übersicht (HTML → PDF via Chromium)
@@ -82,6 +84,21 @@ text: |
 notiz: Hinweis für die Übungsleitung (erwartete Reaktion)
 ```
 
+## Befehle
+
+Getrennt vom Nachrichtenpool: schriftliche Befehle zur Vorbereitung und Durchführung des Übungsbetriebs,
+gegliedert nach DV 100, 3.3.3.1 und Anlage 4 (Kopf, 1 Lage, 2 Auftrag, 3 Durchführung, 4 Versorgung,
+5 Führung und Kommunikation, Fuß mit Anlagen, Verteiler, Unterschrift).
+
+- `befehle/vorlage.yaml` kopieren nach `befehle/NNN_kurzname.yaml` und ausfüllen. Leere Felder werden im PDF
+  zu Schreiblinien (Datum/Uhrzeit, Zeiten, Unterschrift handschriftlich).
+- Pflicht: `nr`, `betreff`, `befehlende_stelle`, `an`, `auftrag`. `notiz` erscheint nicht auf dem Befehl.
+- Ausgabe: `ausgabe/befehle/Befehl_NNN.pdf`, dazu `Befehl_Vorlage.pdf` als leeres Formular.
+
+| Nr | Betreff |
+|---|---|
+| 001 | Aufbau Übungsbetrieb Führungsstelle in der Fahrzeughalle (59-12-1 mit Vorzelt, 59-10-1 als Übungsleitung) |
+
 ## Nutzung
 
 ```
@@ -101,3 +118,4 @@ Ausgabe:
 - `Uebersicht_Uebungsleitung.pdf` – alle Nachrichten mit Hinweisen
 - `Kommunikationsplan.pdf` – Skizze angelehnt an DV 102
 - `anhaenge/` – Original + PDF-Fassung je Anhang
+- `befehle/` – schriftliche Befehle + leere Vorlage (A4)

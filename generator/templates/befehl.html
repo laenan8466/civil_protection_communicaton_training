@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Befehl</title>
+<link rel="stylesheet" href="style.css">
+<style>@page { size: A4; margin: 14mm 16mm; }</style>
+</head>
+<body>
+{% macro feld(wert, zeilen=1) %}
+{% if wert %}<span class="wert">{{ wert }}</span>{% else %}{% for _ in range(zeilen) %}<div class="linie"></div>{% endfor %}{% endif %}
+{% endmacro %}
+{% for b in befehle %}
+<div class="befehl">
+  <h1>Befehl{% if b.nr %} Nr. {{ '%03d' % b.nr }}{% endif %}</h1>
+  <div class="betreff">{{ feld(b.betreff) }}</div>
+  <table class="kopf">
+    <tr><th>Befehlende Stelle</th><td>{{ feld(b.befehlende_stelle) }}</td></tr>
+    <tr><th>Abgangsort</th><td>{{ feld(b.abgangsort) }}</td></tr>
+    <tr><th>Datum, Uhrzeit</th><td>{{ feld(b.datum_uhrzeit) }}</td></tr>
+    <tr><th>An</th><td>{% if b.an %}<span class="wert">{{ b.an | join('<br>') }}</span>{% else %}{{ feld('', 2) }}{% endif %}</td></tr>
+  </table>
+  {% for key, titel, hilfe in punkte %}
+  <section>
+    <h2>{{ loop.index }}. {{ titel }}</h2>
+    {% if b[key] %}<div class="text wert">{{ b[key] }}</div>
+    {% else %}<div class="hilfe">{{ hilfe }}</div>{{ feld('', 5) }}{% endif %}
+  </section>
+  {% endfor %}
+  <table class="fuss">
+    <tr>
+      <th>Anlagen</th><td>{% if b.anlagen %}<span class="wert">{{ b.anlagen | join(', ') }}</span>{% else %}{{ feld('') }}{% endif %}</td>
+      <th rowspan="2">Unterschrift,<br>Funktion</th>
+      <td rowspan="2" class="unterschrift"><div class="linie"></div>{{ feld(b.unterschrift_funktion) }}</td>
+    </tr>
+    <tr><th>Verteiler</th><td>{% if b.verteiler %}<span class="wert">{{ b.verteiler | join(', ') }}</span>{% else %}{{ feld('') }}{% endif %}</td></tr>
+  </table>
+  <div class="quelle">Gliederung nach DV 100, 3.3.3.1 und Anlage 4 · {{ cfg.uebung.titel }}</div>
+</div>
+{% endfor %}
+</body>
+</html>

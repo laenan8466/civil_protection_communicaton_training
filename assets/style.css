@@ -61,3 +61,22 @@ body { font-family: "Liberation Sans", Arial, sans-serif; color: #000; }
 .uebersicht tr { page-break-inside: avoid; }
 .uebersicht .blitz { color: #c00; font-weight: 700; }
 .uebersicht .sofort { color: #b36b00; font-weight: 700; }
+
+/* ---------- Befehl (A4, DV 100 Anlage 4) ---------- */
+.befehl { page-break-after: always; font-size: 10.5pt; }
+.befehl:last-child { page-break-after: auto; }
+.befehl h1 { font-size: 18pt; margin: 0; letter-spacing: 0.5mm; text-transform: uppercase; }
+.befehl .betreff { font-size: 12pt; font-weight: 700; margin: 1mm 0 4mm; }
+.befehl table { width: 100%; border-collapse: collapse; }
+.befehl th { text-align: left; width: 36mm; vertical-align: top; padding: 1.4mm 2mm; background: #eef1f6;
+             border: 0.3mm solid #b8c0cc; font-weight: 600; }
+.befehl td { padding: 1.4mm 2mm; border: 0.3mm solid #b8c0cc; vertical-align: top; }
+.befehl section { break-inside: avoid; margin-top: 4mm; }
+.befehl h2 { font-size: 11.5pt; margin: 0 0 1mm; border-bottom: 0.4mm solid #000; }
+.befehl .text { white-space: pre-wrap; line-height: 1.4; font-weight: 400; }
+.befehl .hilfe { color: #777; font-size: 8.5pt; font-style: italic; }
+.befehl .linie { border-bottom: 0.25mm solid #888; height: 7mm; }
+.befehl .fuss { margin-top: 6mm; break-inside: avoid; }
+.befehl .fuss th { width: 24mm; }
+.befehl .unterschrift { width: 55mm; }
+.befehl .quelle { margin-top: 3mm; font-size: 8pt; color: #666; }
