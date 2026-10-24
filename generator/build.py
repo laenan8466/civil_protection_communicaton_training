@@ -73,10 +73,19 @@ def lade_nachrichten():
     return sorted(nachrichten, key=lambda n: n["nr"])
 
 
+def vordruck_text(n, nach_nr):
+    """Nachrichtentext auf dem Vordruck: Inhaltszeile (Betreff) zuerst, dann ggf. Bezug (NLBK)."""
+    zeilen = [n["betreff"]]
+    if n["bezug"] in nach_nr:
+        zeilen.append(f"Bezug: Nachricht „{nach_nr[n['bezug']]['betreff']}“")
+    return "\n".join(zeilen + [n["text"]])
+
+
 def pruefe(cfg, nachrichten):
     fehler = []
     stellen = cfg["stellen"]
     nummern = Counter(n.get("nr") for n in nachrichten)
+    nach_nr = {n.get("nr"): n for n in nachrichten}
     for nr, anzahl in nummern.items():
         if anzahl > 1:
             fehler.append(f"Nr. {nr} mehrfach vergeben")
@@ -113,7 +122,8 @@ def pruefe(cfg, nachrichten):
         if n["bezug"] is not None and n["bezug"] not in nummern:
             fehler.append(f"{ort} Bezug auf unbekannte Nr. {n['bezug']}")
         if stellen[n["von"]]["arbeitsmittel"] == "vordruck":
-            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN)) for z in n["text"].splitlines())
+            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN))
+                         for z in vordruck_text(n, nach_nr).splitlines())
             if zeilen > VORDRUCK_ZEILEN:
                 fehler.append(f"{ort} Text zu lang für Vordruck (ca. {zeilen} von {VORDRUCK_ZEILEN} Zeilen)")
         for a in n["anhaenge"]:
@@ -124,6 +134,7 @@ def pruefe(cfg, nachrichten):
 
 def anreichern(cfg, nachrichten):
     stellen = cfg["stellen"]
+    nach_nr = {n["nr"]: n for n in nachrichten}
     for n in nachrichten:
         von = stellen[n["von"]]
         ziele = [stellen[a] for a in n["an_liste"]]
@@ -136,6 +147,7 @@ def anreichern(cfg, nachrichten):
             for feld in ("telefon", "fax", "mail"):
                 werte = {z[feld] for z in ziele}
                 an[feld] = werte.pop() if len(werte) == 1 else ""
+        n["vordruck_text"] = vordruck_text(n, nach_nr)
         n["nr_str"] = f"{n['nr']:03d}"
         n["von_stelle"] = von
         n["an_stelle"] = an
@@ -144,7 +156,7 @@ def anreichern(cfg, nachrichten):
             "Telefon": an["telefon"],
             "Fax": an["fax"],
             "DFÜ": f"Mail {an['mail']}" if an["mail"] else "",
-            "Funk": "",
+            "Funk": an["rufname"],
             "Melder": "",
         }[n["medium"]]
 

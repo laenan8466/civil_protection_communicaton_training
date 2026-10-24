@@ -91,7 +91,9 @@ python3 generator/build.py --nur-pruefen
 
 Benötigt Python 3 mit `pyyaml`, `jinja2` sowie Chromium/Chrome. Die erzeugten PDFs liegen eingecheckt in `ausgabe/`.
 
-Vordrucktext: max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
+Vordruck nach NLBK-Ausfüllhilfe (01/2024), Layout wie KSK-Vordruck: Die erste Zeile der Nachricht ist der Betreff (Inhaltszeile), bei `bezug` folgt „Bezug: Nachricht „…““. Unter Rufnummer steht je nach Medium Telefonnummer, Mailadresse (DFÜ) oder Funkrufname. Datum, Uhrzeit beim Absender bleibt leer: Die Übungsleitung trägt sie beim Einspielen von Hand als taktische Zeit ein (z. B. 241105oct26).
+
+Vordrucktext (inkl. Betreff und Bezug): max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
 
 Ausgabe:
 - `Vordrucke_alle.pdf` + `vordrucke/Vordruck_NNN.pdf` – A5, zum Drucken
