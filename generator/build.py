@@ -80,10 +80,19 @@ def lade_nachrichten():
     return sorted(nachrichten, key=lambda n: n["nr"])
 
 
+def vordruck_text(n, nach_nr):
+    """Nachrichtentext auf dem Vordruck: Inhaltszeile (Betreff) zuerst, dann ggf. Bezug (NLBK)."""
+    zeilen = [n["betreff"]]
+    if n["bezug"] in nach_nr:
+        zeilen.append(f"Bezug: Nachricht „{nach_nr[n['bezug']]['betreff']}“")
+    return "\n".join(zeilen + [n["text"]])
+
+
 def pruefe(cfg, nachrichten):
     fehler = []
     stellen = cfg["stellen"]
     nummern = Counter(n.get("nr") for n in nachrichten)
+    nach_nr = {n.get("nr"): n for n in nachrichten}
     for nr, anzahl in nummern.items():
         if anzahl > 1:
             fehler.append(f"Nr. {nr} mehrfach vergeben")
@@ -120,7 +129,8 @@ def pruefe(cfg, nachrichten):
         if n["bezug"] is not None and n["bezug"] not in nummern:
             fehler.append(f"{ort} Bezug auf unbekannte Nr. {n['bezug']}")
         if stellen[n["von"]]["arbeitsmittel"] == "vordruck":
-            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN)) for z in n["text"].splitlines())
+            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN))
+                         for z in vordruck_text(n, nach_nr).splitlines())
             if zeilen > VORDRUCK_ZEILEN:
                 fehler.append(f"{ort} Text zu lang für Vordruck (ca. {zeilen} von {VORDRUCK_ZEILEN} Zeilen)")
         for a in n["anhaenge"]:
@@ -165,12 +175,13 @@ def pruefe_einsaetze(cfg, einsaetze):
                 fehler.append(f"{ort} Rückmeldung {i}: '{r.get('von')}' fehlt in config fahrzeuge")
             if not r.get("text"):
                 fehler.append(f"{ort} Rückmeldung {i}: Text fehlt")
-        for i, x in enumerate([m, *rms]):
+        for i, x in enumerate([m, *rms], 1):
             if x.get("medium", "Funk") not in cfg["medien"]:
                 fehler.append(f"{ort} unbekanntes Medium '{x.get('medium')}'")
             if x.get("vorrang", "normal") not in cfg["vorrang"]:
                 fehler.append(f"{ort} unbekannte Vorrangstufe '{x.get('vorrang')}'")
-            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN)) for z in x.get("text", "").splitlines())
+            vt = einsatz_vordruck_text(m.get("betreff", ""), i, x.get("text", ""))
+            zeilen = sum(max(1, -(-len(z) // VORDRUCK_ZEICHEN)) for z in vt.splitlines())
             if zeilen > VORDRUCK_ZEILEN:
                 fehler.append(f"{ort} Meldung {i}: Text zu lang für Vordruck (ca. {zeilen} Zeilen)")
         for feld in ("stichwort", "ort", "patient", "ziel", "hinweise"):
@@ -200,6 +211,12 @@ def aufbereiten_einsaetze(cfg, einsaetze):
         e["feedback_linien"] = 12 if len(e["meldungen"]) == 2 else 7
 
 
+def einsatz_vordruck_text(betreff, i, text):
+    """Inhaltszeile (NLBK): Auftrag = Betreff, Rückmeldung = Bezug auf den Auftrag."""
+    kopf = betreff if i == 1 else f"Rückmeldung {i - 1}: {betreff}"
+    return f"{kopf}\n{text.rstrip()}"
+
+
 def einsatz_vordrucke(cfg, e):
     """Pseudo-Nachrichten für vordruck.html: Auftrag + Rückmeldungen."""
     ec = cfg["einsaetze"]
@@ -210,8 +227,9 @@ def einsatz_vordrucke(cfg, e):
         seiten.append({
             "nr_str": f"{e['id']}_{i}",
             "medium": m["medium"], "vorrang": m["vorrang"], "text": m["text"],
+            "vordruck_text": einsatz_vordruck_text(e["meldung"]["betreff"], i, m["text"]),
             "an_stelle": {"name": e["empfaenger"]},
-            "rufnummer": {"Telefon": ec["telefon"], "Mail": ec["mail"]}.get(m["medium"], ""),
+            "rufnummer": {"Telefon": ec["telefon"], "DFÜ": f"Mail {ec['mail']}"}.get(m["medium"], ""),
             "von_stelle": {"name": abs_name}, "von_funktion": m["von_funktion"], "zeichen": m["zeichen"],
             "an_funktion": "", "zur_info": [],
             "fuss": (f"<b>Einsatz {e['id']}</b> · {m['titel']} ({i}/{gesamt}) · "
@@ -232,6 +250,7 @@ def statistik_einsaetze(cfg, einsaetze):
 
 def anreichern(cfg, nachrichten):
     stellen = cfg["stellen"]
+    nach_nr = {n["nr"]: n for n in nachrichten}
     for n in nachrichten:
         von = stellen[n["von"]]
         ziele = [stellen[a] for a in n["an_liste"]]
@@ -244,6 +263,7 @@ def anreichern(cfg, nachrichten):
             for feld in ("telefon", "fax", "mail"):
                 werte = {z[feld] for z in ziele}
                 an[feld] = werte.pop() if len(werte) == 1 else ""
+        n["vordruck_text"] = vordruck_text(n, nach_nr)
         n["nr_str"] = f"{n['nr']:03d}"
         n["von_stelle"] = von
         n["an_stelle"] = an
@@ -251,8 +271,8 @@ def anreichern(cfg, nachrichten):
         n["rufnummer"] = {
             "Telefon": an["telefon"],
             "Fax": an["fax"],
-            "Mail": an["mail"],
-            "Funk": "",
+            "DFÜ": f"Mail {an['mail']}" if an["mail"] else "",
+            "Funk": an["rufname"],
             "Melder": "",
         }[n["medium"]]
 

@@ -55,7 +55,8 @@ stellen:
     funktionen: *fuegr
 
 # Auswahlwerte
-medien: [Telefon, Funk, Fax, Mail, Melder]
+# DFÜ = Datenfernübertragung (Mail, Messenger, Fileshare …); der Weg steht unter Rufnummer.
+medien: [Telefon, Funk, Fax, DFÜ, Melder]
 vorrang: [normal, Sofort, Blitz]
 betreff_arten: [Meldung, Lagemeldung, Anforderung, Auftrag, Anfrage, Antwort, Information]
 kategorien:

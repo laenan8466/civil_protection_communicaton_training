@@ -34,7 +34,7 @@ Region: H = Hannover, H# = Hannover Land (Region).
 | FüSt | TEL | **EDP-Blatt** (zum Kopieren in EDP) | FüSt sendet, TEL nimmt auf leerem Vordruck auf |
 | FüSt | FüSt | **EDP-Blatt** | beide EDP (kleiner Anteil) |
 
-Medien: Telefon, Funk, Fax, Mail, Melder. Vorrang: normal, Sofort, Blitz (wenige Blitz, nur bei Gefahr für Leben/laufenden Betrieb).
+Medien: Telefon, Funk, Fax, DFÜ, Melder. DFÜ = Datenfernübertragung (hier: Mail); der Weg steht auf dem Vordruck unter Rufnummer. Vorrang: normal, Sofort, Blitz (wenige Blitz, nur bei Gefahr für Leben/laufenden Betrieb).
 
 Empfänger auf Vordruck/EDP ist immer nur die Gegenstelle (z. B. „TEL Hannover“). Für wen die Nachricht gedacht ist und wer sie zur Info bekommt, steht nur als Info für die Übungsleitung unten auf dem Blatt – das entscheidet der Sichter.
 
@@ -93,7 +93,7 @@ von_funktion: S3
 an: SUED                  # Sammelruf: an: [NORD, SUED, WEST]
 an_funktion: Leitung des Stabes
 zur_info: [S2]
-medium: Funk              # Telefon | Funk | Fax | Mail | Melder
+medium: Funk              # Telefon | Funk | Fax | DFÜ | Melder
 vorrang: normal           # normal | Sofort | Blitz
 betreff_art: Auftrag
 betreff: Kurzer Betreff
@@ -114,7 +114,9 @@ python3 generator/build.py --nur-pruefen
 
 Benötigt Python 3 mit `pyyaml`, `jinja2` sowie Chromium/Chrome. Die erzeugten PDFs liegen eingecheckt in `ausgabe/`.
 
-Vordrucktext: max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
+Vordruck nach NLBK-Ausfüllhilfe (01/2024), Layout wie KSK-Vordruck: Die erste Zeile der Nachricht ist der Betreff (Inhaltszeile), bei `bezug` folgt „Bezug: Nachricht „…““. Unter Rufnummer steht je nach Medium Telefonnummer, Mailadresse (DFÜ) oder Funkrufname. Datum, Uhrzeit beim Absender bleibt leer: Die Übungsleitung trägt sie beim Einspielen von Hand als taktische Zeit ein (z. B. 241105oct26).
+
+Vordrucktext (inkl. Betreff und Bezug): max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
 
 Ausgabe (alles PDF, `00_LIESMICH.pdf` erklärt die Ordner):
 
