@@ -1,0 +1,28 @@
+nr: 20
+bereich: sandienst
+schwierigkeit: mittel
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Gestürzte Person Haupteingang
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Mann ca. 60 Jahre, alkoholisiert, Name unbekannt.
+    Ort: Notunterkunft Schulzentrum Ahlem, vor dem Haupteingang.
+    Lage: gestürzt, Schürfwunde am Kopf, aggressiv gegenüber Helfern.
+rueckmeldungen:
+- von: Sama H 64-11-1
+  funktion: Zugführer
+  zeichen: Lo
+  medium: Funk
+  text: |
+    Polizei vor Ort. Patient: Kaiser, Bernd, geb. 1964.
+    Wunde versorgt, lehnt Transport ab. Unterschrift Transportverweigerung liegt vor.
+loesung:
+  stichwort: SanD Sturz, Eigenschutz
+  ort: Schulzentrum Ahlem, vor Haupteingang
+  patient: unbekannt -> Kaiser, Bernd, 1964
+  ziel: Verweigerung
+  hinweise: Transportverweigerung dokumentieren.

@@ -1,0 +1,36 @@
+nr: 1
+bereich: transport
+schwierigkeit: einfach
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Neumann, Lister Meile
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, Rollstuhl.
+    Patientin: Neumann, Erika, geb. 1942.
+    Abholort: Lister Meile 45, 30161 Hannover, 2. OG, Pflege-WG.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung, Station 2.
+    Keine Besonderheiten.
+rueckmeldungen:
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Eingetroffen Lister Meile 45. Patientin Neumann übernommen,
+    Abfahrt zum Friederikenstift.
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Patientin Neumann an Station 2 Friederikenstift übergeben.
+    Fahrzeug frei über Funk.
+loesung:
+  stichwort: KTW Rollstuhl
+  ort: Lister Meile 45, 30161 Hannover, 2. OG
+  patient: Neumann, Erika, 1942
+  ziel: Friederikenstift, Station 2
+  hinweise: Alle Angaben vorhanden. Status/Zeiten aus Rückmeldungen nachtragen.

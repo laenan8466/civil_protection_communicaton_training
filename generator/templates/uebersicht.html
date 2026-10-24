@@ -13,7 +13,7 @@
   <table>
     <thead><tr>
       <th>Nr</th><th>Unterlage</th><th>Von</th><th>An</th><th>Medium</th><th>Vorrang</th>
-      <th>Kat.</th><th>Betreff</th><th>Bezug</th><th>Anhang</th><th>Erwartung / Hinweis</th>
+      <th>Kat.</th><th>Betreff</th><th>Bezug</th><th>Anhang</th><th>Erwartung / Hinweis</th><th>Uhrzeit</th><th style="width:45mm">Feedback</th>
     </tr></thead>
     <tbody>
     {% for n in nachrichten %}
@@ -29,6 +29,7 @@
       <td>{% if n.bezug %}{{ '%03d' % n.bezug }}{% endif %}</td>
       <td>{{ n.anhaenge | join(', ') }}</td>
       <td>{{ n.notiz }}</td>
+      <td style="min-width:14mm"></td><td></td>
     </tr>
     {% endfor %}
     </tbody>

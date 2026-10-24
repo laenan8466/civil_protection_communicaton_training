@@ -1,0 +1,36 @@
+nr: 29
+bereich: transport
+schwierigkeit: schwer
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: Sofort
+  betreff: Patient mit Heimsauerstoff Kleingarten
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, sitzend.
+    Patient: Mann mit Heimsauerstoff, Konzentrator ohne Strom, Name unbekannt.
+    Ort: Kleingartenkolonie in Ricklingen, hinter dem Sportplatz, Parzelle 47.
+    Ziel: Friederikenstift.
+    Ein Nachbar wartet am Eingang der Kolonie.
+rueckmeldungen:
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Zufahrt über Tor 2, Göttinger Chaussee Höhe Sportplatz.
+    Patient: Werner, Hans, geb. 1948. Sauerstoff aus Fahrzeug angeschlossen.
+    Abfahrt Friederikenstift.
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Patient Werner übergeben. Fahrzeug frei.
+loesung:
+  stichwort: KTW sitzend O2
+  ort: 'Beschreibung: Kleingartenkolonie Ricklingen, hinter Sportplatz, Parzelle 47 -> Zufahrt Tor 2 Göttinger Chaussee'
+  patient: unbekannt -> Werner, Hans, 1948
+  ziel: Friederikenstift
+  hinweise: Ort als Beschreibung anlegen, Zufahrt nachtragen.

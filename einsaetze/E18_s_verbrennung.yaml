@@ -1,0 +1,28 @@
+nr: 18
+bereich: sandienst
+schwierigkeit: mittel
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Verbrennung Küche BR
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Helfer der Verpflegungsgruppe, Name unbekannt.
+    Ort: BR Schützenplatz, Küchenzelt.
+    Lage: Verbrühung an der rechten Hand durch heißes Wasser.
+rueckmeldungen:
+- von: Rotkreuz H 40-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ot
+  medium: Funk
+  text: |
+    Patient: Hoffmann, Tim, geb. 1999, JUH Verpflegung.
+    Hand gekühlt und steril abgedeckt, nicht mehr einsatzfähig. Wird zum Hausarzt gebracht.
+loesung:
+  stichwort: SanD Verbrühung Einsatzkraft
+  ort: BR Schützenplatz, Küchenzelt
+  patient: unbekannt -> Hoffmann, Tim, 1999
+  ziel: Hausarzt
+  hinweise: Einsatzkraft -> Ausfall an S1 melden.

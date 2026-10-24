@@ -1,0 +1,36 @@
+nr: 7
+bereich: transport
+schwierigkeit: einfach
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: Sofort
+  betreff: Heimbeatmeter Patient Becker
+  zeichen: Ri
+  text: |
+    Transportauftrag RTW, Heimbeatmung.
+    Patient: Becker, Klaus, geb. 1959, heimbeatmet, Akku ca. 2 Stunden.
+    Abholort: Fössestraße 75, 30451 Hannover, 1. OG.
+    Ziel: Friederikenstift, Intensivbereich.
+    Pflegedienst ist vor Ort.
+rueckmeldungen:
+- von: Sama H 64-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ha
+  medium: Funk
+  text: |
+    Eingetroffen Fössestraße 75. Patient Becker an Transportbeatmung,
+    stabil. Abfahrt Friederikenstift Intensivbereich, Ankunft ca. 15 Minuten.
+- von: Sama H 64-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ha
+  medium: Funk
+  text: |
+    Patient Becker im Intensivbereich übergeben. Fahrzeug frei.
+    Beatmungsgerät des Patienten mit übergeben.
+loesung:
+  stichwort: RTW Heimbeatmung
+  ort: Fössestraße 75, 30451 Hannover, 1. OG
+  patient: Becker, Klaus, 1959
+  ziel: Friederikenstift, Intensiv
+  hinweise: Priorität hoch (Sofort). RTW statt KTW disponieren.

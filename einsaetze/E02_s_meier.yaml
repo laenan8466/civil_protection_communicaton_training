@@ -1,0 +1,28 @@
+nr: 2
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Schnittwunde Notunterkunft Ahlem
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Meier, Jonas, geb. 1992.
+    Ort: Notunterkunft Schulzentrum Ahlem, Turnhalle, Bereich B.
+    Lage: Schnittwunde am Unterarm, blutet mäßig, Patient ansprechbar.
+rueckmeldungen:
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Patient Meier versorgt, Druckverband angelegt.
+    Verbleibt in der Notunterkunft. Einsatz beendet.
+loesung:
+  stichwort: SanD Schnittwunde
+  ort: Schulzentrum Ahlem, Turnhalle, Bereich B
+  patient: Meier, Jonas, 1992
+  ziel: Verbleib vor Ort
+  hinweise: Einfacher Einsatz, Abschluss mit Verbleib dokumentieren.

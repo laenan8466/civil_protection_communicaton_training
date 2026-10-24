@@ -1,0 +1,29 @@
+nr: 9
+bereich: transport
+schwierigkeit: einfach
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Rücktransport Lehmann
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, sitzend, Rücktransport.
+    Patientin: Lehmann, Monika, geb. 1950.
+    Abholort: Friederikenstift, Station 3.
+    Ziel: Wohnung Wunstorfer Straße 18, 30453 Hannover, 3. OG, Aufzug vorhanden.
+    Schlüssel hat die Patientin.
+rueckmeldungen:
+- von: Joh. H 59-92-1
+  funktion: Fahrzeugführer
+  zeichen: Pe
+  medium: Funk
+  text: |
+    Patientin Lehmann in der Wunstorfer Straße 18 in die Wohnung begleitet.
+    Fahrzeug frei.
+loesung:
+  stichwort: KTW sitzend Rücktransport
+  ort: Friederikenstift, Station 3
+  patient: Lehmann, Monika, 1950
+  ziel: Wunstorfer Straße 18, 30453 Hannover, 3. OG
+  hinweise: Abholort und Ziel nicht vertauschen.

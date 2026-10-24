@@ -1,0 +1,28 @@
+nr: 12
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Platzwunde Kind Schulhof
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patientin: Fischer, Lea, geb. 2018, Mutter ist dabei.
+    Ort: Schulzentrum Ahlem, Schulhof am Klettergerüst.
+    Lage: Sturz, Platzwunde an der Stirn, ansprechbar.
+rueckmeldungen:
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Wunde versorgt. Zur ärztlichen Abklärung an Rettungsdienst Florian H 01-83-1 übergeben,
+    Mutter fährt mit.
+loesung:
+  stichwort: SanD Kind Platzwunde
+  ort: Schulzentrum Ahlem, Schulhof
+  patient: Fischer, Lea, 2018
+  ziel: Übergabe RD Florian H 01-83-1
+  hinweise: Übergabe an RD mit Rufname dokumentieren.

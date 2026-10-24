@@ -62,7 +62,7 @@
     {{ fuehrungsstelle(x, 330, s.name, s.alias if s.alias is defined else '') }}
     <text x="{{ x }}" y="428" text-anchor="middle" font-size="17" font-weight="bold" font-family="Liberation Mono, monospace">{{ s.rufname }}</text>
     <text x="{{ x }}" y="447" text-anchor="middle" font-size="13" fill="#333">{{ s.rufname | sprechweise }}</text>
-    <text x="{{ x }}" y="465" text-anchor="middle" font-size="13" fill="#333">EDP Command</text>
+    <text x="{{ x }}" y="465" text-anchor="middle" font-size="13" fill="#333">EDP</text>
     {% set worte = (s.auftrag | default('')).split() %}
     {% set teil = (worte | length / 2) | round(0, 'ceil') | int %}
     <text x="{{ x }}" y="487" text-anchor="middle" font-size="12" fill="#555" font-style="italic">{{ worte[:teil] | join(' ') }}</text>
@@ -76,6 +76,10 @@
     <text x="438" y="543" font-size="13">Telefon / E-Mail{% if fst[0].mail %} (FüSt: {{ fst[0].mail }}){% endif %}</text>
   </svg>
   <div><b>{{ k.hinweis }}</b> Sammelrufe der TEL an alle FüSt sind möglich; jede FüSt quittiert einzeln.</div>
+  {% set ea = cfg.einsaetze %}
+  <div style="margin-top: 1mm"><b>Teil 2 (Einsätze):</b> Aufträge kommen von {{ ea.absender.name }}
+    <b>{{ ea.absender.rufname }}</b> ({{ ea.absender.rufname | sprechweise }}) an
+    {{ ea.empfaenger.values() | join(' bzw. ') }}; Rückmeldungen geben die eingesetzten Fahrzeuge (Liste unten).</div>
 
   {% if genannt %}
   <h2>In Nachrichten genannte Einheiten (keine Übungsteilnehmer)</h2>

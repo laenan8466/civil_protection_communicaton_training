@@ -1,0 +1,28 @@
+nr: 6
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Sprunggelenk BR Schützenplatz
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Schröder, Kevin, geb. 2007, Einsatzkraft.
+    Ort: BR Schützenplatz, Verpflegungsausgabe.
+    Lage: beim Ausladen umgeknickt, Schmerzen rechtes Sprunggelenk.
+rueckmeldungen:
+- von: Rotkreuz H 40-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ot
+  medium: Funk
+  text: |
+    Patient Schröder versorgt, Kühlung und Schiene.
+    Nicht mehr einsatzfähig, Heimfahrt privat. Unfallmeldung erforderlich.
+loesung:
+  stichwort: SanD Verletzung Einsatzkraft
+  ort: BR Schützenplatz, Verpflegungsausgabe
+  patient: Schröder, Kevin, 2007
+  ziel: Heimfahrt privat
+  hinweise: Einsatzkraft verletzt -> Meldung an S1/Unfallmeldung.

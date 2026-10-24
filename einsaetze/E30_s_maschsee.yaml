@@ -1,0 +1,34 @@
+nr: 30
+bereich: sandienst
+schwierigkeit: schwer
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: Blitz
+  betreff: Person aus dem Wasser Maschsee
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: Person aus dem Wasser gerettet, Name unbekannt.
+    Ort: Maschsee Nordufer, Höhe Löwenbastion.
+    Lage: unterkühlt, ansprechbar. DLRG ist vor Ort.
+rueckmeldungen:
+- von: Pelikan H 71-16-1
+  funktion: Fahrzeugführer
+  zeichen: Bä
+  medium: Funk
+  text: |
+    Patient: Jung, Felix, geb. 2001, ansprechbar, stark unterkühlt.
+    Wärmeerhalt eingeleitet, Rettungsdienst erforderlich.
+- von: Pelikan H 71-16-1
+  funktion: Fahrzeugführer
+  zeichen: Bä
+  medium: Funk
+  text: |
+    Übergabe an Florian H 01-83-1. DLRG-Einheit wieder einsatzbereit.
+loesung:
+  stichwort: SanD Wasserrettung Unterkühlung
+  ort: 'Beschreibung: Maschsee Nordufer, Höhe Löwenbastion'
+  patient: unbekannt -> Jung, Felix, 2001
+  ziel: Übergabe RD Florian H 01-83-1
+  hinweise: BLITZ. DLRG als beteiligte Einheit erfassen.

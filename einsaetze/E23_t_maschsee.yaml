@@ -1,0 +1,35 @@
+nr: 23
+bereich: transport
+schwierigkeit: schwer
+meldung:
+  von_funktion: S3
+  medium: Funk
+  vorrang: normal
+  betreff: Transport Seniorenresidenz am Maschsee
+  zeichen: Ri
+  text: |
+    Transportauftrag KTW, liegend.
+    Patient: Bewohner, Name unbekannt.
+    Abholort: Seniorenresidenz am Maschsee, Seiteneingang zur Uferseite.
+    Ziel: Friederikenstift, Ersatz-Pflegeeinrichtung.
+    Hausmeister weist am Seiteneingang ein.
+rueckmeldungen:
+- von: Joh. H# 57-94-1
+  funktion: Fahrzeugführer
+  zeichen: Ma
+  medium: Funk
+  text: |
+    Genaue Adresse: Rudolf-von-Bennigsen-Ufer 20, 30173 Hannover, Seiteneingang West.
+    Patient: Hoffmann, Karl, geb. 1936. Aufgenommen, Abfahrt Friederikenstift.
+- von: Joh. H# 57-94-1
+  funktion: Fahrzeugführer
+  zeichen: Ma
+  medium: Funk
+  text: |
+    Übergabe Friederikenstift Station 2. Frei.
+loesung:
+  stichwort: KTW liegend
+  ort: 'Objekt: Seniorenresidenz am Maschsee, Seiteneingang -> Rudolf-von-Bennigsen-Ufer 20'
+  patient: unbekannt -> Hoffmann, Karl, 1936
+  ziel: Friederikenstift, Station 2
+  hinweise: Einsatz mit Objekt/Freitext anlegen, Adresse später korrigieren.

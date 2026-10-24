@@ -1,0 +1,29 @@
+nr: 26
+bereich: sandienst
+schwierigkeit: schwer
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: Sofort
+  betreff: Sturz Hauptbahnhof Gleis 9
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patient: älterer Mann, Name unbekannt.
+    Ort: Hauptbahnhof Hannover, Gleis 9, Treppe zum Tunnel.
+    Lage: auf der Treppe gestürzt, blutet am Hinterkopf.
+    DB-Sicherheit ist vor Ort.
+rueckmeldungen:
+- von: Rotkreuz H 40-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ot
+  medium: Funk
+  text: |
+    Patient: Peters, Gerhard, geb. 1949. Kopfplatzwunde, kurz bewusstlos gewesen.
+    Transport ins Krankenhaus Siloah.
+loesung:
+  stichwort: SanD Sturz Kopfverletzung
+  ort: 'Objekt: Hauptbahnhof, Gleis 9, Treppe Tunnel'
+  patient: unbekannt -> Peters, Gerhard, 1949
+  ziel: KH Siloah
+  hinweise: Objektadresse Hauptbahnhof (Ernst-August-Platz) recherchieren.

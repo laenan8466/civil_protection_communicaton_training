@@ -1,0 +1,35 @@
+nr: 22
+bereich: sandienst
+schwierigkeit: mittel
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Übelkeit mehrerer Personen Mensa
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patienten: mehrere Personen (ca. 3) mit Übelkeit und Erbrechen, Namen unbekannt.
+    Ort: Notunterkunft Schulzentrum Ahlem, Mensa.
+    Lage: Beschwerden kurz nach dem Mittagessen.
+rueckmeldungen:
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Insgesamt 5 Betroffene, alle ansprechbar.
+    Namen: Berg, Jana; Berg, Lukas; Simon, Peter; Simon, Erika; Hahn, Olga.
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Alle 5 Personen im Isolierbereich Gymnastikraum untergebracht, Zustand stabil.
+    Essensreste sichergestellt.
+loesung:
+  stichwort: SanD mehrere Pat. Übelkeit
+  ort: Schulzentrum Ahlem, Mensa
+  patient: ca. 3 -> 5 Personen (Namen aus RM 1)
+  ziel: Isolierbereich Gymnastikraum
+  hinweise: Anzahl korrigieren, ggf. je Person anlegen.

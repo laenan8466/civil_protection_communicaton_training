@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Übersicht Einsätze</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@page { size: A4 landscape; margin: 8mm; }
+td.leer { min-width: 16mm; }
+td.fb { width: 55mm; }
+tr { height: 11mm; }
+.s1 { color: #2e7d32; font-weight: 700; } .s2 { color: #d97a00; font-weight: 700; } .s3 { color: #c62828; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="uebersicht">
+  <h1>{{ cfg.uebung.titel }} – Teil 2: Einsätze in EDP anlegen</h1>
+  <pre>{{ statistik }}</pre>
+  <table>
+    <thead><tr>
+      <th>Nr</th><th>Stufe</th><th>An</th><th>Betreff</th><th>Ort (Lösung)</th><th>RM</th>
+      <th>Uhrzeit<br>Auftrag</th><th>Uhrzeit<br>RM 1</th><th>Uhrzeit<br>RM 2</th><th>In EDP<br>angelegt</th><th>Feedback</th>
+    </tr></thead>
+    <tbody>
+    {% for e in einsaetze %}
+    <tr>
+      <td><b>{{ e.id }}</b></td>
+      <td class="s{{ e.stufe }}">{{ e.stufe }} {{ e.schwierigkeit }}</td>
+      <td>{{ e.empfaenger }}</td>
+      <td>{{ e.meldungen[0].betreff }}{% if e.meldungen[0].vorrang != 'normal' %} <span class="{{ e.meldungen[0].vorrang | lower }}">({{ e.meldungen[0].vorrang }})</span>{% endif %}</td>
+      <td>{{ e.loesung.ort }}</td>
+      <td>{{ e.meldungen | length - 1 }}</td>
+      <td class="leer"></td><td class="leer"></td><td class="leer">{% if e.meldungen | length < 3 %}–{% endif %}</td><td class="leer"></td><td class="fb"></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

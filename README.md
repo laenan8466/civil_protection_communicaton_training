@@ -49,11 +49,34 @@ Ca. 50 Nachrichten, ohne Uhrzeiten (nur nummeriert):
 
 Anhänge nur wenige, immer als Datei in `anhaenge/`.
 
+## Teil 2: Einsätze in EDP anlegen
+
+30 Einsätze (15 Transportorganisation, 15 Sanitätsdienst), je 7 einfach / 4 mittel / 4 schwer, sortiert von einfach nach schwer:
+- **Stufe 1 einfach:** alle Angaben inkl. Patientenname
+- **Stufe 2 mittel:** Angaben fehlen (z. B. kein Patientenname), kommen mit Rückmeldung
+- **Stufe 3 schwer:** keine Adresse, sondern Objekt (Hannover) oder Ortsbeschreibung („Georgengarten, links vom Leibniztempel“)
+
+Auftrag immer von TEL **Florian H 01-13-1** an **Transportdisposition** bzw. **EA Sanitätsdienst**. Dazu je 1–2 Rückmeldungen des bearbeitenden Fahrzeugs (Rufname aus `config/stellen.yaml` → `fahrzeuge`). Einsätze werden in EDP angelegt (nicht in Command – das ist nur das Nachrichtenmodul).
+
+Die Übungsleitung gibt jeden Einsatz entweder per Funk (A4-Blatt je Einsatz, Rückmeldungen auf derselben Seite) oder per Vordruck (gebündelt, je Meldung eine Seite). Schwierigkeit steht auf jedem Blatt.
+
+```yaml
+# einsaetze/E07_t_lehmann.yaml
+nr: 7
+bereich: transport        # transport | sandienst
+schwierigkeit: einfach    # einfach | mittel | schwer
+meldung: {von_funktion: S3, medium: Funk, vorrang: normal, betreff: ..., zeichen: Ri, text: ...}
+rueckmeldungen:
+  - {von: "Joh. H 59-92-1", funktion: Fahrzeugführer, zeichen: Pe, text: ...}
+loesung: {stichwort: ..., ort: ..., patient: ..., ziel: ..., hinweise: ...}
+```
+
 ## Aufbau
 
 ```
-config/stellen.yaml        Stellen, Rufnamen, Funktionen, Rufnummern, Fahrzeug-Pool
-nachrichten/NNN.yaml       eine Datei pro Nachricht
+config/stellen.yaml        Stellen, Rufnamen, Funktionen, Rufnummern, Fahrzeug-Pool, Teil-2-Einstellungen
+nachrichten/NNN.yaml       Teil 1: eine Datei pro Nachricht
+einsaetze/ENN_*.yaml       Teil 2: eine Datei pro Einsatz inkl. Rückmeldungen und Lösung
 anhaenge/                  Dateien zum Anfügen in EDP
 generator/build.py         validiert und erzeugt die PDFs
 generator/templates/       Vordruck, EDP-Blatt, Übersicht (HTML → PDF via Chromium)
@@ -93,9 +116,20 @@ Benötigt Python 3 mit `pyyaml`, `jinja2` sowie Chromium/Chrome. Die erzeugten P
 
 Vordrucktext: max. ca. 14 Zeilen à 68 Zeichen, sonst bricht der Build mit Fehler ab.
 
-Ausgabe:
-- `Vordrucke_alle.pdf` + `vordrucke/Vordruck_NNN.pdf` – A5, zum Drucken
-- `EDP_alle.pdf` + je sendender FüSt – A4, eine Nachricht pro Seite
-- `Uebersicht_Uebungsleitung.pdf` – alle Nachrichten mit Hinweisen
-- `Kommunikationsplan.pdf` – Skizze angelehnt an DV 102
-- `anhaenge/` – Original + PDF-Fassung je Anhang
+Ausgabe (alles PDF, `00_LIESMICH.pdf` erklärt die Ordner):
+
+```
+ausgabe/
+  00_LIESMICH.pdf
+  0_Allgemein/Kommunikationsplan.pdf          Skizze angelehnt an DV 102
+  1_Nachrichtenpool_Stab/
+    UEL_Uebersicht_Nachrichten.pdf            Übungsleitung, mit Uhrzeit-/Feedbackspalten
+    Vordrucke_A5_TEL_alle.pdf                 + Vordrucke_A5_einzeln/
+    EDP_Texte_alle.pdf                        + EDP_Texte_59-12-x_*.pdf je FüSt
+    Anhaenge/                                 Original + PDF
+  2_Einsaetze_EDP/
+    UEL_Uebersicht_Einsaetze.pdf              Übungsleitung, mit Uhrzeit-/Feedbackspalten
+    Funk_und_UEL_A4_je_Einsatz.pdf            1 Seite je Einsatz inkl. Rückmeldungen, Lösung, Feedback
+    Vordrucke_A5_Einsaetze_gebuendelt.pdf     je Einsatz Auftrag + Rückmeldungen
+    Vordrucke_A5_einzeln/Einsatz_ENN_StufeX.pdf
+```

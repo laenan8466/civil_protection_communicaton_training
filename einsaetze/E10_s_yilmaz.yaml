@@ -1,0 +1,34 @@
+nr: 10
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: Sofort
+  betreff: Asthmaanfall Notunterkunft
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patientin: Yilmaz, Fatma, geb. 1980, bekannte Asthmatikerin.
+    Ort: Notunterkunft Schulzentrum Ahlem, Turnhalle, Bereich A.
+    Lage: Atemnot, eigenes Spray wirkt nicht ausreichend.
+rueckmeldungen:
+- von: Sama H 64-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ha
+  medium: Funk
+  text: |
+    Patientin Yilmaz mit Sauerstoff versorgt, Atemnot gebessert.
+    Wird zur Abklärung ins Krankenhaus Siloah transportiert.
+- von: Sama H 64-85-1
+  funktion: Fahrzeugführer
+  zeichen: Ha
+  medium: Funk
+  text: |
+    Übergabe Krankenhaus Siloah Notaufnahme. Fahrzeug frei.
+loesung:
+  stichwort: SanD Atemnot
+  ort: Schulzentrum Ahlem, Turnhalle, Bereich A
+  patient: Yilmaz, Fatma, 1980
+  ziel: KH Siloah, Notaufnahme
+  hinweise: Transportziel aus RM 1 nachtragen.

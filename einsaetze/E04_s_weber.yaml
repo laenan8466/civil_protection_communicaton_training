@@ -1,0 +1,35 @@
+nr: 4
+bereich: sandienst
+schwierigkeit: einfach
+meldung:
+  von_funktion: Fachberater Sanität
+  medium: Funk
+  vorrang: normal
+  betreff: Unterzuckerung Notunterkunft Ahlem
+  zeichen: Ri
+  text: |
+    Einsatz Sanitätsdienst.
+    Patientin: Weber, Anna, geb. 1954, Diabetikerin.
+    Ort: Notunterkunft Schulzentrum Ahlem, Klassenraum 12.
+    Lage: zittrig und verwirrt, Verdacht auf Unterzuckerung.
+rueckmeldungen:
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Blutzucker 45 mg/dl, Glukosegel gegeben.
+    Nach 15 Minuten Blutzucker 110 mg/dl, Patientin orientiert.
+- von: Joh. H# 57-96-1
+  funktion: Truppführer
+  zeichen: Ku
+  medium: Funk
+  text: |
+    Patientin Weber verbleibt in der Notunterkunft, Betreuung informiert.
+    Einsatz beendet.
+loesung:
+  stichwort: SanD Hypoglykämie
+  ort: Schulzentrum Ahlem, Klassenraum 12
+  patient: Weber, Anna, 1954
+  ziel: Verbleib vor Ort
+  hinweise: Messwerte als Verlauf erfassen.
