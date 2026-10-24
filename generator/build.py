@@ -143,7 +143,7 @@ def anreichern(cfg, nachrichten):
         n["rufnummer"] = {
             "Telefon": an["telefon"],
             "Fax": an["fax"],
-            "Mail": an["mail"],
+            "DFÜ": f"Mail {an['mail']}" if an["mail"] else "",
             "Funk": "",
             "Melder": "",
         }[n["medium"]]
