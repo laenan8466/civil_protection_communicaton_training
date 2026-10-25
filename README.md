@@ -86,6 +86,10 @@ structured per DV 100, 3.3.3.1 and annex 4 (header, 1 situation, 2 mission, 3 ex
 |---|---|
 | 001 | Aufbau Übungsbetrieb Führungsstelle in der Fahrzeughalle (59-12-1 with front tent, 59-10-1 as exercise control) |
 
+## Separator sheet (Trennblatt)
+
+`trennblatt/trennblatt.html` reproduces the NLBK sheet "4-Fach-Nachrichtenvordruck, Ausfüllhilfe und Verteilung" (01/2024) as an A4 landscape separator to put between the form sets so nothing is copied through. The middle is exactly A5 wide (148 mm) and is covered by the inserted form; the filling hints sit on the visible left and right margins (74.5 mm each). Malteser branding (Palatino, Malteser red, official logo from `presentations-revealjs/styles/malteser`). Texts adapted to the KSK form as in the presentation deck "Vierfachvordruck" (DFÜ, tactical time, sender fields, screener section). Output: `ausgabe/0_Allgemein/Trennblatt_Vierfachvordruck_A4.pdf`.
+
 ## Repository layout
 
 ```
@@ -94,6 +98,7 @@ nachrichten/NNN.yaml       part 1: one file per message
 einsaetze/ENN_*.yaml       part 2: one file per incident incl. feedback reports and solution
 befehle/vorlage.yaml       template for written orders (DV 100)
 befehle/NNN_*.yaml         one written order per file
+trennblatt/                separator sheet for the 4-part form (HTML source + official Malteser logo)
 anhaenge/                  attachments for EDP
 generator/build.py         validates and generates the PDFs
 generator/templates/       form, EDP sheet, overviews etc. (HTML → PDF via Chromium)
@@ -143,6 +148,7 @@ ausgabe/
   0_Allgemein/
     Kommunikationsplan.pdf                    communication plan, sketch based on DV 102
     Befehle/                                  written orders + blank template (A4)
+    Trennblatt_Vierfachvordruck_A4.pdf        separator sheet: filling guide + distribution, Malteser branding
   1_Nachrichtenpool_Stab/
     UEL_Uebersicht_Nachrichten.pdf            exercise control, with time/feedback columns
     Vordrucke_A5_TEL_alle.pdf                 + Vordrucke_A5_einzeln/

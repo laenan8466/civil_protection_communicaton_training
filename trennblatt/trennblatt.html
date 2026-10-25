@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Trennblatt Vierfachvordruck</title>
+<!--
+  Trennblatt / Unterlegekarton für den 4-fach-Nachrichtenvordruck (KSK-Vordruck).
+  Inhalt nach NLBK „4-Fach-Nachrichtenvordruck, Ausfüllhilfe und Verteilung“ (01/2024)
+  und Unterlegekarton „Hinweise zum Ausfüllen“ (10/2022), angepasst an den KSK-Vordruck
+  wie im Deck presentations-revealjs/presentations/Vierfachvordruck.
+  Gestaltung nach Malteser-Erscheinungsbild: Palatino, Malteser-Rot, Logo oben rechts.
+  Aufteilung: Mitte genau A5 breit (148 mm) – wird vom eingelegten Vordruck verdeckt;
+  die Ränder links und rechts (je 74,5 mm) bleiben mit den Ausfüllhinweisen sichtbar.
+  PDF: python3 generator/build.py -> ausgabe/0_Allgemein/Trennblatt_Vierfachvordruck_A4.pdf
+-->
+<style>
+@page { size: A4 landscape; margin: 0; }
+:root {
+  --rot: #ff0000;
+  --grau: #666666;
+  --linie: #cccccc;
+  --weiss: #ffffff;
+  --gruen: #43a047;
+  --rot-blatt: #e53935;
+  --gelb: #fdd835;
+  --font: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", P052,
+          "TeX Gyre Pagella", "Palatino LT STD", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: var(--font); color: #000; font-size: 7.9pt; line-height: 1.24; }
+/* Rand links 74,5 mm | Mitte A5 = 148 mm | Rand rechts 74,5 mm */
+.blatt { width: 297mm; height: 210mm; display: grid; grid-template-columns: 74.5mm 148mm 74.5mm; overflow: hidden; }
+.spalte { height: 210mm; overflow: hidden; padding: 6mm 3.5mm 5mm; }
+.spalte.links { padding-left: 6mm; }
+.spalte.rechts { padding-right: 6mm; }
+.spalte.mitte { padding: 7mm 6mm 5mm; font-size: 8.6pt; display: flex; flex-direction: column;
+                border-left: 0.6mm solid #000; border-right: 0.6mm solid #000; }
+
+.titel { border-bottom: 0.7mm solid var(--rot); padding-bottom: 2mm; margin-bottom: 3mm; }
+.titel h1 { color: var(--rot); font-weight: 400; font-size: 20pt; margin: 0; line-height: 1.05; }
+.titel .unter { font-size: 10.5pt; margin-top: 1mm; }
+.logo { text-align: right; margin-bottom: 3mm; }
+.logo img { height: 12mm; }
+.links p, .rechts p { text-align: left; }
+.quelle { font-size: 6.5pt; color: var(--grau); border-top: 0.3mm solid var(--rot); padding-top: 1mm; margin-top: 2mm; }
+
+h2 { color: var(--rot); font-weight: 400; font-size: 10.5pt; margin: 0 0 1mm; }
+h3 { font-size: 9.6pt; margin: 2mm 0 0.8mm; }
+p { margin: 0 0 1.2mm; text-align: justify; hyphens: auto; }
+.nr { font-weight: 700; color: var(--rot); margin-right: 0.8mm; }
+.feld { font-weight: 700; text-decoration: underline; }
+
+/* Verteilung */
+.weg { display: grid; grid-template-columns: 10mm 4.5mm minmax(0, 1fr); align-items: center; margin: 0.6mm 0 1.6mm; font-size: 8.3pt; }
+.weg > * { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+.stapel { display: flex; flex-direction: column; border: 0.3mm solid #000; }
+.stapel span { height: 3.2mm; border-bottom: 0.2mm solid #000; }
+.stapel span:last-child { border-bottom: none; }
+.stapel.einzeln span { height: 8mm; }
+.w { background: var(--weiss); } .g { background: var(--gruen); }
+.r { background: var(--rot-blatt); } .y { background: var(--gelb); }
+.pfeil { text-align: center; font-size: 11pt; }
+.weg ul { margin: 0; padding-left: 3mm; }
+.weg li { margin: 0; }
+.verteilung { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 3mm; }
+.verteilung > div + div { border-left: 0.3mm solid #000; padding-left: 3mm; }
+.merk { margin-top: 2mm; border-left: 1.5mm solid var(--rot); background: #f0f0f0; padding: 1.5mm 2.5mm; font-size: 9.5pt; }
+
+/* Vorrang-Tabelle */
+table { border-collapse: collapse; width: 100%; font-size: 7.4pt; margin: 0.5mm 0 1.4mm; }
+td, th { border: 0.25mm solid var(--grau); padding: 0.5mm 1.2mm; text-align: left; vertical-align: top; }
+th { background: #f0f0f0; }
+
+/* taktische Zeit */
+.tz { text-align: center; margin: 1.5mm 0 2mm; }
+.tz .gross { font-size: 17pt; font-weight: 700; letter-spacing: 0.3mm; }
+.tz .klar { font-size: 9.5pt; font-weight: 700; }
+.tz .t { color: #c00000; } .tz .u { color: #1565c0; } .tz .m { color: #2e7d32; } .tz .j { color: #e0a000; }
+
+.fuss { margin-top: auto; font-size: 7pt; color: var(--grau); border-top: 0.3mm solid var(--rot); padding-top: 1.2mm; }
+</style>
+</head>
+<body>
+<div class="blatt">
+
+    <!-- ===================== Rand links: Kopf und Mittelteil ===================== -->
+    <div class="spalte links">
+      <h2>Kopf: Fm-Betriebsstelle</h2>
+      <p><span class="nr">1</span>Der <span class="feld">Aufnahmevermerk</span> wird von der Fm-Betriebsstelle beim
+        Nachrichten-<b>Eingang</b> ausgefüllt. Übermittlungsart ankreuzen (Telefon, Funk, Fax, DFÜ, Melder).
+        Sobald die Nachricht fertig aufgenommen ist: Datum, Uhrzeit vierstellig und Namenszeichen.</p>
+      <p><span class="nr">2</span>Der <span class="feld">Annahmevermerk</span> wird beim Nachrichten-<b>Ausgang</b>
+        ausgefüllt: wann die Fm-Betriebsstelle die Nachricht vom Verfasser angenommen hat. Datum, Uhrzeit
+        vierstellig, Namenszeichen.</p>
+      <p><span class="nr">3</span>Der <span class="feld">Beförderungsvermerk</span> wird nur beim
+        <b>Ausgang</b> ausgefüllt, und erst nach der Quittung der Gegenstelle: Datum, Uhrzeit, Namenszeichen.
+        Nicht bei einer Gesprächsnotiz.</p>
+      <p><span class="nr">4</span><span class="feld">Nachweisung Nr.</span>: eine einmalige laufende Nummer
+        vergeben und <b>Eingang</b> oder <b>Ausgang</b> ankreuzen. Bei einer Gesprächsnotiz nur die Nummer.</p>
+      <p><span class="nr">5</span><span class="feld">Rufname / Spruchkopf</span>: nur beim Eingang, Name und
+        Anschrift (Funkrufname) der Gegenstelle. Bei Ausgang und Gesprächsnotiz bleibt die Zeile leer.</p>
+
+      <h2 style="margin-top: 2.5mm">Mittelteil: Verfasser („Aufgeber“)</h2>
+      <p><span class="nr">6</span><span class="feld">Medium</span> ankreuzen. <b>DFÜ</b> = Datenfernübertragung
+        (Mail, Messenger, Fileshare …); den Weg unter Rufnummer dazuschreiben, z. B. „Mail elw.hannover@malteser.org“.</p>
+      <p><span class="nr">7</span>Die <span class="feld">Vorrangstufe</span> legt der Verfasser fest. Sie gibt nur
+        die Geschwindigkeit der Beförderung vor, nicht die Reihenfolge der Bearbeitung.</p>
+      <table>
+        <tr><th>Vorrang</th><th>Eintrag</th><th>Bearbeitung</th></tr>
+        <tr><td>Einfach</td><td>leer</td><td>in der Reihenfolge des Eingangs bzw. Ausgangs</td></tr>
+        <tr><td><b>Sofort</b></td><td>Sofort / SSS</td><td>vorrangig, laufende Übertragung wird <b>nicht</b> unterbrochen</td></tr>
+        <tr><td><b>Blitz</b></td><td>Blitz / BBB</td><td>vorrangig, laufende Übertragung <b>wird</b> unterbrochen</td></tr>
+      </table>
+      <p><span class="nr">8</span><span class="feld">Empfänger / Anschrift</span> und
+        <span class="feld">Rufnummer</span>: die Stelle (nicht die Person) und ihre Erreichbarkeit: Funkrufname,
+        Telefon, Fax, Mail.</p>
+      <p><span class="nr">9</span><span class="feld">Gesprächsnotiz</span> ankreuzen, wenn ein Gespräch
+        dokumentiert wird, das in die Einsatzdokumentation soll. Empfänger ist dann der Gesprächspartner,
+        Absender die eigene Stelle.</p>
+    </div>
+
+    <!-- ===================== Mitte (A5): Titel und Verteilung ===================== -->
+    <div class="spalte mitte">
+      <div class="titel">
+        <h1>4-fach-Nachrichtenvordruck</h1>
+        <div class="unter">Ausfüllhilfe und Verteilung · Trennblatt: unter das weiße Blatt legen, damit nicht durchgeschrieben wird</div>
+      </div>
+      <h2>Verteilung der vier Blätter</h2>
+      <div class="verteilung">
+        <div>
+          <h3>Nachrichten-Eingang</h3>
+          <b>1. Fm-Betriebsstelle</b>
+          <div class="weg">
+            <div class="stapel"><span class="w"></span><span class="g"></span><span class="r"></span><span class="y"></span></div>
+            <div class="pfeil">→</div>
+            <ul><li>Aufnahmevermerk</li><li>Nachweisung Nr., Eingang</li><li>Mittelteil mit den angenommenen Angaben ausfüllen</li></ul>
+          </div>
+          <b>2. Sichter</b>
+          <div class="weg">
+            <div class="stapel"><span class="w"></span><span class="g"></span><span class="r"></span><span class="y"></span></div>
+            <div class="pfeil">→</div>
+            <ul><li>ganzer Satz, ungetrennt</li><li>Sichterteil ausfüllen: Quittung, Verteiler, Vermerke</li></ul>
+          </div>
+          <b>3. Bote verteilt</b>
+          <div class="weg">
+            <div class="stapel einzeln"><span class="y"></span></div><div class="pfeil">→</div>
+            <div>zurück in die Fm-Betriebsstelle (Nachweisung)</div>
+          </div>
+          <div class="weg">
+            <div class="stapel einzeln"><span class="r"></span></div><div class="pfeil">→</div>
+            <div>an S 2: Lagekarte, Einsatztagebuch</div>
+          </div>
+          <div class="weg">
+            <div class="stapel"><span class="w"></span><span class="g"></span></div><div class="pfeil">→</div>
+            <div>ohne festen Empfänger an den Verteiler des Sichters; weiß (Original) i. d. R. an den Federführenden</div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Nachrichten-Ausgang / Gesprächsnotiz</h3>
+          <b>1. Verfasser</b>
+          <div class="weg">
+            <div class="stapel einzeln"><span class="w"></span></div><div class="pfeil">→</div>
+            <div>weiß bleibt beim Verfasser zur Dokumentation</div>
+          </div>
+          <div class="weg">
+            <div class="stapel"><span class="g"></span><span class="r"></span><span class="y"></span></div><div class="pfeil">→</div>
+            <div>grün, rot, gelb (ggf. mit Anlagen) per Bote zur Fm-Betriebsstelle</div>
+          </div>
+          <b>2. Fm-Betriebsstelle</b>
+          <div class="weg">
+            <div class="stapel"><span class="g"></span><span class="r"></span><span class="y"></span></div><div class="pfeil">→</div>
+            <ul><li>Annahmevermerk</li><li>Nachweisung Nr., Ausgang (Gesprächsnotiz: nur Nr.)</li><li>übermitteln, dann Beförderungsvermerk</li></ul>
+          </div>
+          <b>3. Verbleib</b>
+          <div class="weg">
+            <div class="stapel einzeln"><span class="y"></span></div><div class="pfeil">→</div>
+            <div>bleibt in der Fm-Betriebsstelle (Nachweisung)</div>
+          </div>
+          <b>4. Bote verteilt</b>
+          <div class="weg">
+            <div class="stapel einzeln"><span class="r"></span></div><div class="pfeil">→</div>
+            <div>an S 2: Lagekarte, Einsatztagebuch</div>
+          </div>
+          <div class="weg">
+            <div class="stapel einzeln"><span class="g"></span></div><div class="pfeil">→</div>
+            <div>zurück an den Verfasser als Beleg</div>
+          </div>
+        </div>
+      </div>
+      <div class="merk"><b>Merksatz für beide Richtungen: gelb Nachweisung, rot S 2.</b><br>
+        Ausgang läuft ohne Sichtung direkt in die Fm-Betriebsstelle. „Bote“ ist der stabsinterne Bote,
+        nicht der Melder als Übertragungsweg.</div>
+      <div class="fuss">Malteser Hilfsdienst e.V. Hannover · Gruppe Führung &amp; Kommunikation</div>
+    </div>
+
+    <!-- ===================== Rand rechts: Nachricht, Absender, Sichter ===================== -->
+    <div class="spalte rechts">
+      <div class="logo"><img src="assets/malteser_logo.svg" alt="Malteser"></div>
+      <h2>Nachricht und Absender</h2>
+      <p><span class="nr">10</span><span class="feld">Nachricht</span>: Die erste Zeile ist eine kurze, eindeutige
+        <b>Inhaltszeile</b> (Betreff), bei Antworten gefolgt vom Bezug. Das erleichtert das Suchen in der
+        Nachweisung. Danach der Text: kurz, leserlich, ohne Abkürzungen, möglichst im Befehlsformat
+        (Einheit, Auftrag, Mittel, Ziel, Weg; Führung und Fm-Verbindung; Logistik). Beim Eingang wörtlich
+        mitschreiben, Zahlen und Rufnamen zurücklesen.</p>
+      <p><span class="nr">11</span><span class="feld">Absender</span>: <b>Datum, Uhrzeit</b> der Abfassung als
+        taktische Zeit; <b>Anschrift, Einheit, Org.</b> des Aufgebers; <b>Zeichen, Funktion</b>
+        (Namenszeichen und Funktion des Aufgebers, z. B. „Ri, S3“).</p>
+
+      <div class="tz">
+        <div style="font-weight: 700">Beispiel „taktische Zeit“ (Datum-Uhrzeit-Gruppe)</div>
+        <div class="gross"><span class="t">24</span><span class="u">1105</span><span class="m">oct</span><span class="j">26</span></div>
+        <div class="klar"><span class="t">24.</span> <span class="m">Oktober</span> <span class="j">2026</span>, <span class="u">11:05</span> Uhr</div>
+      </div>
+
+      <h2>Sichterteil (nur Eingang)</h2>
+      <p><span class="nr">12</span><span class="feld">Quittung</span>: Der Sichter quittiert Erhalt und
+        Bearbeitung mit Uhrzeit (taktische Zeit) und Namenszeichen.</p>
+      <p><span class="nr">13</span><span class="feld">Verteiler</span>: ankreuzen, wer die Nachricht bekommt
+        (Leiter, S1–S6, freie Felder z. B. FB San, med. Leitung). Genau <b>eine</b> Stelle federführend, weitere
+        zur Information. Reicht der Platz nicht, unter Vermerke weiter aufzählen.</p>
+      <p><span class="nr">14</span><span class="feld">Vermerke</span>: allgemeine Vermerke der Bearbeiter,
+        z. B. „S3 federführend, med. L. z. I., Meldung bis 11:45“.</p>
+
+      <h2>Drei Bereiche des Vordrucks</h2>
+      <p>Zwei dicke waagerechte Striche teilen den Vordruck: <b>oben</b> der betrieblich-technische Teil der
+        <b>Fm-Betriebsstelle</b>, in der <b>Mitte</b> die Angaben des <b>Aufgebers</b> (Nachrichteninhalt),
+        <b>unten</b> der „Laufzettel“ für den <b>Sichter</b>.</p>
+      <div class="quelle">Inhalt nach NLBK, Ausfüllhilfe 4-Fach-Nachrichtenvordruck (01/2024) und Unterlegekarton (10/2022),
+        angepasst an den KSK-Vordruck · Stand 10/2026</div>
+    </div>
+</div>
+</body>
+</html>

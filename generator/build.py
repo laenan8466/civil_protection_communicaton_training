@@ -30,6 +30,7 @@ CONFIG = ROOT / "config" / "stellen.yaml"
 NACHRICHTEN = ROOT / "nachrichten"
 EINSAETZE = ROOT / "einsaetze"
 BEFEHLE = ROOT / "befehle"
+TRENNBLATT = ROOT / "trennblatt"
 ANHAENGE = ROOT / "anhaenge"
 TEMPLATES = ROOT / "generator" / "templates"
 ASSETS = ROOT / "assets"
@@ -461,6 +462,8 @@ def main():
     drucke(chromium, rendere(env, "kommplan.html", BUILD / "kommplan.html", k=cfg["kommunikation"],
                              genannt=[f for f in cfg["fahrzeuge"] if any(f["rufname"] in t for t in texte)], **ctx),
            allg / "Kommunikationsplan.pdf")
+    # Trennblatt für den Vierfachvordruck (statische Seite in trennblatt/)
+    drucke(chromium, TRENNBLATT / "trennblatt.html", allg / "Trennblatt_Vierfachvordruck_A4.pdf")
     drucke(chromium, rendere(env, "liesmich.html", BUILD / "liesmich.html", anzahl_nachrichten=len(nachrichten),
                              anzahl_einsaetze=len(einsaetze), **ctx),
            AUSGABE / "00_LIESMICH.pdf")
