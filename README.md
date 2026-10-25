@@ -88,7 +88,7 @@ structured per DV 100, 3.3.3.1 and annex 4 (header, 1 situation, 2 mission, 3 ex
 
 ## Separator sheet (Trennblatt)
 
-`trennblatt/trennblatt.html` reproduces the NLBK sheet "4-Fach-Nachrichtenvordruck, Ausfüllhilfe und Verteilung" (01/2024) as an A4 landscape separator to put between the form sets so nothing is copied through. The middle is exactly A5 wide (148 mm) and is covered by the inserted form; the filling hints sit on the visible left and right margins (74.5 mm each). Malteser branding (Palatino, Malteser red, official logo from `presentations-revealjs/styles/malteser`). Texts adapted to the KSK form as in the presentation deck "Vierfachvordruck" (DFÜ, tactical time, sender fields, screener section). Output: `ausgabe/0_Allgemein/Trennblatt_Vierfachvordruck_A4.pdf`.
+`trennblatt/trennblatt.html` reproduces the NLBK sheet "4-Fach-Nachrichtenvordruck, Ausfüllhilfe und Verteilung" (01/2024) as an A4 landscape separator to put between the form sets so nothing is copied through. The middle is exactly A5 wide (148 mm) and is covered by the inserted form; the filling hints sit on the visible left and right margins (74.5 mm each). Malteser branding (Palatino, Malteser red, official logo from `presentations-revealjs/styles/malteser`). Texts adapted to the KSK form type B as in the presentation deck "Vierfachvordruck" (DFÜ, tactical time, sender fields, screener section). Output: `ausgabe/0_Allgemein/Trennblatt_Vierfachvordruck_A4.pdf`.
 
 ## Repository layout
 
@@ -136,7 +136,7 @@ python3 generator/build.py --nur-pruefen # validate only
 
 Requires Python 3 with `pyyaml` and `jinja2`, plus Chromium/Chrome. The generated PDFs are committed in `ausgabe/`.
 
-Message form per NLBK filling guide (01/2024), layout like the KSK form: the first line of the message is the subject (content line); with `bezug`, "Bezug: Nachricht „…“" follows. Under "Rufnummer" the form shows the phone number, e-mail address (DFÜ) or call sign, depending on the medium. Date/time of the sender stays empty: exercise control writes it by hand as tactical time when injecting (e.g. 241105oct26).
+Message form per NLBK filling guide (01/2024), layout like the KSK form type B: the first line of the message is the subject (content line); with `bezug`, "Bezug: Nachricht „…“" follows. Under "Rufnummer" the form shows the phone number, e-mail address (DFÜ) or call sign, depending on the medium. Date/time of the sender stays empty: exercise control writes it by hand as tactical time when injecting (e.g. 241105oct26).
 
 Form text (incl. subject and reference): max. approx. 14 lines of 68 characters, otherwise the build fails.
 
