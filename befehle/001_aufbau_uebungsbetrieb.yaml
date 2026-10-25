@@ -33,8 +33,10 @@ durchfuehrung: |
        nur mit Einweiser:in.
      - 59-12-1 in der Halle aufstellen, Vorzelt anbauen, Strom, Licht und
        ggf. Heizung herstellen.
-     - Im Vorzelt Arbeitsplatz Leitung FmSt und drei Funkarbeitsplätze
-       einrichten (Tisch, Stuhl, Funkgerät, Vordrucke, Nachweisung).
+     - In 59-12-1 Arbeitsplätze für Stab FüSt und Transportdispo einrichten.
+     - Im Vorzelt einrichten: Arbeitsplatz Leitung (je nach Szenario Leitung
+       FüSt oder Leitung Transportdispo), Arbeitsplatz Leitung FmSt und drei
+       Funkarbeitsplätze (Tisch, Stuhl, Funkgerät, Vordrucke, Nachweisung).
      - Lagekarte auf dem Außenmonitor von 59-12-1 darstellen, vom Vorzelt
        aus sichtbar.
   b) Fahrzeugführer:in 59-10-1:
@@ -59,6 +61,7 @@ versorgung: |
 fuehrung: |
   Standort Übungsleitung: 59-10-1, Fahrzeughalle (abgesetzt).
   Standort Führungsstelle: 59-12-1 mit Vorzelt, Fahrzeughalle.
+  Stab FüSt und Transportdispo in 59-12-1; Leitung und FmSt im Vorzelt.
   Funk: ausschließlich TMO, Rufgruppe NI_Sonder/K_LS_MHD, für alle Verbindungen.
   Jeder Spruch beginnt mit „Übung“.
   Rufnamen, Telefon und Mail nach Kommunikationsplan (Anlage).
@@ -74,5 +77,4 @@ verteiler:
 - "Übungsleitung (Akte)"
 unterschrift_funktion: "Leitung Übung"
 notiz: >
-  Offen: Arbeitsplätze Stab FüSt und Transportdispo (Fahrzeug oder Vorzelt).
   Datum und Zeiten handschriftlich ergänzen.
