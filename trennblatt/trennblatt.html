@@ -28,7 +28,7 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: #fff; }
-body { font-family: var(--font); color: #000; font-size: 7.9pt; line-height: 1.24; }
+body { font-family: var(--font); color: #000; font-size: 9pt; line-height: 1.25; }
 /* Rand links 74,5 mm | Mitte A5 = 148 mm | Rand rechts 74,5 mm */
 .blatt { width: 297mm; height: 210mm; display: grid; grid-template-columns: 74.5mm 148mm 74.5mm; overflow: hidden; }
 .spalte { height: 210mm; overflow: hidden; padding: 6mm 3.5mm 5mm; }
@@ -43,9 +43,15 @@ body { font-family: var(--font); color: #000; font-size: 7.9pt; line-height: 1.2
 .logo { text-align: right; margin-bottom: 3mm; }
 .logo img { height: 12mm; }
 .links p, .rechts p { text-align: left; }
-.quelle { font-size: 6.5pt; color: var(--grau); border-top: 0.3mm solid var(--rot); padding-top: 1mm; margin-top: 2mm; }
+.spalte.links { font-size: var(--links-pt, 8.8pt); line-height: var(--links-lh, 1.25); }
+.spalte.rechts { font-size: var(--rechts-pt, 9.8pt); line-height: var(--rechts-lh, 1.3); }
+/* Sachgebiete (DV 100, Anlage 2) */
+.sg { display: grid; grid-template-columns: repeat(7, 1fr); border: 0.3mm solid #000; margin-top: 3mm; text-align: center; }
+.sg div { padding: 1mm 0.5mm; border-right: 0.3mm solid #000; font-size: 8pt; line-height: 1.15; }
+.sg div:last-child { border-right: none; }
+.sg b { display: block; color: var(--rot); font-size: 10pt; font-weight: 700; margin-bottom: 0.5mm; }
 
-h2 { color: var(--rot); font-weight: 400; font-size: 10.5pt; margin: 0 0 1mm; }
+h2 { color: var(--rot); font-weight: 400; font-size: 1.3em; margin: 0 0 1mm; }
 h3 { font-size: 9.6pt; margin: 2mm 0 0.8mm; }
 p { margin: 0 0 1.2mm; text-align: justify; hyphens: auto; }
 .nr { font-weight: 700; color: var(--rot); margin-right: 0.8mm; }
@@ -68,7 +74,7 @@ p { margin: 0 0 1.2mm; text-align: justify; hyphens: auto; }
 .merk { margin-top: 2mm; border-left: 1.5mm solid var(--rot); background: #f0f0f0; padding: 1.5mm 2.5mm; font-size: 9.5pt; }
 
 /* Vorrang-Tabelle */
-table { border-collapse: collapse; width: 100%; font-size: 7.4pt; margin: 0.5mm 0 1.4mm; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92em; margin: 0.5mm 0 1.4mm; }
 td, th { border: 0.25mm solid var(--grau); padding: 0.5mm 1.2mm; text-align: left; vertical-align: top; }
 th { background: #f0f0f0; }
 
@@ -192,7 +198,20 @@ th { background: #f0f0f0; }
       <div class="merk"><b>Merksatz für beide Richtungen: gelb Nachweisung, rot S 2.</b><br>
         Ausgang läuft ohne Sichtung direkt in die Fm-Betriebsstelle. „Bote“ ist der stabsinterne Bote,
         nicht der Melder als Übertragungsweg.</div>
-      <div class="fuss" style="display: flex; justify-content: space-between"><span>Malteser Hilfsdienst e.V. Hannover · Gruppe Führung &amp; Kommunikation</span><span><b>Version 10/2026</b></span></div>
+      <h2 style="margin-top: 3mm">Sachgebiete im Stab <span style="font-size: 0.65em; color: #666">(DV 100, Anlage 2)</span></h2>
+      <div class="sg" style="margin-top: 0">
+        <div><b>LdS</b>Leitung, Koordination</div>
+        <div><b>S 1</b>Personal, Innerer Dienst</div>
+        <div><b>S 2</b>Lage</div>
+        <div><b>S 3</b>Einsatz</div>
+        <div><b>S 4</b>Versorgung</div>
+        <div><b>S 5</b>Presse, Medien</div>
+        <div><b>S 6</b>Information, Kommunikation</div>
+      </div>
+      <div class="fuss">
+        <div style="display: flex; justify-content: space-between"><span>Malteser Hilfsdienst e.V. Hannover · Gruppe Führung &amp; Kommunikation</span><span><b>Version 10/26</b></span></div>
+        <div>Inhalt nach NLBK, Ausfüllhilfe 4-Fach-Nachrichtenvordruck (01/2024) und Unterlegekarton (10/2022), angepasst an den KSK-Vordruck Typ B</div>
+      </div>
     </div>
 
     <!-- ===================== Rand rechts: Nachricht, Absender, Sichter ===================== -->
@@ -227,8 +246,6 @@ th { background: #f0f0f0; }
       <p>Zwei dicke waagerechte Striche teilen den Vordruck: <b>oben</b> der betrieblich-technische Teil der
         <b>Fm-Betriebsstelle</b>, in der <b>Mitte</b> die Angaben des <b>Aufgebers</b> (Nachrichteninhalt),
         <b>unten</b> der „Laufzettel“ für den <b>Sichter</b>.</p>
-      <div class="quelle">Inhalt nach NLBK, Ausfüllhilfe 4-Fach-Nachrichtenvordruck (01/2024) und Unterlegekarton (10/2022),
-        angepasst an den KSK-Vordruck Typ B · <b>Version 10/2026</b></div>
     </div>
 </div>
 </body>

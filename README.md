@@ -140,11 +140,11 @@ Message form per NLBK filling guide (01/2024), layout like the KSK form type B: 
 
 Form text (incl. subject and reference): max. approx. 14 lines of 68 characters, otherwise the build fails.
 
-Output (all PDF, `00_LIESMICH.pdf` explains the folders):
+Output (all PDF, `00_README.pdf` explains the folders):
 
 ```
 ausgabe/
-  00_LIESMICH.pdf
+  00_README.pdf
   0_Allgemein/
     Kommunikationsplan.pdf                    communication plan, sketch based on DV 102
     Befehle/                                  written orders + blank template (A4)

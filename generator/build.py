@@ -464,9 +464,9 @@ def main():
            allg / "Kommunikationsplan.pdf")
     # Trennblatt für den Vierfachvordruck (statische Seite in trennblatt/)
     drucke(chromium, TRENNBLATT / "trennblatt.html", allg / "Trennblatt_Vierfachvordruck_A4.pdf")
-    drucke(chromium, rendere(env, "liesmich.html", BUILD / "liesmich.html", anzahl_nachrichten=len(nachrichten),
+    drucke(chromium, rendere(env, "readme.html", BUILD / "readme.html", anzahl_nachrichten=len(nachrichten),
                              anzahl_einsaetze=len(einsaetze), **ctx),
-           AUSGABE / "00_LIESMICH.pdf")
+           AUSGABE / "00_README.pdf")
     print(f"Ausgabe in {AUSGABE.relative_to(ROOT)}/")
 
 
