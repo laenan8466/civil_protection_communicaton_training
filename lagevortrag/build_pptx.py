@@ -185,9 +185,13 @@ kasten(640, 380, 180, 78, "UEA", "Friederikenstift")
 kreis(1000, 420, 46, linienfarbe=SCHWARZ)
 s.shapes[-1].fill.solid(); s.shapes[-1].fill.fore_color.rgb = RGBColor(0xFF, 0xE6, 0x00)
 text(s, OX + 970, OY + 384, 60, 32, "M", size=26, bold=True, align=PP_ALIGN.CENTER)
-rect(s, OX + 976, OY + 420, 48, 20, WEISS, SCHWARZ, lw=2.5)
-for rx in (987, 1013):
-    rect(s, OX + rx - 5, OY + 441, 10, 10, WEISS, SCHWARZ, lw=2.5, shape=MSO_SHAPE.OVAL)
+# Fahrzeug landgebunden (DV 100 Anl. 6 Nr. 1.8): Rechteck, Oberkante nach unten eingedellt
+pts = [(976 + 48 * i / 12, 416 + 24 * (i / 12) * (1 - i / 12)) for i in range(13)]  # quadr. Bezier ~ Parabel
+fb = s.shapes.build_freeform(p(OX + 976), p(OY + 444))
+fb.add_line_segments([(p(OX + 976), p(OY + 416))] + [(p(OX + x), p(OY + y)) for x, y in pts[1:]] + [(p(OX + 1024), p(OY + 444))], close=True)
+v = fb.convert_to_shape()
+v.fill.solid(); v.fill.fore_color.rgb = WEISS
+v.line.color.rgb = SCHWARZ; v.line.width = p(2.5); v.shadow.inherit = False
 text(s, OX + 880, OY + 478, 240, 26, "BR Schützenplatz", size=20, bold=True, align=PP_ALIGN.CENTER)
 text(s, OX + 880, OY + 504, 240, 24, "Meldekopf", size=18, align=PP_ALIGN.CENTER)
 
