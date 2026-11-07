@@ -76,52 +76,56 @@ def rahmen(titel, rechts, nr, fuss="Lagevortrag zur Eröffnung der Stabsarbeit")
     text(s, 700, 56, 524, 30, rechts, size=20, color=RGBColor(0x55, 0x55, 0x55), align=PP_ALIGN.RIGHT)
     rect(s, 56, 95, 1168, 4, ROT)
     text(s, 56, 684, 700, 22, fuss, size=15, color=RGBColor(0x77, 0x77, 0x77))
-    text(s, 1100, 684, 124, 22, f"{nr} / 3", size=15, color=RGBColor(0x77, 0x77, 0x77), align=PP_ALIGN.RIGHT)
+    text(s, 1100, 684, 124, 22, f"{nr} / 5", size=15, color=RGBColor(0x77, 0x77, 0x77), align=PP_ALIGN.RIGHT)
     return s
 
 
 def karte(s, x, y, w, h, farbe, titel, kern, punkte, kern_farbe=SCHWARZ):
     rect(s, x, y, w, h, RGBColor(0xF4, 0xF4, 0xF4))
     rect(s, x, y, 8, h, farbe)
-    absaetze = [[(titel, True)]] + ([[(kern, True)]] if kern else []) + [(pk if pk[0][0].startswith("→") else [("•  ", False)] + pk) if isinstance(pk, list) else [("•  " + pk, False)] for pk in punkte]
+    absaetze = ([[(titel, True)]] if titel else []) + ([[(kern, True)]] if kern else []) + [(pk if pk[0][0].startswith("→") else [("•  ", False)] + pk) if isinstance(pk, list) else [("•  " + pk, False)] for pk in punkte]
     tb = text(s, x + 30, y + 16, w - 52, h - 28, absaetze, size=24)
     pars = tb.text_frame.paragraphs
-    pars[0].runs[0].font.size = Pt(26 * 0.75)
+    i = 0
+    if titel:
+        pars[0].runs[0].font.size = Pt(26 * 0.75)
+        i = 1
     if kern:
-        pars[1].runs[0].font.size = Pt(28 * 0.75)
-        pars[1].runs[0].font.color.rgb = kern_farbe
+        pars[i].runs[0].font.size = Pt(28 * 0.75)
+        pars[i].runs[0].font.color.rgb = kern_farbe
     for par in pars[1:]:
         par.space_before = Pt(4)
 
 
-# --- Folie 1: Lage ---
+# --- Folie 1: Wetter ---
 KOPF = "Sa 07.11.2026 · 08:00 Uhr · FüSt HiOrg"
-s = rahmen("Lage", KOPF, 1)
-karte(s, 56, 125, 570, 330, ROT, "Wetter heute (DWD)", "trocken · Hochnebel · 4–8 °C", [
+s = rahmen("Wetter", KOPF, 1)
+karte(s, 56, 125, 1168, 300, ROT, "Heute, Samstag (DWD)", "trocken · Hochnebel · 4–8 °C", [
     [("morgens lokal ", False), ("Nebel", True), (", Sicht eingeschränkt", False)],
     [("früh örtlich ", False), ("leichter Frost", True), (" 0 bis −2 °C (Glätte)", False)],
     "Wind schwach aus O–SO",
     "nachmittags kaum Auflockerung",
     [("→ Kälteschutz für Patienten und Kräfte", True)],
 ])
-karte(s, 654, 125, 570, 330, GELB, "Friederikenstift: Regelrettung", "Calenberger Straße gesperrt", [
-    "Zufahrt Notaufnahme + NEF-Wache bleibt der Regelrettung",
-    [("Anlieferung Übungspatienten ", False), ("nur Haupteingang Humboldtstraße", True)],
-    "bei Rückstau: Parkflächen nutzen oder am Goetheplatz wenden",
-], kern_farbe=ROT)
 
-# --- Folie 2: Eigene Lage / Ausblick ---
-s = rahmen("Eigene Lage · Ausblick", KOPF, 2)
+# --- Folie 2: Friederikenstift ---
+s = rahmen("Friederikenstift: Verkehr", KOPF, 2, fuss="Quelle: Übungsbefehl LHH, 1.6")
+text(s, 56, 116, 1168, 30, [[("Calenberger Str. gesperrt", True), (" (Regelrettung) · Anlieferung ", False),
+                            ("nur Haupteingang Humboldtstraße", True)]], size=22)
+s.shapes[-1].text_frame.paragraphs[0].runs[0].font.color.rgb = ROT
+s.shapes.add_picture(str(Path(__file__).with_name("Lageskizze_Friederikenstift.jpg")), p(160), p(158), width=p(960))
+
+# --- Folie 3: Eigene Lage / Ausblick ---
+s = rahmen("Eigene Lage · Ausblick", KOPF, 3)
 karte(s, 56, 125, 570, 210, GRUEN, "BR Schützenplatz", "voraussichtlich eingerichtet", ["Meldekopf Schützenplatz"])
 karte(s, 654, 125, 570, 210, GRUEN, "Verpflegung", "läuft (voraussichtlich)", [
     "Lunchpakete JUH: FRW-1 ab 07:30, Schützenplatz ab 08:00",
-    "Warmverpflegung FRW-1 13:30–16:00",
 ])
-karte(s, 56, 360, 1168, 145, BLAU, "Als Nächstes erwartet",
-      "Einrichtung TEL Schadensraum → Befehl der TEL an FüSt HiOrg", ["Führungsorganisation gilt ab 09:00 Uhr"])
+karte(s, 56, 360, 1168, 110, BLAU, "Als Nächstes erwartet",
+      "Einrichtung TEL Schadensraum → Befehl der TEL an FüSt HiOrg", [])
 
-# --- Folie 3: Führungsorganisation (Koordinaten wie SVG der HTML-Fassung, Versatz 56/125) ---
-s = rahmen("Führungsorganisation", "Stand 08:00 Uhr · nach DV 102", 3, fuss="grau gestrichelt = noch nicht eingerichtet")
+# --- Folie 4: Führungsorganisation (Koordinaten wie SVG der HTML-Fassung, Versatz 56/125) ---
+s = rahmen("Führungsorganisation", "Stand 08:00 Uhr", 4, fuss="grau gestrichelt = noch nicht eingerichtet")
 OX, OY = 56, 125
 
 
@@ -177,11 +181,26 @@ text(s, OX + 414, OY + 404, 92, 44, ["Transp.", "Orga"], size=17, bold=True, col
 kasten(370, 486, 180, 66, "UEA", "Patiententransport")
 kasten(640, 380, 180, 78, "UEA", "Friederikenstift")
 
-# BR Schützenplatz (aktiv)
-kreis(1000, 420, 46)
-text(s, OX + 954, OY + 400, 92, 40, "M", size=32, bold=True, align=PP_ALIGN.CENTER)
+# BR Schützenplatz (aktiv): Meldekopf = Stelle, gelb, Fahrzeug + M
+kreis(1000, 420, 46, linienfarbe=SCHWARZ)
+s.shapes[-1].fill.solid(); s.shapes[-1].fill.fore_color.rgb = RGBColor(0xFF, 0xE6, 0x00)
+text(s, OX + 970, OY + 384, 60, 32, "M", size=26, bold=True, align=PP_ALIGN.CENTER)
+rect(s, OX + 976, OY + 420, 48, 20, WEISS, SCHWARZ, lw=2.5)
+for rx in (987, 1013):
+    rect(s, OX + rx - 5, OY + 441, 10, 10, WEISS, SCHWARZ, lw=2.5, shape=MSO_SHAPE.OVAL)
 text(s, OX + 880, OY + 478, 240, 26, "BR Schützenplatz", size=20, bold=True, align=PP_ALIGN.CENTER)
 text(s, OX + 880, OY + 504, 240, 24, "Meldekopf", size=18, align=PP_ALIGN.CENTER)
+
+# --- Folie 5: Real ---
+s = rahmen("Reale Einsätze haben Vorrang", KOPF, 5)
+karte(s, 56, 140, 1168, 270, ROT, "", "„Real – Real – Real“", [
+    [("Funkmeldung zu realen Lagen beginnt mit ", False), ("„Real – Real – Real“", True)],
+    "Reale Einsatzfahrten haben immer Vorrang",
+    "Übungsleitung ist weisungsbefugt",
+    [("Notfälle: sofort Übungsleitung informieren, RTW über ", False), ("112", True)],
+], kern_farbe=ROT)
+k = s.shapes[-1].text_frame.paragraphs
+k[0].runs[0].font.size = Pt(54 * 0.75)
 
 prs.save(OUT)
 print(OUT)
