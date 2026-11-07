@@ -190,7 +190,7 @@ pts = [(976 + 48 * i / 12, 416 + 24 * (i / 12) * (1 - i / 12)) for i in range(13
 fb = s.shapes.build_freeform(p(OX + 976), p(OY + 444))
 fb.add_line_segments([(p(OX + 976), p(OY + 416))] + [(p(OX + x), p(OY + y)) for x, y in pts[1:]] + [(p(OX + 1024), p(OY + 444))], close=True)
 v = fb.convert_to_shape()
-v.fill.solid(); v.fill.fore_color.rgb = WEISS
+v.fill.solid(); v.fill.fore_color.rgb = RGBColor(0xFF, 0xE6, 0x00)
 v.line.color.rgb = SCHWARZ; v.line.width = p(2.5); v.shadow.inherit = False
 text(s, OX + 880, OY + 478, 240, 26, "BR Schützenplatz", size=20, bold=True, align=PP_ALIGN.CENTER)
 text(s, OX + 880, OY + 504, 240, 24, "Meldekopf", size=18, align=PP_ALIGN.CENTER)
@@ -205,6 +205,12 @@ karte(s, 56, 140, 1168, 270, ROT, "", "„Real – Real – Real“", [
 ], kern_farbe=ROT)
 k = s.shapes[-1].text_frame.paragraphs
 k[0].runs[0].font.size = Pt(54 * 0.75)
+
+# Theme-Stil (accent1 = blau) aus allen Formen entfernen, damit kein Viewer blau einfärbt
+for sl in prs.slides:
+    for sh in sl.shapes:
+        for st in sh._element.findall("{http://schemas.openxmlformats.org/presentationml/2006/main}style"):
+            sh._element.remove(st)
 
 prs.save(OUT)
 print(OUT)
