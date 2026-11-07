@@ -98,6 +98,7 @@ nachrichten/NNN.yaml       part 1: one file per message
 einsaetze/ENN_*.yaml       part 2: one file per incident incl. feedback reports and solution
 befehle/vorlage.yaml       template for written orders (DV 100)
 befehle/NNN_*.yaml         one written order per file
+lagevortrag/               situation briefings (HTML slides + PPTX via build_pptx.py)
 trennblatt/                separator sheet for the 4-part form (HTML source + official Malteser logo)
 anhaenge/                  attachments for EDP
 generator/build.py         validates and generates the PDFs
